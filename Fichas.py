@@ -1,10 +1,10 @@
 class Fichas:
-	def __init__(self):
-		up=['T','T','T']
-		botton=['T','T','T']
-		right=['P','P','P']
-		left=['P','P','P']
-		centro = ['P','P','P']
+	def __init__(self,c,u1,u2,u3,b1,b2,b3,r1,r2,r3,l1,l2,l3):
+		up=[u1,u2,u3]
+		botton=[b1,b2,b3]
+		right=[r1,r2,r3]
+		left=[l1,l2,l3]
+		centro = [c,c,c]
 		self.posicion=[up,right,left,centro,botton]
 	def imprimir(self):
 		lado=0
@@ -22,7 +22,7 @@ class Fichas:
 				resultado += "\n"
 
 			lado = lado + 1
+		resultado += "\n"	
 		return resultado
-		print "FINAL"
 
 
