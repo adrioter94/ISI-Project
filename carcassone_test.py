@@ -6,16 +6,18 @@ class CarcassoneTest(unittest.TestCase):
 PPP
 PPP
 PPP
-TTT"""
+TTT
+"""
 		self.assertEqual(expected,Fichas('P','T','T','T'
 ,'T','T','T','P','P','P','P','P','P').imprimir())
 
-def test_second_ficha(self):
+	def test_second_ficha(self):
 		expected="""TTT
 PTP
 PTP
 PTP
-TTT"""
+TTT
+"""
 		self.assertEqual(expected,Fichas('T','T','T','T'
 ,'T','T','T','P','P','P','P','P','P').imprimir())
 
