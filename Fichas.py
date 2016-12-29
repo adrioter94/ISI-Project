@@ -25,4 +25,26 @@ class Fichas:
 		resultado += "\n"	
 		return resultado
 
-
+class ArrayFichas:
+	def __init__(self):
+		self.fichas = []
+		self.fichas.append(Fichas('I','T','T','T','T','T','T','T','T','T','T','T','T'))
+		for i in range(4):
+			self.fichas.append(Fichas('T','T','T','T','P','P','P','T','T','T','T','T','T'))
+		for i in range(3):
+			self.fichas.append(Fichas('T','P','P','P','P','P','P','T','T','T','T','T','T'))
+		for i in range(5):
+			self.fichas.append(Fichas('P','T','T','T','P','P','P','P','P','P','T','T','T'))
+		for i in range(2):
+			self.fichas.append(Fichas('P','T','T','T','P','P','P','T','T','T','P','P','P'))
+		for i in range(3):
+			self.fichas.append(Fichas('P','P','P','P','P','P','P','T','T','T','T','T','T'))
+		for i in range(5):
+			self.fichas.append(Fichas('P','T','T','T','P','P','P','P','P','P','P','P','P'))
+	def imprimir(self):
+		resultado = ''
+		i = 0
+		while i < 18:
+			resultado += str(self.fichas[i].imprimir())
+			i = i + 1
+		return resultado
