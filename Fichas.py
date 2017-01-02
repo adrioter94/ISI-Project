@@ -28,7 +28,7 @@ class Fichas:
 class ArrayFichas:
 	def __init__(self):
 		self.fichas = []
-		self.fichas.append(Fichas('I','T','T','T','T','T','T','T','T','T','T','T','T'))
+		self.fichas.append(Fichas('C','T','T','T','T','T','T','T','T','T','T','T','T'))
 		for i in range(4):
 			self.fichas.append(Fichas('T','T','T','T','P','P','P','T','T','T','T','T','T'))
 		for i in range(3):
