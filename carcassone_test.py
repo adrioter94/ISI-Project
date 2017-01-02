@@ -1,5 +1,6 @@
 from Fichas import Fichas
 from Fichas import ArrayFichas
+from tablero import Tablero
 import unittest
 class CarcassoneTest(unittest.TestCase):
 	def test_first_ficha(self):
@@ -24,9 +25,9 @@ TTT
 
 	def test_create_array_of_18(self):
 		expected ="""TTT
-TIT
-TIT
-TIT
+TCT
+TCT
+TCT
 TTT
 TTT
 TTT
@@ -115,6 +116,10 @@ TPT
 PPP
 """
 		self.assertEqual(expected,ArrayFichas().imprimir())
+	def test_tablero_filas(self):
+		self.assertEqual(72,len(Tablero().tablero))
+	def test_tablero_columnas(self):
+		self.assertEqual(72,len(Tablero().tablero[0]))
 
 if __name__ == '__main__':
 	unittest.main()
