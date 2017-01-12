@@ -15,7 +15,14 @@ class Grupo_segs:
             if color== col:
                 for n in range(self.num/len(Color().color)):
                     self.seg_r.append(Seguidor().dame_seguidor(col))
-                    
+
+    def print_saco(self,segs):
+        saco=""
+        for s in segs:
+
+            saco+=s;
+        return saco
+
 class Seguidor:
 
 
