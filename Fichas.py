@@ -44,7 +44,7 @@ class ArrayFichas:
 	def imprimir(self):
 		resultado = ''
 		i = 0
-		while i < 18:
+		while i < 23:
 			resultado += str(self.fichas[i].imprimir())
 			i = i + 1
 		return resultado
