@@ -1,4 +1,5 @@
 from Seguidor import Seguidor
+from Seguidor import Grupo_segs
 import unittest
 
 class Seguidor_test(unittest.TestCase):
@@ -18,6 +19,12 @@ class Seguidor_test(unittest.TestCase):
 
     def test_dame_todos(self):
         expected="S rojo\nS verde\nS azul\nS amarillo\nS negro\n";
+
+    def test_rellenar_color(self):
+          grupo=Grupo_segs();
+          grupo.rellenar_color("rojo")
+          expected="S rojo\nS rojo\nS rojo\nS rojo\nS rojo\nS rojo\nS rojo\nS rojo\n"
+          self.assertEqual(expected,grupo.print_saco(grupo.seg_r))
 
 
 

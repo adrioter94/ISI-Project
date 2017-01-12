@@ -1,6 +1,21 @@
 import random
 
+class Grupo_segs:
 
+    def __init__(self):
+        self.seg_r=[];
+        self.seg_v=[];
+        self.seg_azu=[];
+        self.seg_ama=[];
+        self.seg_neg=[];
+        self.num=40;
+
+    def rellenar_color (self,color):
+        for col in Color().color:
+            if color== col:
+                for n in range(self.num/len(Color().color)):
+                    self.seg_r.append(Seguidor().dame_seguidor(col))
+                    
 class Seguidor:
 
 
