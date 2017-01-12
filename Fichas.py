@@ -1,11 +1,11 @@
 class Fichas:
 	def __init__(self,c,u1,u2,u3,b1,b2,b3,r1,r2,r3,l1,l2,l3):
-		up=[u1,u2,u3]
-		botton=[b1,b2,b3]
-		right=[r1,r2,r3]
-		left=[l1,l2,l3]
+		arriba=[u1,u2,u3]
+		abajo=[b1,b2,b3]
+		derecha=[r1,r2,r3]
+		izquierda=[l1,l2,l3]
 		centro = [c,c,c]
-		self.posicion=[up,right,left,centro,botton]
+		self.posicion=[arriba,derecha,izquierda,centro,abajo]
 	def imprimir(self):
 		lado=0
 		i=0
@@ -22,25 +22,26 @@ class Fichas:
 				resultado += "\n"
 
 			lado = lado + 1
-		resultado += "\n"	
+		resultado += "\n"
 		return resultado
 
 class ArrayFichas:
 	def __init__(self):
 		self.fichas = []
-		self.fichas.append(Fichas('C','T','T','T','T','T','T','T','T','T','T','T','T'))
+		self.fichas.append(Fichas('A','A','A','A','A','A','A','A','A','A','A','A','A'))
 		for i in range(4):
-			self.fichas.append(Fichas('T','T','T','T','P','P','P','T','T','T','T','T','T'))
+			self.fichas.append(Fichas('A','A','A','A','P','P','P','A','A','A','A','A','A'))
 		for i in range(3):
-			self.fichas.append(Fichas('T','P','P','P','P','P','P','T','T','T','T','T','T'))
+			self.fichas.append(Fichas('A','P','P','P','P','P','P','A','A','A','A','A','A'))
 		for i in range(5):
-			self.fichas.append(Fichas('P','T','T','T','P','P','P','P','P','P','T','T','T'))
+			self.fichas.append(Fichas('P','A','A','A','P','P','P','P','P','P','A','A','A'))
 		for i in range(2):
-			self.fichas.append(Fichas('P','T','T','T','P','P','P','T','T','T','P','P','P'))
+			self.fichas.append(Fichas('P','A','A','A','P','P','P','A','A','A','P','P','P'))
 		for i in range(3):
-			self.fichas.append(Fichas('P','P','P','P','P','P','P','T','T','T','T','T','T'))
+			self.fichas.append(Fichas('P','P','P','P','P','P','P','A','A','A','A','A','A'))
 		for i in range(5):
-			self.fichas.append(Fichas('P','T','T','T','P','P','P','P','P','P','P','P','P'))
+			self.fichas.append(Fichas('P','A','A','A','P','P','P','P','P','P','P','P','P'))
+
 	def imprimir(self):
 		resultado = ''
 		i = 0
@@ -48,3 +49,7 @@ class ArrayFichas:
 			resultado += str(self.fichas[i].imprimir())
 			i = i + 1
 		return resultado
+
+
+if __name__ == '__main__':
+	print ArrayFichas().imprimir()
