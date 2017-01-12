@@ -1,5 +1,4 @@
 from Seguidor import Seguidor
-from Seguidor import Grupo_segs
 import unittest
 
 class Seguidor_test(unittest.TestCase):
@@ -20,7 +19,7 @@ class Seguidor_test(unittest.TestCase):
     def test_dame_todos(self):
         expected="S rojo\nS verde\nS azul\nS amarillo\nS negro\n";
 
-    
+
 
 if __name__ == '__main__':
     unittest.main()
