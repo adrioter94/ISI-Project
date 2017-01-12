@@ -83,3 +83,92 @@ final de la misma. El ganador será el jugador que haya conseguido sumar más pu
   6- Puntuar por completar iglesias, caminos y aldeas.
     Cuando un claustro, camino o ciudad es completado al colocar una nueva pieza de territorio, se cuenta su puntuación
   inmediatamente.
+
+
+  7- Camino completado.
+
+    7.1
+      Un camino se considera completado cuando sus segmentos de camino en ambos extremos están conectados con un cruce,
+    un segmento de aldea, o una iglesia. Entre ambos extremos puede haber cualquier número de segmentos de camino.
+
+    7.2
+      Un jugador que tiene un ladrón en un camino completado suma un punto por cada segmento que tenga el camino
+    (cuenta el número de piezas de territorio).
+
+
+  8- Ciudad completada.
+
+    8.1
+      Una aldea se considera completada cuando está totalmente rodeada por una muralla, en la que no
+    queda ningún hueco abierto. Una aldea puede tener cualquier cantidad de segmentos.
+
+    8.2
+      El jugador que tenga un caballero en una aldea completada suma dos puntos por cada segmento que tenga
+la aldea. Cada escudo que haya en los segmentos de la aldea otorga al jugador dos puntos extra.
+
+    8.3- Si la ciudad o camino completados tienen más de un seguidor:
+
+      8.3.1
+        Cuando pase, el jugador con más ladrones (en un camino) o más caballeros (en una aldea) se llevará todos los puntos.
+
+      8.3.2
+        Si dos o más jugadores empatan con el mayor número de ladrones o caballeros, todos esos jugadores se llevarán
+      los puntos por el camino o ciudad en cuestión.
+
+
+  9- Iglesia completada.
+    Una iglesia se considera completada cuando la pieza de territorio en la que se encuentra está completamente
+  rodeada por otras piezas de territorio. En ese caso, el jugador que tenga un monje en esa iglesia sumará 9 puntos.
+
+
+  10- Recuperar seguidores.
+    Cuando se suman puntos por un camino, aldea o iglesia completados (y sólo entonces), todos los seguidores
+  implicados son devueltos a sus jugadores, que pueden usarlos de nuevo (como ladrones, granjeros, caballeros o
+  monjes) en turnos posteriores. También puede ocurrir que se devuelvan los seguidores en ese mismo turno si al
+  colocar la pieza y el seguidor se completa el camino, la aldea o la iglesia.
+
+
+  11- Las granjas.
+    Los segmentos de campo conectados entre sí se llaman “granjas”. las granjas están rodeadas por caminos, aldeas, y
+  por los extremos del área donde se juegan las piezas de territorio. Las granjas no suman puntos durante el juego.
+  Sólo existen como lugares donde desplegar granjeros. Los granjeros otorgan sus puntos a los jugadores en el recuento
+  final. Los granjeros se mantienen toda la partida en el segmento de campo en el que hayan sido desplegados, y nunca
+  son recuperados por sus jugadores.
+
+
+  12- Final del juego.
+    Al final del turno del jugador que coloca la última pieza de territorio que queda, la partida finaliza y se lleva
+  a cabo el recuento final.
+
+
+  13- Recuento final. Ladrones, caballeros y monjes.
+    Primero se puntúan las aldeas, caminos e iglesias incompletos en los que algún jugador tenga un ladrón o un
+  caballero. Dicho jugador se lleva 1 punto por cada segmento que tenga el camino o aldea. Además, cada escudo en la
+  ciudad da al jugador 1 punto extra (para determinar quien se lleva los puntos en los caminos y ciudades con más de
+  un seguidor, utiliza las mismas reglas que para los caminos y ciudades completos). Por cada iglesia incompleta, el
+  jugador que tenga un monje allí se llevará 1 punto por la pieza de iglesia, y otro punto por cada pieza de
+  territorio que esté rodeando la iglesia.
+
+
+  14- Recuento final. Granjeros.
+    Tras puntuar las aldeas, caminos e iglesias incompletos, se cuentan los puntos logrados por los granjeros. Los
+  granjeros abastecen a las aldeas, y por tanto acumulan puntos de manera acorde, según las siguientes normas:
+
+    14.1
+      Sólo las aldeas completas se consideran abastecidas, y por tanto son las únicas que suman puntos por los
+    granjeros. Para abastecer a una aldea completa, la granja debe bordearla. La distancia entre el granjero y la
+    ciudad es irrelevante. Por cada ciudad que un granjero abastece de esta manera, el jugador que lo ha desplegado
+    suma 3 puntos, sin importar el tamaño de la aldea ni de la granja.
+
+    14.2
+      Un mismo granjero puede abastecer varias ciudades adyacentes a su granja (y por tanto sumar puntos por todas
+    ellas).
+
+    14.3
+      Varias granjas pueden abastecer una misma aldea. En este caso, el jugador con más granjeros en las granjas que
+    abastecen la aldea se lleva 3 puntos. Si dos o más jugadores están empatados con el mayor número de granjeros,
+    cada uno de estos jugadores se lleva 3 puntos.
+
+    14.4
+      De este modo, todas las aldeas abastecidas por granjas van sumando puntos una por una. Cuando todas las ciudades
+    hayan sido puntuadas, el recuento final se habrá completado. ¡El jugador con más puntos será el ganador del juego!
