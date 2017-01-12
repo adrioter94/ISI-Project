@@ -27,6 +27,11 @@ class Seguidor_test(unittest.TestCase):
           self.assertEqual(expected,grupo.print_saco(grupo.seg_r))
 
 
+    def sacar_seg(self):
+        index=random.randint(0,len(self.segs))
+        seguidor=self.segs[index]
+        self.segs.remove(seguidor)
+        return seguidor
 
 if __name__ == '__main__':
     unittest.main()
