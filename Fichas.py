@@ -17,13 +17,23 @@ class Fichas:
 					i=i+1
 				i=0
 			else:
-				resultado+=self.posicion[1][lado-1]+self.posicion[3][lado-1]+self.posicion[2][lado-1]
+				resultado+=self.posicion[2][lado-1]+self.posicion[3][lado-1]+self.posicion[1][lado-1]
 			if lado != 4:
 				resultado += "\n"
 
 			lado = lado + 1
 		resultado += "\n"
 		return resultado
+	
+	def girar(self):
+		aux_arriba = self.posicion[0]
+		aux_abajo = self.posicion[4]
+		aux_derecha = self.posicion[1]
+		aux_izquierda = self.posicion[2]
+		self.posicion[0]=aux_izquierda
+		self.posicion[1]=aux_arriba
+		self.posicion[2]=aux_abajo
+		self.posicion[4]=aux_derecha
 
 class ArrayFichas:
 	def __init__(self):
@@ -34,9 +44,9 @@ class ArrayFichas:
 		for i in range(3):
 			self.fichas.append(Fichas('A','P','P','P','P','P','P','A','A','A','A','A','A'))
 		for i in range(5):
-			self.fichas.append(Fichas('P','A','A','A','P','P','P','P','P','P','A','A','A'))
-		for i in range(2):
 			self.fichas.append(Fichas('P','A','A','A','P','P','P','A','A','A','P','P','P'))
+		for i in range(2):
+			self.fichas.append(Fichas('P','A','A','A','P','P','P','P','P','P','A','A','A'))
 		for i in range(3):
 			self.fichas.append(Fichas('P','P','P','P','P','P','P','A','A','A','A','A','A'))
 		for i in range(5):
