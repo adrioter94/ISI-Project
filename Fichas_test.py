@@ -144,5 +144,16 @@ PPP
 		
 		self.assertEqual(expected,ArrayFichas().imprimir())
 
+	def test_girar_ficha(self):
+		f=Fichas('A','A','A','A','P','P','P','A','A','A','A','A','A')
+		f.girar()
+		expected ="""AAA
+PAA
+PAA
+PAA
+AAA
+"""
+		self.assertEqual(expected,f.imprimir())
+
 if __name__ == '__main__':
 	unittest.main()
