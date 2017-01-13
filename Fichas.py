@@ -50,6 +50,3 @@ class ArrayFichas:
 			i = i + 1
 		return resultado
 
-
-if __name__ == '__main__':
-	print ArrayFichas().imprimir()
