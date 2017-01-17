@@ -24,7 +24,7 @@ class Fichas:
 			lado = lado + 1
 		resultado += "\n"
 		return resultado
-	
+
 	def girar(self):
 		aux_arriba = self.posicion[0]
 		aux_abajo = self.posicion[4]
@@ -51,6 +51,8 @@ class ArrayFichas:
 			self.fichas.append(Fichas('P','P','P','P','P','P','P','A','A','A','A','A','A'))
 		for i in range(5):
 			self.fichas.append(Fichas('P','A','A','A','P','P','P','P','P','P','P','P','P'))
+		for i in range(3):
+			self.fichas.append(Fichas('A','A','A','A','P','C','P','A','A','A','A','A','A'))
 
 	def imprimir(self):
 		resultado = ''
@@ -59,4 +61,3 @@ class ArrayFichas:
 			resultado += str(self.fichas[i].imprimir())
 			i = i + 1
 		return resultado
-
