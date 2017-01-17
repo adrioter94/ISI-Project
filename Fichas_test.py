@@ -253,6 +253,9 @@ PCP
 #
 # 		self.assertEqual(expected,ArrayFichas().imprimir())
 
+	def test_long_array(self):
+
+		self.assertEqual(len(ArrayFichas().saco),71)
 
 	def test_girar_ficha(self):
 		f=Fichas('A','A','A','A','P','P','P','A','A','A','A','A','A')
