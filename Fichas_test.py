@@ -259,12 +259,33 @@ PCP
 
 	def test_sacar_ficha_primera(self):
 		expected="""AAA
-PPP
-PPP
-PPP
+AAA
+AAA
+AAA
 AAA
 """
 		self.assertEqual(ArrayFichas().sacar_ficha(0).imprimir(),expected)
+
+
+	def test_sacar_ult_ficha(self):
+		expected="""PPP
+PXP
+CXC
+PXP
+PCP
+"""
+		self.assertEqual(ArrayFichas().sacar_ficha(70).imprimir(),expected)
+
+	def test_sacar_medio_ficha(self):
+		expected="""AAA
+AAA
+AAA
+AAA
+PCP
+"""
+		self.assertEqual(ArrayFichas().sacar_ficha(26).imprimir(),expected)
+
+
 	def test_girar_ficha(self):
 		f=Fichas('A','A','A','A','P','P','P','A','A','A','A','A','A')
 		f.girar()
