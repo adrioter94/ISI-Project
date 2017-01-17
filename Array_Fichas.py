@@ -71,6 +71,10 @@ class ArrayFichas:
 		return self.saco[pos]
 
 
+	def eliminar_ficha(self, ficha):
+		self.saco.remove(ficha)
+
+
 	# def imprimir(self):
 	# 	resultado = ''
 	# 	i = 0
