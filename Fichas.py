@@ -67,6 +67,8 @@ class ArrayFichas:
 			self.fichas.append(Fichas('C','A','A','A','P','P','P','P','C','P','P','C','P'))
 		for i in range(4):
 			self.fichas.append(Fichas('I','P','P','P','P','P','P','P','P','P','P','P','P'))
+		for i in range(9):
+			self.fichas.append(Fichas('C','P','P','P','P','C','P','P','P','P','P','C','P'))
 
 	def imprimir(self):
 		resultado = ''
