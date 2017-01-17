@@ -88,6 +88,15 @@ PPP
 """
 		self.assertEqual(expected, Fichas('C','A','A','A','P','P','P','P','C','P','P','C','P').imprimir())
 
+	def test_ficha_10(self):
+		expected="""PPP
+PIP
+PIP
+PIP
+PPP
+"""
+		self.assertEqual(expected, Fichas('I','P','P','P','P','P','P','P','P','P','P','P','P').imprimir())
+
 # 	def test_create_array_of_23(self):
 # 		expected ="""AAA
 # AAA
