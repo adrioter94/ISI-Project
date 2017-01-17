@@ -1,4 +1,5 @@
 from Fichas import Fichas
+import random
 
 class ArrayFichas:
 
@@ -63,6 +64,12 @@ class ArrayFichas:
 			self.saco.append(self.tipo18)
 		for i in range(4):
 			self.saco.append(self.tipo19)
+
+	def sacar_ficha(self,pos=None):
+		if pos == None:
+			pos=random.randint(0,len(self.saco)-1)
+		return self.saco[pos]
+
 
 	# def imprimir(self):
 	# 	resultado = ''
