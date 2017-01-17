@@ -133,125 +133,6 @@ PCP
 """
 		self.assertEqual(expected, Fichas('X','P','C','P','P','C','P','P','C','P','P','C','P').imprimir())
 
-# 	def test_create_array_of_23(self):
-# 		expected ="""AAA
-# AAA
-# AAA
-# AAA
-# AAA
-# AAA
-# AAA
-# AAA
-# AAA
-# PPP
-# AAA
-# AAA
-# AAA
-# AAA
-# PPP
-# AAA
-# AAA
-# AAA
-# AAA
-# PPP
-# AAA
-# AAA
-# AAA
-# AAA
-# PPP
-# PPP
-# AAA
-# AAA
-# AAA
-# PPP
-# PPP
-# AAA
-# AAA
-# AAA
-# PPP
-# PPP
-# AAA
-# AAA
-# AAA
-# PPP
-# AAA
-# PPA
-# PPA
-# PPA
-# PPP
-# AAA
-# PPA
-# PPA
-# PPA
-# PPP
-# AAA
-# PPA
-# PPA
-# PPA
-# PPP
-# AAA
-# PPA
-# PPA
-# PPA
-# PPP
-# AAA
-# PPA
-# PPA
-# PPA
-# PPP
-# AAA
-# APP
-# APP
-# APP
-# PPP
-# AAA
-# APP
-# APP
-# APP
-# PPP
-# PPP
-# APA
-# APA
-# APA
-# PPP
-# PPP
-# APA
-# APA
-# APA
-# PPP
-# PPP
-# APA
-# APA
-# APA
-# PPP
-# AAA
-# PPP
-# PPP
-# PPP
-# PPP
-# AAA
-# PPP
-# PPP
-# PPP
-# PPP
-# AAA
-# PPP
-# PPP
-# PPP
-# PPP
-# AAA
-# PPP
-# PPP
-# PPP
-# PPP
-# AAA
-# PPP
-# PPP
-# PPP
-# PPP
-# """
-#
-# 		self.assertEqual(expected,ArrayFichas().imprimir())
 
 	def test_long_array(self):
 
@@ -284,6 +165,13 @@ AAA
 PCP
 """
 		self.assertEqual(ArrayFichas().sacar_ficha(26).imprimir(),expected)
+
+
+	def eliminar_ficha_saco(self):
+		ficha = ArrayFichas().sacar_ficha(26)
+		expected = len(ArrayFichas().saco)-1
+		ArrayFichas().eliminar_ficha(ficha)
+		self.assertEqual(len(ArrayFichas().saco),expected)
 
 
 	def test_girar_ficha(self):
