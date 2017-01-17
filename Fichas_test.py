@@ -1,5 +1,5 @@
 from Fichas import Fichas
-from Fichas import ArrayFichas
+from ArrayFichas import ArrayFichas
 import unittest
 
 class CarcassoneTest(unittest.TestCase):
