@@ -257,6 +257,14 @@ PCP
 
 		self.assertEqual(len(ArrayFichas().saco),71)
 
+	def test_sacar_ficha_primera(self):
+		expected="""AAA
+PPP
+PPP
+PPP
+AAA
+"""
+		self.assertEqual(ArrayFichas().sacar_ficha(0).imprimir(),expected)
 	def test_girar_ficha(self):
 		f=Fichas('A','A','A','A','P','P','P','A','A','A','A','A','A')
 		f.girar()
