@@ -70,6 +70,15 @@ PCP
 """
 		self.assertEqual(expected, Fichas('P','A','A','A','P','C','P','P','P','P','P','C','P').imprimir())
 
+	def test_ficha_8(self):
+		expected="""AAA
+PXP
+CXC
+PXP
+PCP
+"""
+		self.assertEqual(expected, Fichas('X','A','A','A','P','C','P','P','C','P','P','C','P').imprimir())
+
 # 	def test_create_array_of_23(self):
 # 		expected ="""AAA
 # AAA
