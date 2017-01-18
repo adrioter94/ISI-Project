@@ -1,4 +1,5 @@
 from Seguidor import Seguidor
+from Seguidor import Grupo_segs
 import unittest
 
 class Seguidor_test(unittest.TestCase):
@@ -24,7 +25,7 @@ class Seguidor_test(unittest.TestCase):
        expected="S rojo\nS verde\nS azul\nS amarillo\nS negro\n";
        self.assertEqual(expected,Seguidor().dame_todos())
 
-    # test para que me devuelva 8 seguidores rojo 
+    # test para que me devuelva 8 seguidores rojo
     def test_rellenar_color(self):
               grupo=Grupo_segs();
               grupo.rellenar_color("rojo")

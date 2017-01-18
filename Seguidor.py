@@ -1,7 +1,31 @@
 import random
 
-class Seguidor:
+class Grupo_segs:
 
+  def __init__(self):
+      self.seg_r=[];
+      self.seg_v=[];
+      self.seg_azu=[];
+      self.seg_ama=[];
+      self.seg_neg=[];
+      self.num=40;
+
+  def rellenar_color (self,color):
+      for col in Seguidor().color:
+          if color== col:
+              for n in range(self.num/len(Seguidor().color)):
+                  self.seg_r.append(Seguidor().dame_seguidor(col))
+
+
+  def print_saco(self,segs):
+      saco=""
+      for s in segs:
+
+          saco+=s;
+      return saco
+
+
+class Seguidor:
 
     def __init__(self):
         self.seg="S";
@@ -19,6 +43,6 @@ class Seguidor:
         for s in self.color:
             result+=Seguidor().to_String(s)
         return result
-        
+
     def to_String(self,color):
         return self.seg+" "+color+"\n";
