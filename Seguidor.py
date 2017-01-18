@@ -16,6 +16,11 @@ class Grupo_segs:
                 for n in range(self.num/len(Color().color)):
                     self.seg_r.append(Seguidor().dame_seguidor(col))
 
+    def sacar_seg(self,seg):
+        seguidor=self.segs.pop
+        self.segs.remove(seguidor)
+        return seguidor
+
     def print_saco(self,segs):
         saco=""
         for s in segs:
@@ -28,10 +33,8 @@ class Seguidor:
 
     def __init__(self):
         self.seg="S";
-
-    def dame_todos(self):
-        for s in Color.color():
-            return dame_seguidor(s)
+        self.color=["rojo","verde","azul","amarillo","negro"];
+        
 
     def dame_seguidor(self,col):
         if col in Color().color:
@@ -44,4 +47,3 @@ class Seguidor:
 class Color:
 
     def __init__(self):
-        self.color=["rojo","verde","azul","amarillo","negro"];
