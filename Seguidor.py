@@ -18,6 +18,7 @@ class Seguidor:
         result=""
         for s in self.color:
             result+=Seguidor().to_String(s)
-        return result    
+        return result
+        
     def to_String(self,color):
         return self.seg+" "+color+"\n";
