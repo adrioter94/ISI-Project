@@ -72,12 +72,12 @@ PCP
 
 	def test_ficha_8(self):
 		expected="""AAA
-PIP
-CIC
-PIP
+PBP
+CBC
+PBP
 PCP
 """
-		self.assertEqual(expected, Fichas('I','A','A','A','P','C','P','P','C','P','P','C','P').imprimir())
+		self.assertEqual(expected, Fichas('B','A','A','A','P','C','P','P','C','P','P','C','P').imprimir())
 
 	def test_ficha_9(self):
 		expected="""AAA
@@ -117,21 +117,21 @@ PCP
 
 	def test_ficha_13(self):
 		expected="""PPP
-PIP
-CIC
-PIP
+PBP
+CBC
+PBP
 PCP
 """
-		self.assertEqual(expected, Fichas('I','P','P','P','P','C','P','P','C','P','P','C','P').imprimir())
+		self.assertEqual(expected, Fichas('B','P','P','P','P','C','P','P','C','P','P','C','P').imprimir())
 
 	def test_ficha_14(self):
 		expected="""PCP
-PIP
-CIC
-PIP
+PBP
+CBC
+PBP
 PCP
 """
-		self.assertEqual(expected, Fichas('I','P','C','P','P','C','P','P','C','P','P','C','P').imprimir())
+		self.assertEqual(expected, Fichas('B','P','C','P','P','C','P','P','C','P','P','C','P').imprimir())
 
 
 	def test_long_array(self):
@@ -150,9 +150,9 @@ AAA
 
 	def test_sacar_ult_ficha(self):
 		expected="""PPP
-PIP
-CIC
-PIP
+PBP
+CBC
+PBP
 PCP
 """
 		self.assertEqual(ArrayFichas().sacar_ficha(70).imprimir(),expected)
