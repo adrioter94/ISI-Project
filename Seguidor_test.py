@@ -42,11 +42,14 @@ class Seguidor_test(unittest.TestCase):
 
 
 
-    # def test_sacar_seguidor(self):
-    #     grupo=Grupo_segs();
-    #     grupo.rellenar_color("rojo")
-    #     grupo.remove()
-    #    self.assertTrue(len(grupo),)
+    def test_sacar_seguidor(self):
+         grupo=Grupo_segs();
+         grupo.rellenar_color("rojo")
+         grupo.sacar_seg(grupo.seg_r)
+         self.assertEqual(len(grupo.seg_r),7)
+
+         grupo.sacar_seg(grupo.seg_r)
+         self.assertEqual(len(grupo.seg_r),6)
 
 
 if __name__ == '__main__':

@@ -28,12 +28,11 @@ class Grupo_segs:
             self.seg_neg.append(Seguidor().dame_seguidor(color))
       else:
         print "Color no disponible"
-        
- # def sacar_seg(self,seg):
- #       seguidor=self.segs.pop
- #       self.segs.remove(seguidor)
- #       return seguidor
- #
+
+  def sacar_seg(self,seg):
+        seguidor=seg.pop();
+        return seguidor
+
   def print_saco(self,segs):
       saco=""
       for s in segs:
