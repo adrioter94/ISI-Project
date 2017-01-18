@@ -6,7 +6,7 @@ class ArrayFichas:
 	saco = []
 	inicial = Fichas('C','A','A','A','P','P','P','P','C','P','P','C','P')
 	tipo1 = Fichas('A','A','A','A','A','A','A','A','A','A','A','A','A')
-	tipo2 = Fichas('X','P','C','P','P','C','P','P','C','P','P','C','P')
+	tipo2 = Fichas('I','P','C','P','P','C','P','P','C','P','P','C','P')
 	tipo3 = Fichas('A','A','A','A','P','P','P','A','A','A','A','A','A')
 	tipo4 = Fichas('A','P','P','P','P','P','P','A','A','A','A','A','A')
 	tipo5 = Fichas('P','A','A','A','P','P','P','A','A','A','P','P','P')
@@ -18,12 +18,12 @@ class ArrayFichas:
 	tipo11 = Fichas('I','P','P','P','P','C','P','P','P','P','P','P','P')
 	tipo12 = Fichas('P','A','A','A','P','C','P','P','C','P','P','P','P')
 	tipo13 = Fichas('P','A','A','A','P','C','P','P','P','P','P','C','P')
-	tipo14 = Fichas('X','A','A','A','P','C','P','P','C','P','P','C','P')
+	tipo14 = Fichas('I','A','A','A','P','C','P','P','C','P','P','C','P')
 	tipo15 = Fichas('C','A','A','A','P','P','P','P','C','P','P','C','P')
 	tipo16 = Fichas('I','P','P','P','P','P','P','P','P','P','P','P','P')
 	tipo17 = Fichas('C','P','P','P','P','C','P','P','P','P','P','C','P')
 	tipo18 = Fichas('C','P','C','P','P','C','P','P','P','P','P','P','P')
-	tipo19 = Fichas('X','P','P','P','P','C','P','P','C','P','P','C','P')
+	tipo19 = Fichas('I','P','P','P','P','C','P','P','C','P','P','C','P')
 
 
 
