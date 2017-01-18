@@ -6,6 +6,7 @@ class CarcassoneTest(unittest.TestCase):
 	def test_tablero_filas(self):
 		f=Fichas('C','A','A','A','P','P','P','P','C','P','P','C','P')
 		self.assertEqual(145,len(Tablero(f).tablero))
+		
 	def test_tablero_columnas(self):
 		f=Fichas('C','A','A','A','P','P','P','P','C','P','P','C','P')
 		self.assertEqual(145,len(Tablero(f).tablero[0]))
@@ -81,7 +82,7 @@ PPP
 		t = Tablero(tipo1)
 		expected="No valida"
 		self.assertEqual(expected,t.insertar(71,70,tipo11))
-	
+
 	def test_insertar(self):
 		f=Fichas('C','A','A','A','P','P','P','P','C','P','P','C','P')
 		tipo1 = Fichas('A','A','A','A','A','A','A','A','A','A','A','A','A')
