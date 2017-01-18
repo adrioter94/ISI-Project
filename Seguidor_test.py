@@ -33,5 +33,21 @@ class Seguidor_test(unittest.TestCase):
               self.assertEqual(expected,grupo.print_saco(grupo.seg_r))
 
 
+    # test para que me devuelva 8 seguidores azul
+    def test_rellenar_color(self):
+              grupo=Grupo_segs();
+              grupo.rellenar_color("azul")
+              expected="S azul\nS azul\nS azul\nS azul\nS azul\nS azul\nS azul\nS azul\n"
+              self.assertEqual(expected,grupo.print_saco(grupo.seg_azu))
+
+
+
+    # def test_sacar_seguidor(self):
+    #     grupo=Grupo_segs();
+    #     grupo.rellenar_color("rojo")
+    #     grupo.remove()
+    #    self.assertTrue(len(grupo),)
+
+
 if __name__ == '__main__':
     unittest.main()
