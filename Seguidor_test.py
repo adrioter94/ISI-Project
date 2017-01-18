@@ -19,10 +19,10 @@ class Seguidor_test(unittest.TestCase):
         expected="color no existe"
         self.assertEqual(expected,Seguidor().dame_seguidor("rosa"));
 
-    # Test que muestra los colores de los seguidores posibles    
+    # Test que muestra los colores de los seguidores posibles
     def test_dame_todos(self):
        expected="S rojo\nS verde\nS azul\nS amarillo\nS negro\n";
-
+       self.assertEqual(expected,Seguidor().dame_todos())
 
 if __name__ == '__main__':
     unittest.main()
