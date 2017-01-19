@@ -18,17 +18,17 @@ class Tablero:
 		
 		i=0
 		while i < 3:
-			self.tab_partida[primera_y][primera_x+i]=ficha.posicion[0][i]
+			self.tab_partida[primera_y][primera_x+i]=ficha.territorio[0][i]
 			i = i + 1
 		i = 0
 		while i < 3:	
-			self.tab_partida[primera_y+1+i][primera_x]=ficha.posicion[2][i]
-			self.tab_partida[primera_y+1+i][primera_x+1]=ficha.posicion[3][i]
-			self.tab_partida[primera_y+1+i][primera_x+2]=ficha.posicion[1][i]
+			self.tab_partida[primera_y+1+i][primera_x]=ficha.territorio[2][i]
+			self.tab_partida[primera_y+1+i][primera_x+1]=ficha.territorio[3][i]
+			self.tab_partida[primera_y+1+i][primera_x+2]=ficha.territorio[1][i]
 			i = i + 1
 		i = 0
 		while i < 3:
-			self.tab_partida[primera_y+4][primera_x+i]=ficha.posicion[4][i]
+			self.tab_partida[primera_y+4][primera_x+i]=ficha.territorio[4][i]
 			i = i + 1
 			
 			
@@ -60,7 +60,7 @@ class Tablero:
 		else:
 			while i < 3:
 				
-				if self.tablero[y][x].posicion[zona_comprobar][i]!=ficha.posicion[l_fichacolocar][i]:
+				if self.tablero[y][x].territorio[zona_comprobar][i]!=ficha.territorio[l_fichacolocar][i]:
 					correcto = 'false'
 					break
 				correcto='true'
