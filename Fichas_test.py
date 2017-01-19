@@ -11,7 +11,7 @@ A0 A0 A0
 A0 A0 A0
 A0 A0 A0
 """
-		self.assertEqual(expected,f.imprimir(f))
+		self.assertEqual(expected,f.imprimir())
 
 	def test_second_ficha(self):
 		f=Fichas('A','A','A','A','P','P','P','A','A','A','A','A','A',[1,0,0,0,0,0,1,0,0,0,0,0,0,0,0])
@@ -22,7 +22,7 @@ A0 A0 A0
 P1 P0 P0
 """
 
-		self.assertEqual(expected,f.imprimir(f))
+		self.assertEqual(expected,f.imprimir())
 
 
 	def test_ficha_3(self):
@@ -33,7 +33,7 @@ A0 A0 A0
 A0 A0 A0
 P1 P0 P0
 """
-		self.assertEqual(expected, f.imprimir(f))
+		self.assertEqual(expected, f.imprimir())
 
 	def test_ficha_4(self):
 		f=Fichas('P','A','A','A','P','P','P','A','A','A','P','P','P',[1,0,0,1,0,0,0,0,0,0,0,0,0,0,0])
@@ -43,7 +43,7 @@ P0 P0 A0
 P0 P0 A0
 P0 P0 P0
 """
-		self.assertEqual(expected, f.imprimir(f))
+		self.assertEqual(expected, f.imprimir())
 
 	def test_ficha_5(self):
 		f=Fichas('P','A','A','A','P','P','P','P','P','P','A','A','A',[1,0,0,1,0,0,0,0,0,1,0,0,0,0,0])
@@ -53,7 +53,7 @@ A0 P0 P0
 A0 P0 P0
 P0 P0 P0
 """
-		self.assertEqual(expected, f.imprimir(f))
+		self.assertEqual(expected, f.imprimir())
 
 	def test_ficha_6(self):
 		f=Fichas('P','P','P','P','P','P','P','A','A','A','A','A','A',[1,0,0,0,0,0,0,0,0,1,0,0,1,0,0])
@@ -63,7 +63,7 @@ A0 P0 A0
 A0 P0 A0
 P0 P0 P0
 """
-		self.assertEqual(expected, f.imprimir(f))
+		self.assertEqual(expected, f.imprimir())
 
 	def test_ficha_7(self):
 		f=Fichas('P','A','A','A','P','P','P','P','P','P','P','P','P',[1,0,0,1,0,0,0,0,0,0,0,0,0,0,0])
@@ -73,7 +73,7 @@ P0 P0 P0
 P0 P0 P0
 P0 P0 P0
 """
-		self.assertEqual(expected, f.imprimir(f))
+		self.assertEqual(expected, f.imprimir())
 
 	def test_ficha_8(self):
 		f=Fichas('A','A','A','A','P','C','P','A','A','A','A','A','A',[1,0,0,0,0,0,1,1,1,0,0,0,0,0,0])
@@ -83,7 +83,7 @@ A0 A0 A0
 A0 A0 A0
 P1 C1 P1
 """
-		self.assertEqual(expected, f.imprimir(f))
+		self.assertEqual(expected, f.imprimir())
 
 
 	def test_long_array(self):
@@ -98,7 +98,7 @@ A0 A0 A0
 A0 A0 A0
 A0 A0 A0
 """
-		self.assertEqual(f.imprimir(f),expected)
+		self.assertEqual(f.imprimir(),expected)
 
 
 	def test_sacar_ult_ficha(self):
@@ -109,7 +109,7 @@ C1 B0 C1
 P0 B0 P0
 P1 C1 P1
 """
-		self.assertEqual(f.imprimir(f),expected)
+		self.assertEqual(f.imprimir(),expected)
 
 	def test_sacar_medio_ficha(self):
 		f=ArrayFichas().sacar_ficha(25)
@@ -119,7 +119,7 @@ A0 A0 A0
 A0 A0 A0
 P1 C1 P1
 """
-		self.assertEqual(f.imprimir(f),expected)
+		self.assertEqual(f.imprimir(),expected)
 
 
 	def eliminar_ficha_saco(self):
@@ -140,7 +140,7 @@ P0 A0 A0
 P0 A0 A0
 A0 A0 A0
 """
-		self.assertEqual(expected,f.imprimir(f))
+		self.assertEqual(expected,f.imprimir())
 
 if __name__ == '__main__':
 	unittest.main()
