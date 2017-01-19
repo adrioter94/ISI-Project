@@ -11,10 +11,10 @@ class Fichas:
 		self.posSeguidores=posSeguidores
 		self.escudo=escudo
 
-	def imprimir(self,f)
-	
-		 ter = f.territorio
-		 seg = f.posSeguidores
+
+	def imprimir(self):
+		 ter = self.territorio
+		 seg = self.posSeguidores
 		 resultado = ""
 		 resultado += ter[0][0] + str(seg[3]) + " " + ter[0][1]+ str(seg[4]) + " " + ter[0][2] + str(seg[5]) +"\n"
 		 resultado += ter[2][0] + str(seg[12])+ " " + ter[3][0]+ str(seg[0]) + " " + ter[1][0] + str(seg[9]) +"\n"
@@ -23,27 +23,8 @@ class Fichas:
 		 resultado += ter[4][0] + str(seg[6]) + " " + ter[4][1]+ str(seg[7]) + " " + ter[4][2] + str(seg[8]) +"\n"
 		 return resultado
 
-		#  lado=0
-		#  i=0
-		#  resultado = ""
-		#  for lugar in posicion:
-		#  	if (lado == 0 or lado == 4):
-		#  		while (i < 3):
-		#  			resultado += lugar[i]
-		#  			i=i+1
-		#  		i=0
-		#  	else:
-		#  		resultado+=posicion[2][lado-1]+posicion[3][lado-1]+posicion[1][lado-1]
-		#  	if lado != 4:
-		#  		resultado += "\n"
-		 #
-		#  	lado = lado + 1
-		#  resultado += "\n"
-		#  return resultado
-
 
 	def girar(self):#falta modificar incluyendo los seguidores
-
 	 	aux_arriba = self.territorio[0]
 	 	aux_abajo = self.territorio[4]
 	 	aux_derecha = self.territorio[1]
