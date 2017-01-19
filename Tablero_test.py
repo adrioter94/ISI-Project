@@ -6,7 +6,7 @@ class CarcassoneTest(unittest.TestCase):
 	def test_tablero_filas(self):
 		f=Fichas('C','A','A','A','P','P','P','P','C','P','P','C','P')
 		self.assertEqual(145,len(Tablero(f).tablero))
-		
+
 	def test_tablero_columnas(self):
 		f=Fichas('C','A','A','A','P','P','P','P','C','P','P','C','P')
 		self.assertEqual(145,len(Tablero(f).tablero[0]))
