@@ -14,8 +14,6 @@ class Fichas:
 	def imprimir(self,f):
 		ter = f.territorio
 		seg = f.posSeguidores
-		print ter[3]
-		print str(seg[3])
 		resultado = ""
 		resultado += ter[1][0] + str(seg[3]) + " " + ter[1][1]+ str(seg[4]) + " " + ter[1][2] + str(seg[5]) +"\n"
 		resultado += ter[4][0] + str(seg[12])+ " " + ter[0][0]+ str(seg[0]) + " " + ter[3][0] + str(seg[9]) +"\n"
@@ -51,7 +49,3 @@ class Fichas:
 		self.territorio[1]=aux_arriba
 		self.territorio[2]=aux_abajo
 		self.territorio[4]=aux_derecha
-
-if __name__ == '__main__':
-	f=Fichas('A','A','A','A','P','P','P','A','A','A','A','A','A',[1,0,0,0,0,0,1,0,0,0,0,0,0,0,0])
-	f.imprimir(f)

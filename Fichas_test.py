@@ -122,7 +122,7 @@ P0 P0 P0
 P0 P0 P0
 P0 P0 P0
 """
-		self.assertEqual(f.imprimir(f.territorio),expected)
+		self.assertEqual(f.imprimir(f),expected)
 
 
 	def eliminar_ficha_saco(self):
