@@ -129,18 +129,18 @@ P1 C1 P1
 		self.assertEqual(len(ArrayFichas().saco),expected)
 
 
-# 	def test_girar_ficha(self):
-#
-# 		f=Fichas('A','A','A','A','P','P','P','A','A','A','A','A','A',[1,0,0,0,0,0,1,0,0,0,0,0,0,0,0])
-# 		#f=Fichas('A','A','A','A','A','A','A','A','A','A','P','P','P',[100000000000100])
-# 		f.girar()
-# 		expected="""A0 A0 A0
-# A0 A1 P0
-# A0 A0 P0
-# A0 A0 P0
-# A1 A0 A0
-# """
-		# self.assertEqual(expected,f.imprimir(f))
+ 	def test_girar_ficha(self):
+
+ 		f=Fichas('A','A','A','A','P','P','P','A','A','A','A','A','A',[1,0,0,0,0,0,1,0,0,0,0,0,0,0,0])
+ 		#f=Fichas('A','A','A','A','A','A','A','A','A','A','P','P','P',[100000000000100])
+ 		f.girar()
+ 		expected="""A0 A0 A0
+P1 A1 A0
+P0 A0 A0
+P0 A0 A0
+A0 A0 A0
+"""
+		self.assertEqual(expected,f.imprimir(f))
 
 if __name__ == '__main__':
 	unittest.main()

@@ -4,6 +4,7 @@ import random
 class ArrayFichas:
 
 	saco = []
+	# centro arriba abajo derecha izquierda
 	inicial = Fichas('C','A','A','A','P','P','P','P','C','P','P','C','P',[1,0,0,1,0,0,1,0,0,1,0,0,0,0,0],False)
 	tipo1 = Fichas('A','A','A','A','A','A','A','A','A','A','A','A','A',[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],True)
 	tipo2 = Fichas('A','A','A','A','P','P','P','A','A','A','A','A','A',[1,0,0,0,0,0,1,0,0,0,0,0,0,0,0],False)

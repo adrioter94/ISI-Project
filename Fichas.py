@@ -42,7 +42,7 @@ class Fichas:
 		#  return resultado
 
 
-	 def girar(self):#falta modificar incluyendo los seguidores
+	def girar(self):#falta modificar incluyendo los seguidores
 	 	aux_arriba = self.territorio[0]
 	 	aux_abajo = self.territorio[4]
 	 	aux_derecha = self.territorio[1]
@@ -52,14 +52,14 @@ class Fichas:
 	 	self.territorio[2]=aux_abajo
 	 	self.territorio[4]=aux_derecha
 
-	 	aux_arriba=self.posSeguidores[3:5]
-	 	aux_abajo=self.posSeguidores[6:8]
-	 	aux_derecha= self.posSeguidores[9:11]
-	 	aux_izquierda=self.posSeguidores[12:14]
+	 	aux_a=self.posSeguidores[3:6]
+	 	aux_aba=self.posSeguidores[6:9]
+	 	aux_der= self.posSeguidores[9:12]
+	 	aux_izq=self.posSeguidores[12:15]
 
-		print aux_abajo
+		self.posSeguidores[3:6]=aux_izq
+		self.posSeguidores[6:9]=aux_der
+		self.posSeguidores[9:12]=aux_a
+		self.posSeguidores[12:15]=aux_aba
 
-
-if __name__ == '__main__':
-	f=Fichas('A','A','A','A','P','P','P','A','A','A','A','A','A',[1,0,0,0,0,0,1,0,0,0,0,0,0,0,0])
-	f.girar()
+		print self.posSeguidores
