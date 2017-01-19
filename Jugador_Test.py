@@ -13,5 +13,5 @@ class JugadorTest(unittest.TestCase):
         expected = "Nombre: Sandra, Color: Amarillo"
         self.assertEqual(expected, j.imprimir())
 
-    if __name__ == '__main__':
-        unittest.main()
+if __name__ == '__main__':
+    unittest.main()
