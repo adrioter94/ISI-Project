@@ -1,10 +1,10 @@
 class Jugador:
     def __init__(self, nombre, color):
-        self.nombre = nombre;
-        self.color = color;
+        self.nombre = nombre
+        self.color = color
         #Color in ['azul', 'amarillo', 'rojo', 'negro', 'verde']
-        self.turno = False;
-        self.seguidores = 8;
+        self.turno = False
+        self.seguidores = 8
 
     def imprimir(self):
-        return("Nombre: " + self.nombre + ", Color: " + self.color);
+        return("Nombre: " + self.nombre + ", Color: " + self.color)
