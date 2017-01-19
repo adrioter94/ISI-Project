@@ -8,11 +8,11 @@ class Fichas:
 		centro = [c,c,c]
 
 		self.territorio=[arriba,derecha,izquierda,centro,abajo]
-		#self.territorio=[centro,arriba,abajo,derecha,izquierda]
 		self.posSeguidores=posSeguidores
 		self.escudo=escudo
 
-	def imprimir(self,f):
+	def imprimir(self,f)
+	
 		 ter = f.territorio
 		 seg = f.posSeguidores
 		 resultado = ""
@@ -43,6 +43,7 @@ class Fichas:
 
 
 	def girar(self):#falta modificar incluyendo los seguidores
+
 	 	aux_arriba = self.territorio[0]
 	 	aux_abajo = self.territorio[4]
 	 	aux_derecha = self.territorio[1]
@@ -52,6 +53,7 @@ class Fichas:
 	 	self.territorio[2]=aux_abajo
 	 	self.territorio[4]=aux_derecha
 
+		# aux_a auxiliar pos arriba de los seguidores
 	 	aux_a=self.posSeguidores[3:6]
 	 	aux_aba=self.posSeguidores[6:9]
 	 	aux_der= self.posSeguidores[9:12]
@@ -61,5 +63,3 @@ class Fichas:
 		self.posSeguidores[6:9]=aux_der
 		self.posSeguidores[9:12]=aux_a
 		self.posSeguidores[12:15]=aux_aba
-
-		print self.posSeguidores
