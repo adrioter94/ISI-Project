@@ -1,5 +1,7 @@
 from Jugador import Jugador
 
+class JugadorTest(unittest.TestCase):
+    
     def test_nuevo_Jugador1(self):
         j = Jugador('Adrian', 'Rojo');
         expected = "Nombre: Adrian, Color: Rojo";
