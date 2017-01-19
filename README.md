@@ -2,10 +2,17 @@
 Implementación del juego de Carcassonne en Python.
 
 
+
+
 1- Componentes del juego.
   1.1. Número de piezas.
     72 piezas de territorio (incluyendo una pieza de inicio, con el reverso de color
   negro), ilustradas con segmentos de aldeas, caminos, prados e iglesias.
+  A: Aldea
+  C: Camino
+  P: Pradera
+  I: Iglesia
+  B: Bifurcación
 
   1.2. Fichas.
     40 fichas de seguidores, en 5 colores. Cada seguidor puede ser usado como caballero, ladrón, granjero o monje.
