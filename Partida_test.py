@@ -18,7 +18,14 @@ class PArtidaTest(unittest.TestCase):
         expected="azul"
         self.assertEqual(p.jugadores[0].color,expected)
 
-    
+
+# test anade jugadores al array --- meter 2 jugadores
+    def test_mete_jugadores (self):
+      p=Partida()
+      self.assertEqual(len(p.jugadores),0)
+      p.infoJugadores()
+      self.assertGreater(len(p.jugadores), 1)
+
 
 
 if __name__ == '__main__':
