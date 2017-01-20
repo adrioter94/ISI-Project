@@ -11,9 +11,9 @@ class ArrayFichas:
 	tipo2E = Fichas('A','A','A','A','P','P','P','A','A','A','A','A','A',[1,0,0,0,0,0,1,0,0,0,0,0,0,0,0],True)
 	tipo3 = Fichas('A','P','P','P','P','P','P','A','A','A','A','A','A',[1,0,0,1,0,0,1,0,0,0,0,0,0,0,0],False)
 	tipo3E = Fichas('A','P','P','P','P','P','P','A','A','A','A','A','A',[1,0,0,1,0,0,1,0,0,0,0,0,0,0,0],True)
-	tipo4 = Fichas('P','A','A','A','P','P','P','A','A','A','P','P','P',[1,0,0,1,0,0,0,0,0,0,0,0,0,0,0],False)
-	tipo4E = Fichas('P','A','A','A','P','P','P','A','A','A','P','P','P',[1,0,0,1,0,0,0,0,0,0,0,0,0,0,0],True)
-	tipo5 = Fichas('P','A','A','A','P','P','P','P','P','P','A','A','A',[1,0,0,1,0,0,0,0,0,1,0,0,0,0,0],False)
+	tipo4 = Fichas('P','A','A','A','P','P','P','P','P','P','A','A','A',[1,0,0,1,0,0,0,0,0,1,0,0,0,0,0],False)
+	tipo4E = Fichas('P','A','A','A','P','P','P','P','P','P','A','A','A',[1,0,0,1,0,0,0,0,0,1,0,0,0,0,0],True)
+	tipo5 = Fichas('P','A','A','A','P','P','P','A','A','A','P','P','P',[1,0,0,1,0,0,0,0,0,0,0,0,0,0,0],False)
 	tipo6 = Fichas('P','P','P','P','P','P','P','A','A','A','A','A','A',[1,0,0,0,0,0,0,0,0,1,0,0,1,0,0],False)
 	tipo7 = Fichas('P','A','A','A','P','P','P','P','P','P','P','P','P',[1,0,0,1,0,0,0,0,0,0,0,0,0,0,0],False)
 	tipo8 = Fichas('A','A','A','A','P','C','P','A','A','A','A','A','A',[1,0,0,0,0,0,1,1,1,0,0,0,0,0,0],False)
@@ -26,11 +26,10 @@ class ArrayFichas:
 	tipo13 = Fichas('B','A','A','A','P','C','P','P','C','P','P','C','P',[1,0,0,1,0,0,1,1,1,1,1,0,0,1,0],False)
 	tipo14 = Fichas('C','A','A','A','P','P','P','P','C','P','P','C','P',[1,0,0,1,0,0,1,0,0,1,0,0,0,0,0],False)
 	tipo15 = Fichas('B','P','C','P','P','C','P','P','C','P','P','C','P',[1,0,0,1,1,1,1,1,1,0,1,0,0,1,0],False)
-	tipo16 = Fichas('I','P','P','P','P','P','P','P','P','P','P','P','P',[1,0,0,1,0,0,0,0,0,0,0,0,0,0,0],False)
-	tipo17 = Fichas('C','P','P','P','P','C','P','P','P','P','P','C','P',[1,0,0,1,0,0,1,0,0,0,0,0,0,0,0],False)
-	tipo18 = Fichas('C','P','C','P','P','C','P','P','P','P','P','P','P',[1,0,0,1,0,1,0,0,0,0,0,0,0,0,0],False)
-	tipo19 = Fichas('B','P','P','P','P','C','P','P','C','P','P','C','P',[1,0,0,1,0,0,1,1,1,0,1,0,0,1,0],False)
-
+	tipo16 = Fichas('B','P','P','P','P','C','P','P','C','P','P','C','P',[1,0,0,1,0,0,1,1,1,0,1,0,0,1,0],False)
+	tipo17 = Fichas('C','P','C','P','P','C','P','P','P','P','P','P','P',[1,0,0,1,0,1,0,0,0,0,0,0,0,0,0],False)
+	tipo18 = Fichas('C','P','P','P','P','C','P','P','P','P','P','C','P',[1,0,0,1,0,0,1,0,0,0,0,0,0,0,0],False)
+	tipo19 = Fichas('I','P','P','P','P','P','P','P','P','P','P','P','P',[1,0,0,1,0,0,0,0,0,0,0,0,0,0,0],False)
 
 
 	def __init__(self):
@@ -82,19 +81,19 @@ class ArrayFichas:
 		for i in range(3):
 			self.saco.append(self.tipo14)
 
-		for i in range(4):
-			self.saco.append(self.tipo15)
+		self.saco.append(self.tipo15)
 
-		for i in range(9):
+		for i in range(4):
 			self.saco.append(self.tipo16)
 
 		for i in range(8):
 			self.saco.append(self.tipo17)
 
-		for i in range(4):
+		for i in range(9):
 			self.saco.append(self.tipo18)
 
-		self.saco.append(self.tipo19)
+		for i in range(4):
+			self.saco.append(self.tipo19)
 
 	def sacar_ficha(self,pos=None):
 		if pos == None:

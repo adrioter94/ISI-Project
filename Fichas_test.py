@@ -104,10 +104,10 @@ A0 A0 A0
 	def test_sacar_ult_ficha(self):
 		f=ArrayFichas().sacar_ficha(70)
 		expected="""P1 P0 P0
-P0 B1 P0
-C1 B0 C1
-P0 B0 P0
-P1 C1 P1
+P0 I1 P0
+P0 I0 P0
+P0 I0 P0
+P0 P0 P0
 """
 		self.assertEqual(f.imprimir(),expected)
 
