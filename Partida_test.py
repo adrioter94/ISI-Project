@@ -27,6 +27,12 @@ class PArtidaTest(unittest.TestCase):
       self.assertGreater(len(p.jugadores), 1)
 
 
+     # test para ckeck los jugadores anadidos al array no son None
+    def test_notNone (self):
+       p=Partida()
+       p.infoJugadores()
+       for jug in p.jugadores:
+           self.assertIsNotNone(jug)
 
 if __name__ == '__main__':
 	unittest.main()
