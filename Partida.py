@@ -41,3 +41,30 @@ class Partida:
                 else:
                     self.jugadores[i+1].turno = True #si no es el turno del siguiente jugador de la lista
                     return self.jugadores[i+1]
+
+    # Devuelve True si la pos pasada como parametro se encuentra dentro del array pos_validas
+    def pos_valida(self, pos_validas, pos):
+       response = False
+       for i in pos_validas:
+           if str(i) != pos:
+               continue
+           else:
+               response = True
+       return response
+
+     
+    def elegir(self, pos_validas):
+        error = False
+        print "Posiciones Validas: "
+        for i in pos_validas:
+            print i
+        print "Girar (G)"
+        eleccion = raw_input()
+        while eleccion != "G" and not self.pos_valida(pos_validas, eleccion):
+            print "Formatos validos: [x, y] || G. Por favor vuelve a intentarlo."
+            print "Posiciones Validas: "
+            for i in pos_validas:
+                print i
+            print "Girar (G)"
+            eleccion = raw_input()
+        return eleccion
