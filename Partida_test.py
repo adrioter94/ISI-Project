@@ -34,14 +34,21 @@ class PArtidaTest(unittest.TestCase):
 #        for jug in p.jugadores:
 #            self.assertIsNotNone(jug)
 
-    #test para comprobar que pasa de turno a los jugadores.(3 jugadores Alberto // Adrian // Sandra)
-    def test_pasar_turno(self):
+    # #test para comprobar que pasa de turno a los jugadores.(3 jugadores Alberto // Adrian // Sandra)
+    # def test_pasar_turno(self):
+    #     p=Partida()
+    #     p.info_jugadores()
+    #     jugador=p.pasar_turno(p.jugadores[0])
+    #     expected="Adrian"
+    #     self.assertEqual(expected,jugador.nombre)
+
+
+    # test pos valida
+    def test_elegir_coord_correcta(self):
         p=Partida()
         p.info_jugadores()
-        jugador=p.pasar_turno(p.jugadores[0])
-        expected="Adrian"
-        self.assertEqual(expected,jugador.nombre)
-        
+        expected="(12, 15)"
+        self.assertEqual(expected,p.elegir([(12,15), (25,32), (25,39)]))
 
 if __name__ == '__main__':
 	unittest.main()
