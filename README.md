@@ -86,6 +86,16 @@ final de la misma. El ganador será el jugador que haya conseguido sumar más pu
     Si bien los seguidores que están en juego no pueden ser movidos de sitio, los jugadores los recuperan cuando suman
     puntos por iglesias, caminos y aldeas.
 
+    5.7
+      El convenio que se va a seguir para indicar las posiciones de los seguidores es:
+        Posible posición de un seguidor: 1
+        Posición no válida para un seguidor: 0
+        Seguidor jugador rojo: 'r'
+        Seguidor jugador verde: 'v'
+        Seguidor jugador azul: 'a'
+        Seguidor jugador negro: 'n'
+        Seguidor jugador amarillo: 'y'
+
 
   6- Puntuar por completar iglesias, caminos y aldeas.
     Cuando un claustro, camino o ciudad es completado al colocar una nueva pieza de territorio, se cuenta su puntuación
