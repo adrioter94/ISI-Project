@@ -35,7 +35,7 @@ class PArtidaTest(unittest.TestCase):
             expected2=cols[n]
             self.assertEqual(p.jugadores[n].color,expected2)
 
- # test anade jugadores al array --- meter 2 jugadores
+ # test anade jugadores al array
     def test_mete_jugadores (self):
        p=Partida()
        self.assertEqual(len(p.jugadores),0)
@@ -50,14 +50,14 @@ class PArtidaTest(unittest.TestCase):
         for jug in p.jugadores:
             self.assertIsNotNone(jug)
 
-#     #test para comprobar que pasa de turno a los jugadores.(3 jugadores Alberto // Adrian // Sandra)
-#     def test_pasar_turno(self):
-#         p=Partida()
-#         p.info_jugadores()
-#         jugador=p.pasar_turno(p.jugadores[0])
-#         expected="Adrian"
-#         self.assertEqual(expected,jugador.nombre)
-#
+     #test para comprobar que pasa de turno a los jugadores. primer turno Adrian
+    def test_pasar_turno(self):
+         p=Partida()
+         p.info_jugadores(2,"Adrian","azul","Alberto","verde")
+         jugador=p.pasar_turno(p.jugadores[0])
+         expected="Alberto"
+         self.assertEqual(expected,jugador.nombre)
+
 #
 #     # test pos valida
 #     def test_elegir_coord_correcta(self):
