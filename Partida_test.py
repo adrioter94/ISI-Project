@@ -1,4 +1,6 @@
 from Partida import Partida
+from Fichas import Fichas
+from Jugador import Jugador
 import unittest
 
 
@@ -78,7 +80,7 @@ class PArtidaTest(unittest.TestCase):
         p=Partida()
         ficha=Fichas('A','A','A','A','A','A','A','A','A','A','A','A','A',[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
         jugador= Jugador('Adrian', 'Rojo')
-        expected=p.seguidores-1
+        expected=jugador.seguidores-1
         self.assertEqual(expected,p.colocar_seg(ficha,jugador))
 
 if __name__ == '__main__':

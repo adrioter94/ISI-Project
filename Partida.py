@@ -100,7 +100,8 @@ class Partida:
         return eleccion
 
 
-    def colocar_seg(self):    
+    def colocar_seg(self,ficha,jugador):
+        return jugador.seguidores-1    
 
     def jugar_turno(self, jugador):
         #Cada vez que sea el turno de un jugador:
