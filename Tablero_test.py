@@ -46,6 +46,18 @@ A0 A0 A0
         expected = [[3, 2]]
         self.assertEqual(expected, t.todas_pos_validas(ficha2))
 
+    def test_comprobacion_ficha_valida(self):
+        t = Tablero()
+        ficha1 = ArrayFichas().tipo7 #Aldea por arriba y el resto pradera
+        t.insertar(ficha1, 2, 2)
+        ficha2 = ArrayFichas().tipo8 #Aldea por 3 lados y camino por abajo
+        ficha3 = ArrayFichas().tipo15 #Todo camino
+        self.assertTrue(t.comprobacion_ficha_valida(ficha2))
+        self.assertFalse(t.comprobacion_ficha_valida(ficha3))
+
+
+
+
 
 if __name__ == '__main__':
 	unittest.main()

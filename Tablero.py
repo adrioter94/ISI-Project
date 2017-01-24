@@ -1,4 +1,6 @@
 from Array_Fichas import ArrayFichas
+import copy
+
 class Tablero:
 
     def __init__(self):
@@ -57,7 +59,16 @@ class Tablero:
 		#Devuelve True si hay al menos una posicion valida a lo largo de todo
 		#el tablero para todas las orientaciones de la ficha en cada posicion
 		#(para descartarla directamente).
-        pass
+        ficha_aux = copy.deepcopy(ficha)  # de la ficha (para descartarla diretamente)
+        i = 1
+        while i <= 4:
+            ficha_aux.girar()
+            for y in range(1,self.w-1):
+                for x in range(1,self.h-1):
+                    if self.es_valida(ficha_aux, x, y):
+                        return True
+            i += 1
+        return False
 
 
     def imprimir(self):
