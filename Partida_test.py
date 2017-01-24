@@ -43,13 +43,13 @@ class PArtidaTest(unittest.TestCase):
        self.assertEqual(len(p.jugadores), 3)
 
 
-#      # test para ckeck los jugadores anadidos al array no son None
-#     def test_notNone (self):
-#        p=Partida()
-#        p.infoJugadores()
-#        for jug in p.jugadores:
-#            self.assertIsNotNone(jug)
-#
+      # test para ckeck los jugadores anadidos al array no son None
+    def test_notNone (self):
+        p=Partida()
+        p.info_jugadores(5,"Adrian","azul","Alberto","verde","Sandra","rojo","Diego","amarillo","Yo","negro")
+        for jug in p.jugadores:
+            self.assertIsNotNone(jug)
+
 #     #test para comprobar que pasa de turno a los jugadores.(3 jugadores Alberto // Adrian // Sandra)
 #     def test_pasar_turno(self):
 #         p=Partida()
