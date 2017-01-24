@@ -68,11 +68,11 @@ class PArtidaTest(unittest.TestCase):
 
 
      # test para girar
-#     def test_elegir_coord_incorrecta(self):
-#         p=Partida()
-#         p.info_jugadores()
-#         expected="G"
-#         self.assertEqual(expected,p.elegir([(12,15), (25,32), (25,39)]))
+    def test_elegir_coord_incorrecta(self):
+         p=Partida()
+         p.info_jugadores(2,"Adrian","azul","Alberto","verde")
+         expected="G"
+         self.assertEqual(expected,p.elegir([(12,15), (25,32), (25,39)],"G"))
 
 if __name__ == '__main__':
 	unittest.main()

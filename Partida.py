@@ -66,7 +66,7 @@ class Partida:
                response = True
        return response
 
-
+      
     def elegir(self, pos_validas,eleccion=None):
         error = False
         print "Posiciones Validas: "
