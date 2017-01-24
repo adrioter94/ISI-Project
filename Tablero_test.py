@@ -29,6 +29,15 @@ A0 A0 A0
 """
         self.assertEqual(expected,t.tablero[2][2].imprimir())
 
+    def test_es_valida(self):
+        t = Tablero()
+        ficha1 = ArrayFichas().tipo1 #Todo aldea
+        t.insertar(ficha1, 1, 1)
+        ficha2 = ArrayFichas().tipo19
+        ficha3 = ArrayFichas().tipo2
+        self.assertFalse(t.es_valida(ficha2, 1, 2))
+        self.assertTrue(t.es_valida(ficha3, 1, 2))
+
 
 if __name__ == '__main__':
 	unittest.main()
