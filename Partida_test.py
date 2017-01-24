@@ -74,5 +74,12 @@ class PArtidaTest(unittest.TestCase):
          expected="G"
          self.assertEqual(expected,p.elegir([(12,15), (25,32), (25,39)],"G"))
 
+    def test_colocar_seg(self):
+        p=Partida()
+        ficha=Fichas('A','A','A','A','A','A','A','A','A','A','A','A','A',[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+        jugador= Jugador('Adrian', 'Rojo')
+        expected=p.seguidores-1
+        self.assertEqual(expected,p.colocar_seg(ficha,jugador))
+
 if __name__ == '__main__':
 	unittest.main()
