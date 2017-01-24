@@ -38,6 +38,14 @@ A0 A0 A0
         self.assertFalse(t.es_valida(ficha2, 1, 2))
         self.assertTrue(t.es_valida(ficha3, 1, 2))
 
+    def test_todas_pos_validas(self):
+        t = Tablero()
+        ficha1 = ArrayFichas().tipo1 #Todo aldea
+        t.insertar(ficha1, 2, 2)
+        ficha2 = ArrayFichas().tipo7 #Solo un lado con aldea
+        expected = [[3, 2]]
+        self.assertEqual(expected, t.todas_pos_validas(ficha2))
+
 
 if __name__ == '__main__':
 	unittest.main()

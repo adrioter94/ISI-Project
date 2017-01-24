@@ -4,9 +4,9 @@ class Tablero:
     def __init__(self):
 
         #Construye una matriz y la rellena con fichas de tipo vacia.
-
-    	self.w = 4
-        self.h = 4
+        #La matriz funciona con un margen de una fila por cada lado
+    	self.w = 6
+        self.h = 6
         ficha = ArrayFichas().vacia
         self.tablero = [[ficha for y in range(0,self.w)] for x in range(0,self.h)]
 
@@ -43,15 +43,24 @@ class Tablero:
 		#Devuelve un array con todas las posiciones validas en el tablero
 		#para una ficha en una orientacion dada.
 
+        pos_validas = []
+        for y in range(1,self.w-1):
+            for x in range(1,self.h-1):
+                if self.es_valida(ficha, x, y):
+                    pos = [x, y]
+                    pos_validas.append(pos)
+        return pos_validas
+
 
     def comprobacion_ficha_valida(self, ficha):
 
 		#Devuelve True si hay al menos una posicion valida a lo largo de todo
 		#el tablero para todas las orientaciones de la ficha en cada posicion
 		#(para descartarla directamente).
-
+        pass
 
 
     def imprimir(self):
 
 		#Imprime el tablero en la situacion actual.
+        pass
