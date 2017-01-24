@@ -22,6 +22,19 @@ class PArtidaTest(unittest.TestCase):
          expected="verde"
          self.assertEqual(p.jugadores[1].color,expected)
 
+    # Test compureba todo tanto nombre y colores ( que anade al jugador ) 5 jugadores
+    def test_jugadores(self):
+        p=Partida()
+        p.info_jugadores(5,"Adrian","azul","Alberto","verde","Sandra","rojo","Diego","amarillo","Yo","negro")
+        jugs=["Adrian","Alberto","Sandra","Diego","Yo"]
+        cols=["azul","verde","rojo","amarillo", "negro"]
+
+        for n in range(4):
+            expected= jugs[n]
+            self.assertEqual(p.jugadores[n].nombre,expected)
+            expected2=cols[n]
+            self.assertEqual(p.jugadores[n].color,expected2)
+
 # # test anade jugadores al array --- meter 2 jugadores
 #     def test_mete_jugadores (self):
 #       p=Partida()
