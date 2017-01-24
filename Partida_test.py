@@ -76,12 +76,23 @@ class PArtidaTest(unittest.TestCase):
          expected="G"
          self.assertEqual(expected,p.elegir([(12,15), (25,32), (25,39)],"G"))
 
+    # test comprueba seguidores del jugador -1
     def test_colocar_seg(self):
         p=Partida()
         ficha=Fichas('A','A','A','A','A','A','A','A','A','A','A','A','A',[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
-        jugador= Jugador('Adrian', 'Rojo')
+        jugador= Jugador('Adrian', 'rojo')
         expected=jugador.seguidores-1
-        self.assertEqual(expected,p.colocar_seg(ficha,jugador))
+        p.colocar_seguidor(ficha,jugador,0)
+        self.assertEqual(expected,jugador.seguidores)
+
+    # test comprueba que en el indice que indico si hay un 1 ( posicion que se puede poner seguidor) meto el seguidor        
+    def test_colocar_seg(self):
+        p=Partida()
+        ficha=Fichas('A','A','A','A','A','A','A','A','A','A','A','A','A',[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+        jugador= Jugador('Adrian', 'rojo')
+        p.colocar_seguidor(ficha,jugador,0)
+        expected=["r",0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        self.assertEqual(expected,ficha.posSeguidores)
 
 if __name__ == '__main__':
 	unittest.main()

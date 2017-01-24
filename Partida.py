@@ -100,8 +100,27 @@ class Partida:
         return eleccion
 
 
-    def colocar_seg(self,ficha,jugador):
-        return jugador.seguidores-1    
+    def colocar_seguidor(self,ficha,jugador,indice):
+        #coloca un seguidor del color del jugador que se le pasa como parametro
+        #si en esa posicion se puede colocar un seguidor
+         
+        seguidor=""
+        if jugador.color == "verde":
+            seguidor = 'v'
+        if jugador.color == "rojo":
+            seguidor = 'r'
+        if jugador.color == "azul":
+            seguidor = 'a'
+        if jugador.color == "negro":
+            seguidor = 'n'
+        if jugador.color == "amarillo":
+            seguidor = 'y'
+        if ficha.posSeguidores[indice] == 1:
+            ficha.posSeguidores[indice] = seguidor
+            jugador.seguidores -= 1
+        return ficha
+
+
 
     def jugar_turno(self, jugador):
         #Cada vez que sea el turno de un jugador:
