@@ -30,7 +30,7 @@ class Partida:
             sys.exit(0)
 
         for i in range(0,num_jugs):
-            
+
             if color_recibido[i] not in colores:
                 print color_recibido
                 print "Color invalido. Colores disponibles: " + ", ".join(colores)
@@ -67,18 +67,18 @@ class Partida:
        return response
 
 
-    def elegir(self, pos_validas, girar=None):
+    def elegir(self, pos_validas,eleccion=None):
         error = False
         print "Posiciones Validas: "
         for i in pos_validas:
             print i
         print "Girar (G)"
-        eleccion = girar
+
         while eleccion != "G" and not self.pos_valida(pos_validas, eleccion):
             print "Formatos validos: [x, y] || G. Por favor vuelve a intentarlo."
             print "Posiciones Validas: "
             for i in pos_validas:
                 print i
             print "Girar (G)"
-            eleccion = raw_input()
+            #eleccion = raw_input()
         return eleccion

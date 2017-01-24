@@ -60,11 +60,11 @@ class PArtidaTest(unittest.TestCase):
 
 
      # test pos valida
-     def test_elegir_coord_correcta(self):
+    def test_elegir_coord_correcta(self):
          p=Partida()
-         p.info_jugadores()
+         p.info_jugadores(2,"Adrian","azul","Alberto","verde")
          expected="(12, 15)"
-         self.assertEqual(expected,p.elegir([(12,15), (25,32), (25,39)]))
+         self.assertEqual(expected,p.elegir([(12,15), (25,32), (25,39)],"(12, 15)"))
 
 
      # test para girar
