@@ -1,31 +1,31 @@
 from Jugador import Jugador
+import sys
 
 class Partida:
 
     def __init__(self):
         self.jugadores = []
 
-    def info_jugadores(self):
+    def info_jugadores(self,num_jugs,jug1,col1,jug2,col2,jug3=None,col3=None,jug4=None,col4=None,jug5=None,col5=None,):
         colores = ["rojo", "azul", "amarillo", "negro", "verde"]
+        color_recibido=[col1,col2, col3,col4,col5]
+        nombre_jug=[jug1,jug2,jug3,jug4,jug5]
         num_fichas = 72
-        while 1:
-           num_jugs = int(raw_input("Inserte numero de jugadores (maximo 5): "))
-           if num_jugs > 5:
-              print "Eres un poco tonto, prueba otra vez."
-           else:
-              break
+
+        num_jugs = int(raw_input("Inserte numero de jugadores (maximo 5): "))
+        if num_jugs > 5 and num_jugs < 2:
+            print "Maximo 5 jugadores, minimo 2 jugadores"
+            sys.exit(0)
 
         for i in range(1,num_jugs+1):
-           nombre_jug = raw_input("Nombre jugador " + str(i) + ": ")
-           while 1:
-              color = raw_input("Color jugador " + str(i) + ": ").lower()
-              if color not in colores:
-                 print "Color invalido. Colores disponibles: " + ", ".join(colores)
-              else:
-                 colores.remove(color)
-                 jug = Jugador(nombre_jug,color)
-                 self.jugadores.append(jug)
-                 break
+            if color_recibido not in colores:
+                print "Color invalido. Colores disponibles: " + ", ".join(colores)
+                sys.exit(0)
+            else:
+                colores.remove(color_recibido[i])
+                jug = Jugador(nombre_jug[i],color_recibido[i])
+                self.jugadores.append(jug)
+                break
 
     def pasar_turno(self, jugador):
         """
@@ -52,14 +52,14 @@ class Partida:
                response = True
        return response
 
-     
-    def elegir(self, pos_validas):
+
+    def elegir(self, pos_validas, girar=None):
         error = False
         print "Posiciones Validas: "
         for i in pos_validas:
             print i
         print "Girar (G)"
-        eleccion = raw_input()
+        eleccion = girar
         while eleccion != "G" and not self.pos_valida(pos_validas, eleccion):
             print "Formatos validos: [x, y] || G. Por favor vuelve a intentarlo."
             print "Posiciones Validas: "
