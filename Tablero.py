@@ -74,4 +74,7 @@ class Tablero:
     def imprimir(self):
 
 		#Imprime el tablero en la situacion actual.
-        pass
+        for y in range(1,self.w):
+            for x in range(1,self.h):
+                print "x = " + str(x) + ", y = " + str(y)
+                print self.tablero[x][y].imprimir()
