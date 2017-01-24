@@ -5,6 +5,7 @@ class ArrayFichas:
 
 	saco = []
 	# centro arriba abajo derecha izquierda
+	vacia = Fichas('-','-','-','-','-','-','-','-','-','-','-','-','-', ['-','-','-','-','-','-','-','-','-','-','-','-','-','-','-'],False)
 	inicial = Fichas('C','A','A','A','P','P','P','P','C','P','P','C','P',[1,0,0,1,0,0,1,0,0,1,0,0,0,0,0],False)
 	tipo1 = Fichas('A','A','A','A','A','A','A','A','A','A','A','A','A',[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],True)
 	tipo2 = Fichas('A','A','A','A','P','P','P','A','A','A','A','A','A',[1,0,0,0,0,0,1,0,0,0,0,0,0,0,0],False)
@@ -103,12 +104,3 @@ class ArrayFichas:
 
 	def eliminar_ficha(self, ficha):
 		self.saco.remove(ficha)
-
-
-	# def imprimir(self):
-	# 	resultado = ''
-	# 	i = 0
-	# 	while i < 23:
-	# 		resultado += str(self.saco[i].imprimir())
-	# 		i = i + 1
-	# 	return resultado

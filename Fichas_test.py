@@ -85,6 +85,15 @@ P1 C1 P1
 """
 		self.assertEqual(expected, f.imprimir())
 
+	def test_ficha_vacia(self):
+		f=Fichas('-','-','-','-','-','-','-','-','-','-','-','-','-',['-','-','-','-','-','-','-','-','-','-','-','-','-','-','-'],False)
+		expected="""-- -- --
+-- -- --
+-- -- --
+-- -- --
+-- -- --
+"""
+		self.assertEqual(f.imprimir(),expected)
 
 	def test_long_array(self):
 
