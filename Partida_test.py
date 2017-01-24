@@ -35,14 +35,14 @@ class PArtidaTest(unittest.TestCase):
             expected2=cols[n]
             self.assertEqual(p.jugadores[n].color,expected2)
 
-# # test anade jugadores al array --- meter 2 jugadores
-#     def test_mete_jugadores (self):
-#       p=Partida()
-#       self.assertEqual(len(p.jugadores),0)
-#       p.infoJugadores()
-#       self.assertGreater(len(p.jugadores), 1)
-#
-#
+ # test anade jugadores al array --- meter 2 jugadores
+    def test_mete_jugadores (self):
+       p=Partida()
+       self.assertEqual(len(p.jugadores),0)
+       p.info_jugadores(3,"Adrian","azul","Alberto","verde","Sandra","amarillo")
+       self.assertEqual(len(p.jugadores), 3)
+
+
 #      # test para ckeck los jugadores anadidos al array no son None
 #     def test_notNone (self):
 #        p=Partida()
