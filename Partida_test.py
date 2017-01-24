@@ -58,15 +58,16 @@ class PArtidaTest(unittest.TestCase):
          expected="Alberto"
          self.assertEqual(expected,jugador.nombre)
 
-#
-#     # test pos valida
-#     def test_elegir_coord_correcta(self):
-#         p=Partida()
-#         p.info_jugadores()
-#         expected="(12, 15)"
-#         self.assertEqual(expected,p.elegir([(12,15), (25,32), (25,39)]))
-#
-#     # test para girar
+
+     # test pos valida
+     def test_elegir_coord_correcta(self):
+         p=Partida()
+         p.info_jugadores()
+         expected="(12, 15)"
+         self.assertEqual(expected,p.elegir([(12,15), (25,32), (25,39)]))
+
+
+     # test para girar
 #     def test_elegir_coord_incorrecta(self):
 #         p=Partida()
 #         p.info_jugadores()
