@@ -11,9 +11,10 @@ class Tablero:
         self.tablero = [[ficha for y in range(0,self.w)] for x in range(0,self.h)]
 
     def insertar(self, ficha, x, y):
-		"""
-		Inserta una ficha en una posicion dada por sus dos coordenadas x e y.
-		"""
+        """
+        Inserta una ficha en una posicion dada por sus dos coordenadas x e y.
+        """
+        self.tablero[x][y] = ficha
 
 
     def es_valida(self, ficha, x, y):
