@@ -8,8 +8,10 @@ class Partida:
 
     def info_jugadores(self,num_jugs,jug1,col1,jug2,col2,jug3=None,col3=None,jug4=None,col4=None,jug5=None,col5=None,):
         color_recibido=[]
+        nombre_jug=[]
         colores = ["rojo", "azul", "amarillo", "negro", "verde"]
 
+        # anade colores != None
         if col1 != None :
             color_recibido.append(col1)
         if col2 != None:
@@ -21,10 +23,21 @@ class Partida:
         if col5 != None:
             color_recibido.append(col5)
 
-        nombre_jug=[jug1,jug2,jug3,jug4,jug5]
+        # anade jugadores != None
+        if jug1 != None:
+            nombre_jug.append(jug1)
+        if jug2 != None:
+            nombre_jug.append(jug2)
+        if jug3 != None:
+            nombre_jug.append(jug3)
+        if jug4 != None:
+            nombre_jug.append(jug4)
+        if jug5 != None:
+            nombre_jug.append(jug5)
+
         num_fichas = 72
 
-        #num_jugs = int(raw_input("Inserte numero de jugadores (maximo 5): "))
+
         if num_jugs > 5 and num_jugs < 2:
             print "Maximo 5 jugadores, minimo 2 jugadores"
             sys.exit(0)
@@ -66,7 +79,7 @@ class Partida:
                response = True
        return response
 
-      
+
     def elegir(self, pos_validas,eleccion=None):
         error = False
         print "Posiciones Validas: "
@@ -80,5 +93,5 @@ class Partida:
             for i in pos_validas:
                 print i
             print "Girar (G)"
-            #eleccion = raw_input()
+
         return eleccion
