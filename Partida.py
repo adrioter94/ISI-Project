@@ -7,25 +7,39 @@ class Partida:
         self.jugadores = []
 
     def info_jugadores(self,num_jugs,jug1,col1,jug2,col2,jug3=None,col3=None,jug4=None,col4=None,jug5=None,col5=None,):
+        color_recibido=[]
         colores = ["rojo", "azul", "amarillo", "negro", "verde"]
-        color_recibido=[col1,col2, col3,col4,col5]
+
+        if col1 != None :
+            color_recibido.append(col1)
+        if col2 != None:
+            color_recibido.append(col2)
+        if col3 !=None:
+            color_recibido.append(col3)
+        if col4 != None:
+            color_recibido.append(col4)
+        if col5 != None:
+            color_recibido.append(col5)
+
         nombre_jug=[jug1,jug2,jug3,jug4,jug5]
         num_fichas = 72
 
-        num_jugs = int(raw_input("Inserte numero de jugadores (maximo 5): "))
+        #num_jugs = int(raw_input("Inserte numero de jugadores (maximo 5): "))
         if num_jugs > 5 and num_jugs < 2:
             print "Maximo 5 jugadores, minimo 2 jugadores"
             sys.exit(0)
 
-        for i in range(1,num_jugs+1):
-            if color_recibido not in colores:
+        for i in range(0,num_jugs):
+            
+            if color_recibido[i] not in colores:
+                print color_recibido
                 print "Color invalido. Colores disponibles: " + ", ".join(colores)
                 sys.exit(0)
             else:
                 colores.remove(color_recibido[i])
                 jug = Jugador(nombre_jug[i],color_recibido[i])
                 self.jugadores.append(jug)
-                break
+
 
     def pasar_turno(self, jugador):
         """
