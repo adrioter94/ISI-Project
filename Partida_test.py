@@ -95,6 +95,20 @@ class PArtidaTest(unittest.TestCase):
         expected=["r","r","r","r","r","r","r","r","r","r","r","r","r","r","r"]
         self.assertEqual(expected,ficha.posSeguidores)
 
+    def test_actualizar_posSeguidores(self):
+        p = Partida()
+        jugador = Jugador('Adrian', 'rojo')
+        ficha1 = ArrayFichas().tipo19
+        ficha2 = ArrayFichas().tipo11
+        p.tablero.insertar(ficha1, 6, 5)
+        p.colocar_seguidor(ficha1, jugador, 3) #3 de arriba
+        p.actualizar_posSeguidores(ficha2, (6, 6))
+        p.tablero.insertar(ficha2, 6, 6)
+        p.tablero.imprimir()
+        expected = ["r","r","r",2,2,2,"r",3,4,"r",3,4,"r","r","r"]
+        self.assertEqual(expected,ficha2.posSeguidores)
+
+
     def test_partida (self):
         p=Partida()
         fichas=ArrayFichas()

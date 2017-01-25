@@ -104,11 +104,9 @@ class Partida:
         return eleccion
 
 
-
     def colocar_seguidor(self,ficha,jugador,indice):
         #coloca un seguidor del color del jugador que se le pasa como parametro
         #si en esa posicion se puede colocar un seguidor
-
         seguidor=""
         if jugador.color == "verde":
             seguidor = 'v'
@@ -127,6 +125,42 @@ class Partida:
             jugador.seguidores -= 1
         return ficha
 
+    def actualizar_posSeguidores(self, ficha, eleccion):
+        i = 0
+        colores = ['r', 'a', 'y', 'n', 'v']
+        x = eleccion[0]
+        y = eleccion[1]
+        u = self.tablero.tablero[x-1][y] #up
+        b = self.tablero.tablero[x+1][y] #bottom
+        r = self.tablero.tablero[x][y+1] #right
+        l = self.tablero.tablero[x][y-1] #left
+        if u.territorio[0][1] != '-':
+            while i < 3:
+                if u.posSeguidores[6 + i] in colores:
+                    zona1 = ficha.posSeguidores[3 + i]
+                    ficha.pintar_ficha(zona1,u.posSeguidores[6 + i])
+                i += 1
+        i = 0
+        if b.territorio[0][1] != '-':
+            while i < 3:
+                if b.posSeguidores[3 + i] in colores:
+                    zona1 = ficha.posSeguidores[6 + i]
+                    ficha.pintar_ficha(zona1,b.posSeguidores[3 + i])
+                i += 1
+        i = 0
+        if r.territorio[0][1] != '-':
+            while i < 3:
+                if r.posSeguidores[12 + i] in colores:
+                    zona1 = ficha.posSeguidores[9 + i]
+                    ficha.pintar_ficha(zona1,r.posSeguidores[12 + i])
+                i += 1
+        i = 0
+        if l.territorio[0][1] != '-':
+            while i < 3:
+                if l.posSeguidores[9 + i] in colores:
+                    zona1 = ficha.posSeguidores[12 + i]
+                    ficha.pintar_ficha(zona1,l.posSeguidores[9 + i])
+                i += 1
 
 
     def jugar_turno(self, jugador):
@@ -157,7 +191,7 @@ class Partida:
                 elif eleccion not in pos_validas:
                     print "No hay ninguna posicion valida que coincida con tu eleccion."
                     continue
-                self.actualizar_pos_seguidores(tablero, ficha)
+                self.actualizar_posSeguidores(ficha, eleccion)
                 self.saco.eliminar_ficha(ficha)
                 if jugador.seguidores != 0:
                     ficha = self.colocar_seguidores(ficha, jugador) #te devuelve una ficha con el vector pos_seguidores actualizado
