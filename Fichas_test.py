@@ -4,84 +4,84 @@ import unittest
 
 class CarcassoneTest(unittest.TestCase):
 	def test_first_ficha(self):
-		f=Fichas('A','A','A','A','A','A','A','A','A','A','A','A','A',[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
-		expected="""A0 A0 A0
-A0 A1 A0
-A0 A0 A0
-A0 A0 A0
-A0 A0 A0
+		f = Fichas('A','A','A','A','A','A','A','A','A','A','A','A','A',[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],True)
+		expected="""A1 A1 A1
+A1 A1 A1
+A1 A1 A1
+A1 A1 A1
+A1 A1 A1
 """
 		self.assertEqual(expected,f.imprimir())
 
 	def test_second_ficha(self):
-		f=Fichas('A','A','A','A','P','P','P','A','A','A','A','A','A',[1,0,0,0,0,0,1,0,0,0,0,0,0,0,0])
-		expected="""A0 A0 A0
-A0 A1 A0
-A0 A0 A0
-A0 A0 A0
-P1 P0 P0
+		f=Fichas('A','A','A','A','P','P','P','A','A','A','A','A','A',[1,1,1,1,1,1,2,2,2,1,1,1,1,1,1],False)
+		expected="""A1 A1 A1
+A1 A1 A1
+A1 A1 A1
+A1 A1 A1
+P2 P2 P2
 """
 
 		self.assertEqual(expected,f.imprimir())
 
 
 	def test_ficha_3(self):
-		f=Fichas('A','P','P','P','P','P','P','A','A','A','A','A','A',[1,0,0,1,0,0,1,0,0,0,0,0,0,0,0])
-		expected="""P1 P0 P0
-A0 A1 A0
-A0 A0 A0
-A0 A0 A0
-P1 P0 P0
+		f=Fichas('A','P','P','P','P','P','P','A','A','A','A','A','A',[1,1,1,2,2,2,2,2,2,1,1,1,1,1,1],False)
+		expected="""P2 P2 P2
+A1 A1 A1
+A1 A1 A1
+A1 A1 A1
+P2 P2 P2
 """
 		self.assertEqual(expected, f.imprimir())
 
 	def test_ficha_4(self):
-		f=Fichas('P','A','A','A','P','P','P','A','A','A','P','P','P',[1,0,0,1,0,0,0,0,0,0,0,0,0,0,0])
-		expected="""A1 A0 A0
-P0 P1 A0
-P0 P0 A0
-P0 P0 A0
-P0 P0 P0
+		f=Fichas('P','A','A','A','P','P','P','P','P','P','A','A','A',[1,1,1,2,2,2,1,1,1,1,1,1,2,2,2],False)
+		expected="""A2 A2 A2
+A2 P1 P1
+A2 P1 P1
+A2 P1 P1
+P1 P1 P1
 """
 		self.assertEqual(expected, f.imprimir())
 
 	def test_ficha_5(self):
-		f=Fichas('P','A','A','A','P','P','P','P','P','P','A','A','A',[1,0,0,1,0,0,0,0,0,1,0,0,0,0,0])
-		expected="""A1 A0 A0
-A0 P1 P1
-A0 P0 P0
-A0 P0 P0
-P0 P0 P0
+		f=Fichas('P','A','A','A','P','P','P','A','A','A','P','P','P',[1,1,1,2,2,2,1,1,1,3,3,3,1,1,1],False)
+		expected="""A2 A2 A2
+P1 P1 A3
+P1 P1 A3
+P1 P1 A3
+P1 P1 P1
 """
 		self.assertEqual(expected, f.imprimir())
 
 	def test_ficha_6(self):
-		f=Fichas('P','P','P','P','P','P','P','A','A','A','A','A','A',[1,0,0,0,0,0,0,0,0,1,0,0,1,0,0])
-		expected="""P0 P0 P0
-A1 P1 A1
-A0 P0 A0
-A0 P0 A0
-P0 P0 P0
+		f=Fichas('P','P','P','P','P','P','P','A','A','A','A','A','A',[1,1,1,1,1,1,1,1,1,2,2,2,2,2,2],False)
+		expected="""P1 P1 P1
+A2 P1 A2
+A2 P1 A2
+A2 P1 A2
+P1 P1 P1
 """
 		self.assertEqual(expected, f.imprimir())
 
 	def test_ficha_7(self):
-		f=Fichas('P','A','A','A','P','P','P','P','P','P','P','P','P',[1,0,0,1,0,0,0,0,0,0,0,0,0,0,0])
-		expected="""A1 A0 A0
-P0 P1 P0
-P0 P0 P0
-P0 P0 P0
-P0 P0 P0
+		f=Fichas('P','A','A','A','P','P','P','P','P','P','P','P','P',[1,1,1,2,2,2,1,1,1,1,1,1,1,1,1],False)
+		expected="""A2 A2 A2
+P1 P1 P1
+P1 P1 P1
+P1 P1 P1
+P1 P1 P1
 """
 		self.assertEqual(expected, f.imprimir())
 
 	def test_ficha_8(self):
-		f=Fichas('A','A','A','A','P','C','P','A','A','A','A','A','A',[1,0,0,0,0,0,1,1,1,0,0,0,0,0,0])
-		expected="""A0 A0 A0
-A0 A1 A0
-A0 A0 A0
-A0 A0 A0
-P1 C1 P1
+		f=Fichas('A','A','A','A','P','C','P','A','A','A','A','A','A',[1,1,1,1,1,1,2,3,4,1,1,1,1,1,1],False)
+		expected="""A1 A1 A1
+A1 A1 A1
+A1 A1 A1
+A1 A1 A1
+P2 C3 P4
 """
 		self.assertEqual(expected, f.imprimir())
 
@@ -100,33 +100,33 @@ P1 C1 P1
 		self.assertEqual(len(ArrayFichas().saco),71)
 
 	def test_sacar_ficha_primera(self):
-		f=Fichas('A','A','A','A','A','A','A','A','A','A','A','A','A',[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
-		expected="""A0 A0 A0
-A0 A1 A0
-A0 A0 A0
-A0 A0 A0
-A0 A0 A0
+		f = Fichas('A','A','A','A','A','A','A','A','A','A','A','A','A',[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],True)
+		expected="""A1 A1 A1
+A1 A1 A1
+A1 A1 A1
+A1 A1 A1
+A1 A1 A1
 """
 		self.assertEqual(f.imprimir(),expected)
 
 
 	def test_sacar_ult_ficha(self):
 		f=ArrayFichas().sacar_ficha(70)
-		expected="""P1 P0 P0
-P0 I1 P0
-P0 I0 P0
-P0 I0 P0
-P0 P0 P0
+		expected="""P2 P2 P2
+P2 I1 P2
+P2 I1 P2
+P2 I1 P2
+P2 P2 P2
 """
 		self.assertEqual(f.imprimir(),expected)
 
 	def test_sacar_medio_ficha(self):
 		f=ArrayFichas().sacar_ficha(25)
-		expected="""A0 A0 A0
-A0 A1 A0
-A0 A0 A0
-A0 A0 A0
-P1 C1 P1
+		expected="""A1 A1 A1
+A1 A1 A1
+A1 A1 A1
+A1 A1 A1
+P2 C3 P4
 """
 		self.assertEqual(f.imprimir(),expected)
 
@@ -140,14 +140,13 @@ P1 C1 P1
 
  	def test_girar_ficha(self):
 
- 		f=Fichas('A','A','A','A','P','P','P','A','A','A','A','A','A',[1,0,0,0,0,0,1,0,0,0,0,0,0,0,0])
- 		#f=Fichas('A','A','A','A','A','A','A','A','A','A','P','P','P',[100000000000100])
+ 		f=Fichas('A','A','A','A','P','P','P','A','A','A','A','A','A',[1,1,1,1,1,1,2,2,2,1,1,1,1,1,1],False)
  		f.girar()
- 		expected="""A0 A0 A0
-P1 A1 A0
-P0 A0 A0
-P0 A0 A0
-A0 A0 A0
+ 		expected="""A1 A1 A1
+P2 A1 A1
+P2 A1 A1
+P2 A1 A1
+A1 A1 A1
 """
 		self.assertEqual(expected,f.imprimir())
 
