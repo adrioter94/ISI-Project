@@ -146,10 +146,10 @@ class Partida:
         #8)  El turno pasara al siguiente jugador.
         while len(self.saco) <= 71:
             ficha = self.saco.sacar_ficha()
-            if not self.es_valida_en_tablero(ficha, tablero): #valida para todos los giros en todas las posiciones que hay disponibles
+            if not self.tablero.comprobacion_ficha_valida(ficha): #valida para todos los giros en todas las posiciones que hay disponibles
                 continue
             while True:
-                pos_validas = self.posiciones_validas(ficha, tablero) #posiciones validas para una posicion concreta (NO todos los giros)
+                pos_validas = self.tablero.todas_pos_validas(ficha) #posiciones validas para una posicion concreta (NO todos los giros)
                 eleccion = self.elegir(pos_validas) #pinta las posiciones validas y 'Girar' para que el jugador elija
                 if eleccion == 'G':
                     ficha.girar()
