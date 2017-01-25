@@ -10,6 +10,13 @@ class Fichas:
 		self.posSeguidores=posSeguidores
 		self.escudo=escudo
 
+	def pintar_ficha(self,zona,seguidor):
+		i=0
+		while i < 15:
+			if self.posSeguidores[i] == zona:
+				self.posSeguidores[i] = seguidor
+			i = i + 1
+
 
 	def imprimir(self):
 		 ter = self.territorio

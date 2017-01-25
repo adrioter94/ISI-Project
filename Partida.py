@@ -1,11 +1,14 @@
 from Jugador import Jugador
 from Array_Fichas import ArrayFichas
+from Tablero import Tablero
 import sys
 
 class Partida:
 
     def __init__(self):
         self.jugadores = []
+        self.tablero = Tablero()
+        self.saco = ArrayFichas().saco
 
     def info_jugadores(self,num_jugs,jug1,col1,jug2,col2,jug3=None,col3=None,jug4=None,col4=None,jug5=None,col5=None):
         #Rellena el array de jugadores con los valores para cada uno
@@ -100,16 +103,7 @@ class Partida:
 
         return eleccion
 
-    def pintar_ficha(self,ficha,zona,seguidor):
-        i = 0
-        print ficha.posSeguidores[1]
-        print zona
-        while i < 15:
-            print i
-            print ficha.posSeguidores[i]
-            if ficha.posSeguidores[i] == zona :
-               ficha.posSeguidores[i] = seguidor
-            i = i + 1
+
 
     def colocar_seguidor(self,ficha,jugador,indice):
         #coloca un seguidor del color del jugador que se le pasa como parametro
@@ -127,9 +121,9 @@ class Partida:
         if jugador.color == "amarillo":
             seguidor = 'y'
         if ficha.posSeguidores[indice] != 'v' and ficha.posSeguidores[indice] != 'r' and ficha.posSeguidores[indice] != 'a' \
-        and ficha.posSeguidores[indice] != 'n' and ficha.posSeguidores[indice] != 'y':
+        and ficha.posSeguidores[indice] != 'n' and ficha.posSeguidores[indice] != 'y' and ficha.posSeguidores[indice] != '0':
             numero_zona=ficha.posSeguidores[indice] #la zona donde hemos colocado la ficha
-            self.pintar_ficha(ficha,numero_zona,seguidor)
+            ficha.pintar_ficha(numero_zona,seguidor)
             jugador.seguidores -= 1
         return ficha
 

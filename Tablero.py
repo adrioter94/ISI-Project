@@ -10,8 +10,10 @@ class Tablero:
     	self.w = 6
         self.h = 6
         ficha = ArrayFichas().vacia
+        inicial = ArrayFichas().inicial
         self.tablero = [[ficha for y in range(0,self.w)] for x in range(0,self.h)]
-
+        self.tablero[int(round((self.w-1)/2.0))][int(round((self.h-1)/2.0))] = inicial
+        
     def insertar(self, ficha, x, y):
 
         #Inserta una ficha en una posicion dada por sus dos coordenadas x e y.
