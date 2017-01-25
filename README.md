@@ -88,7 +88,9 @@ final de la misma. El ganador será el jugador que haya conseguido sumar más pu
 
     5.7
       El convenio que se va a seguir para indicar las posiciones de los seguidores es:
-        Posible posición de un seguidor: 1
+      A cada zona de una ficha, sea pradera, aldea o camino, se le asignará un número diferente (1,2,3..). Cuando se
+      coloque un seguidor, la zona de esa ficha será coloreada, y por lo tanto en esa zona no podrá colocarse
+      otro seguidor de otro color.
         Posición no válida para un seguidor: 0
         Seguidor jugador rojo: 'r'
         Seguidor jugador verde: 'v'
