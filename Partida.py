@@ -100,6 +100,16 @@ class Partida:
 
         return eleccion
 
+    def pintar_ficha(self,ficha,zona,seguidor):
+        i = 0
+        print ficha.posSeguidores[1]
+        print zona
+        while i < 15:
+            print i
+            print ficha.posSeguidores[i]
+            if ficha.posSeguidores[i] == zona :
+               ficha.posSeguidores[i] = seguidor
+            i = i + 1
 
     def colocar_seguidor(self,ficha,jugador,indice):
         #coloca un seguidor del color del jugador que se le pasa como parametro
@@ -116,8 +126,10 @@ class Partida:
             seguidor = 'n'
         if jugador.color == "amarillo":
             seguidor = 'y'
-        if ficha.posSeguidores[indice] == 1:
-            ficha.posSeguidores[indice] = seguidor
+        if ficha.posSeguidores[indice] != 'v' and ficha.posSeguidores[indice] != 'r' and ficha.posSeguidores[indice] != 'a' \
+        and ficha.posSeguidores[indice] != 'n' and ficha.posSeguidores[indice] != 'y':
+            numero_zona=ficha.posSeguidores[indice] #la zona donde hemos colocado la ficha
+            self.pintar_ficha(ficha,numero_zona,seguidor)
             jugador.seguidores -= 1
         return ficha
 
