@@ -1,6 +1,7 @@
 from Partida import Partida
 from Fichas import Fichas
 from Jugador import Jugador
+from Array_Fichas import ArrayFichas
 import unittest
 
 
@@ -85,7 +86,7 @@ class PArtidaTest(unittest.TestCase):
         p.colocar_seguidor(ficha,jugador,0)
         self.assertEqual(expected,jugador.seguidores)
 
-    # test comprueba que en el indice que indico si hay un 1 ( posicion que se puede poner seguidor) meto el seguidor        
+    # test comprueba que en el indice que indico si hay un 1 ( posicion que se puede poner seguidor) meto el seguidor
     def test_colocar_seg(self):
         p=Partida()
         ficha=Fichas('A','A','A','A','A','A','A','A','A','A','A','A','A',[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
@@ -93,6 +94,15 @@ class PArtidaTest(unittest.TestCase):
         p.colocar_seguidor(ficha,jugador,0)
         expected=["r",0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         self.assertEqual(expected,ficha.posSeguidores)
+
+    def test_partida (self):
+        p=Partida()
+        fichas=ArrayFichas()
+        self.test_mete_jugadores
+        while(len(fichas.saco) !=0):
+            f=fichas.sacar_ficha()
+            fichas.eliminar_ficha(f)
+            
 
 if __name__ == '__main__':
 	unittest.main()

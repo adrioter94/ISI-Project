@@ -1,4 +1,5 @@
 from Jugador import Jugador
+from Array_Fichas import ArrayFichas
 import sys
 
 class Partida:
@@ -103,7 +104,7 @@ class Partida:
     def colocar_seguidor(self,ficha,jugador,indice):
         #coloca un seguidor del color del jugador que se le pasa como parametro
         #si en esa posicion se puede colocar un seguidor
-         
+
         seguidor=""
         if jugador.color == "verde":
             seguidor = 'v'
