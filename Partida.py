@@ -8,7 +8,7 @@ class Partida:
     def __init__(self):
         self.jugadores = []
         self.tablero = Tablero()
-        self.saco = ArrayFichas().saco
+        self.saco = ArrayFichas()
 
     def info_jugadores(self,num_jugs,jug1,col1,jug2,col2,jug3=None,col3=None,jug4=None,col4=None,jug5=None,col5=None):
         #Rellena el array de jugadores con los valores para cada uno
