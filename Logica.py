@@ -51,3 +51,19 @@ class Logica:
         pos_contiguas = [(x-1, y), (x+1, y), (x, y+1), (x, y-1)]
         lados = ["arriba", "derecha", "abajo", "izquierda"]
         return (pos_contiguas, lados)
+
+
+    def dame_camino(self, pos):
+        #Devuelve el camino dentro del array de todos los caminos
+        #en el que se encuentre la posicion pasada como parametro
+        for camino in self.array_caminos:
+            if pos in camino:
+                return camino #devolvemos el camino que contenga la posicion
+
+
+    def dame_aldea(self, pos):
+        #Devuelve la aldea dentro del array de todas las aldeas
+        #en el que se encuentre la posicion pasada como parametro
+        for aldea in self.array_aldeas:
+            if pos in aldea:
+                return aldea #devolvemos la aldea que contenga la posicion

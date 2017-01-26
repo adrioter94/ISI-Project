@@ -47,5 +47,24 @@ class LogicaTest(unittest.TestCase):
         self.assertEqual(expected, Logica().dame_pos_contiguas(3,3)[0])
 
 
+    def test_dame_camino(self):
+        l = Logica()
+        l.array_caminos.append([(2,2), (2,3)])
+        l.array_caminos.append([(1,1), (2,1), (3,1)])
+        l.array_caminos.append([(4,3)])
+        expected = [(2,2), (2,3)]
+        self.assertEqual(expected, l.dame_camino((2,2)))
+
+
+    def test_dame_aldea(self):
+        l = Logica()
+        l.array_aldeas.append([(3,2), (3,3)])
+        l.array_aldeas.append([(1,1)])
+        l.array_aldeas.append([(4,3), (4,2)])
+        expected = [(4,3), (4,2)]
+        self.assertEqual(expected, l.dame_aldea((4,2)))
+
+
+
 if __name__ == '__main__':
 	unittest.main()
