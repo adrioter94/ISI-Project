@@ -164,16 +164,23 @@ class Partida:
 
 
     def algoritmo_relleno(self,x, y):
+        i = 0
+        z = 0
         # assume surface is a 2D image and surface[x][y] is the color at x, y.
-        if self.tablero.tablero[x][y].territorio[0][1] == '-': # the base case
+        if self.tablero.tablero[x][y].territorio[0][1] == '-' or self.tablero.tablero[x][y].pintada == True : # the base case
             print "EEEE"
             return
         self.actualizar_posSeguidores(self.tablero.tablero[x][y],(x,y))
+        self.tablero.tablero[x][y].pintada = True
         self.algoritmo_relleno(x - 1, y) # arriba
         self.algoritmo_relleno(x + 1, y) # abajo
         self.algoritmo_relleno(x, y + 1) # derecha
         self.algoritmo_relleno(x, y - 1) # izquierd
-
+        while i < self.tablero.w:
+            while z < self.tablero.h:
+                self.tablero.tablero[i][z].pintada = False
+                z = z + 1
+            i = i + 1
 
     def jugar_turno(self, jugador):
         #Cada vez que sea el turno de un jugador:
