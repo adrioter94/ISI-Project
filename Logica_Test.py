@@ -85,6 +85,64 @@ class LogicaTest(unittest.TestCase):
         self.assertTrue(l.continua_camino(p.tablero, (2,4), (2,3), "izquierda"))
 
 
+    def test_no_continua_camino(self):
+        p = Partida()
+        l = Logica()
+        l.array_caminos.append([(2,2), (2,3)])
+        l.array_caminos.append([(1,1), (2,1), (3,1)])
+        l.array_caminos.append([(4,3)])
+        ficha1 = ArrayFichas().sacar_ficha(57) #tipo17
+        ficha1.girar()
+        p.tablero.insertar(ficha1, 2, 3)
+        ficha2 = ArrayFichas().sacar_ficha(65) #tipo18
+        ficha2.girar()
+        ficha2.girar()
+        ficha2.girar()
+        p.tablero.insertar(ficha2, 2, 2)
+        mi_ficha = ArrayFichas().sacar_ficha(70) #tipo19
+        p.tablero.insertar(mi_ficha, 2, 4)
+        l.continua_camino(p.tablero, (2,4), (2,3), "izquierda")
+        self.assertFalse(l.continua_camino(p.tablero, (2,4), (2,3), "izquierda"))
+
+
+    def test_continua_aldea(self):
+        p = Partida()
+        l = Logica()
+        l.array_caminos.append([(2,2), (2,3)])
+        l.array_caminos.append([(1,1), (2,1), (3,1)])
+        l.array_caminos.append([(4,3)])
+        ficha1 = ArrayFichas().sacar_ficha(5) #tipo3
+        p.tablero.insertar(ficha1, 3, 3)
+        ficha2 = ArrayFichas().sacar_ficha(18) #tipo7
+        ficha2.girar()
+        p.tablero.insertar(ficha2, 3, 2)
+        mi_ficha = ArrayFichas().sacar_ficha(18) #tipo18
+        mi_ficha.girar()
+        mi_ficha.girar()
+        mi_ficha.girar()
+        p.tablero.insertar(mi_ficha, 3, 4)
+        self.assertTrue(l.continua_aldea(p.tablero, (3,4), (3,3), "izquierda"))
+
+
+    def test_no_continua_aldea(self):
+        p = Partida()
+        l = Logica()
+        l.array_caminos.append([(2,2), (2,3)])
+        l.array_caminos.append([(1,1), (2,1), (3,1)])
+        l.array_caminos.append([(4,3)])
+        ficha1 = ArrayFichas().sacar_ficha(5) #tipo3
+        p.tablero.insertar(ficha1, 3, 3)
+        ficha2 = ArrayFichas().sacar_ficha(18) #tipo7
+        ficha2.girar()
+        p.tablero.insertar(ficha2, 3, 2)
+        mi_ficha = ArrayFichas().sacar_ficha(70) #tipo19
+        mi_ficha.girar()
+        mi_ficha.girar()
+        mi_ficha.girar()
+        p.tablero.insertar(mi_ficha, 3, 4)
+        self.assertFalse(l.continua_aldea(p.tablero, (3,4), (3,3), "izquierda"))
+
+
 
 
 
