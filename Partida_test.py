@@ -118,8 +118,8 @@ class PArtidaTest(unittest.TestCase):
         p.tablero.insertar(ficha2, 6, 6)
         p.actualizar_posSeguidores(ficha2,(6,6))
         p.colocar_seguidor(ficha2, jugador, 13) #3 de arriba
-
         p.algoritmo_relleno(6,6)
+        p.pintada_false()
         p.tablero.imprimir()
         expected = """A2 A2 A2
 P4 C1 P4
