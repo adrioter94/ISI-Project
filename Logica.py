@@ -28,6 +28,7 @@ class Logica:
     def es_bifurcacion(self, ficha):
         return ArrayFichas().type(ficha) in [13, 15, 16]
 
+
     def es_limite_camino(self, ficha):
         return ArrayFichas().type(ficha) in [8, 10, 13, 15, 16]
 
@@ -43,3 +44,10 @@ class Logica:
             return "sin_CA"
         if self.es_bifurcacion(ficha):
             return "con_B"
+
+
+    def dame_pos_contiguas(self, x, y):
+        #Devuelve dos arrays con las posiciones de las fichas contiguas y sus direcciones
+        pos_contiguas = [(x-1, y), (x+1, y), (x, y+1), (x, y-1)]
+        lados = ["arriba", "derecha", "abajo", "izquierda"]
+        return (pos_contiguas, lados)

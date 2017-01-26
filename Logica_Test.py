@@ -42,5 +42,10 @@ class LogicaTest(unittest.TestCase):
         Logica().que_ficha_es(ficha)
 
 
+    def test_dame_pos_contiguas(self):
+        expected = [(2,3), (4,3), (3,4), (3,2)]
+        self.assertEqual(expected, Logica().dame_pos_contiguas(3,3)[0])
+
+
 if __name__ == '__main__':
 	unittest.main()
