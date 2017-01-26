@@ -98,8 +98,8 @@ class PArtidaTest(unittest.TestCase):
     def test_actualizar_posSeguidores(self):
         p = Partida()
         jugador = Jugador('Adrian', 'rojo')
-        ficha1 = ArrayFichas().tipo19
-        ficha2 = ArrayFichas().tipo11
+        ficha1 = ArrayFichas().sacar_ficha(70) #tipo19
+        ficha2 = ArrayFichas().sacar_ficha(35) #tipo11
         p.tablero.insertar(ficha1, 6, 5)
         p.colocar_seguidor(ficha1, jugador, 3) #3 de arriba
         p.actualizar_posSeguidores(ficha2, (6, 6))
