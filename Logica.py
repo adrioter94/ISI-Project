@@ -67,3 +67,28 @@ class Logica:
         for aldea in self.array_aldeas:
             if pos in aldea:
                 return aldea #devolvemos la aldea que contenga la posicion
+
+
+    def continua_camino(self, tablero, pos, pos_contigua, lado): #lado: arriba,abajo,izda,dcha
+        #Comprueba si la ficha que estamos colocando y una de las fichas contiguas
+        #forman un mismo camino
+        ficha_contigua = tablero.dame_ficha(pos_contigua)
+        ficha_actual = tablero.dame_ficha(pos)
+        response = False
+        if lado == "arriba":
+            if ficha_actual.territorio[1][1] == 'C': #comprobamos si en ese lado hay camino
+                if ficha_actual.territorio[1][1] == ficha_contigua.territorio[2][1]: #si la ficha contigua no es vacia
+                    response = True
+        elif lado == "abajo":
+            if ficha_actual.territorio[2][1] == 'C': #comprobamos si en ese lado hay camino
+                if ficha_actual.territorio[2][1] == ficha_contigua.territorio[1][1]: #si la ficha contigua no es vacia
+                    response = True
+        elif lado == "derecha":
+            if ficha_actual.territorio[3][1] == 'C': #comprobamos si en ese lado hay camino
+                if ficha_actual.territorio[3][1] == ficha_contigua.territorio[4][1]: #si la ficha contigua no es vacia
+                    response = True
+        elif lado == "izquierda":
+            if ficha_actual.territorio[4][1] == 'C': #comprobamos si en ese lado hay camino
+                if ficha_actual.territorio[4][1] == ficha_contigua.territorio[3][1]: #si la ficha contigua no es vacia
+                    response = True
+        return response

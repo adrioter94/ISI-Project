@@ -80,3 +80,7 @@ class Tablero:
             for x in range(1,self.h):
                 print "x = " + str(x) + ", y = " + str(y)
                 print self.tablero[x][y].imprimir()
+
+
+    def dame_ficha(self, pos):
+        return self.tablero[pos[0]][pos[1]]

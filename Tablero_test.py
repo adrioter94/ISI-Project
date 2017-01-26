@@ -57,6 +57,13 @@ A0 A0 A0
         self.assertTrue(t.comprobacion_ficha_valida(ficha2))
 
 
+    def test_dame_ficha(self):
+        t = Tablero()
+        ficha1 = ArrayFichas().sacar_ficha(21) # tipo7
+        t.insertar(ficha1, 2, 2)
+        expected = ArrayFichas().type(ficha1)
+        self.assertEqual(expected, ArrayFichas().type(t.dame_ficha((2,2))))
+
 
 if __name__ == '__main__':
 	unittest.main()

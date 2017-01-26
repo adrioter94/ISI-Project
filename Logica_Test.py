@@ -65,6 +65,28 @@ class LogicaTest(unittest.TestCase):
         self.assertEqual(expected, l.dame_aldea((4,2)))
 
 
+    def test_continua_camino(self):
+        p = Partida()
+        l = Logica()
+        l.array_caminos.append([(2,2), (2,3)])
+        l.array_caminos.append([(1,1), (2,1), (3,1)])
+        l.array_caminos.append([(4,3)])
+        ficha1 = ArrayFichas().sacar_ficha(57) #tipo17
+        ficha1.girar()
+        p.tablero.insertar(ficha1, 2, 3)
+        ficha2 = ArrayFichas().sacar_ficha(65) #tipo18
+        ficha2.girar()
+        ficha2.girar()
+        ficha2.girar()
+        p.tablero.insertar(ficha2, 2, 2)
+        mi_ficha = ArrayFichas().sacar_ficha(66) #tipo18
+        p.tablero.insertar(mi_ficha, 2, 4)
+        l.continua_camino(p.tablero, (2,4), (2,3), "izquierda")
+        self.assertTrue(l.continua_camino(p.tablero, (2,4), (2,3), "izquierda"))
+
+
+
+
 
 if __name__ == '__main__':
 	unittest.main()
