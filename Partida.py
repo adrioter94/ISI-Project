@@ -164,8 +164,7 @@ class Partida:
 
 
     def algoritmo_relleno(self,x, y):
-        i = 0
-        z = 0
+
         # assume surface is a 2D image and surface[x][y] is the color at x, y.
         if self.tablero.tablero[x][y].territorio[0][1] == '-' or self.tablero.tablero[x][y].pintada == True : # the base case
             return
@@ -175,6 +174,10 @@ class Partida:
         self.algoritmo_relleno(x + 1, y) # abajo
         self.algoritmo_relleno(x, y + 1) # derecha
         self.algoritmo_relleno(x, y - 1) # izquierd
+
+    def pintada_false(self):
+        i = 0
+        z = 0
         while i < self.tablero.w:
             while z < self.tablero.h:
                 self.tablero.tablero[i][z].pintada = False
