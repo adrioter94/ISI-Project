@@ -36,6 +36,7 @@ class Fichas:
 	 	aux_abajo = self.territorio[2]
 	 	aux_derecha = self.territorio[3]
 	 	aux_izquierda = self.territorio[4]
+
 	 	self.territorio[1]=aux_izquierda
 	 	self.territorio[3]=aux_arriba
 	 	self.territorio[4]=aux_abajo
@@ -44,7 +45,9 @@ class Fichas:
 		aux_arr=self.posSeguidores[3:6]
 	 	aux_aba=self.posSeguidores[6:9]
 	 	aux_der= self.posSeguidores[9:12]
+		aux_der = [aux_der[2], aux_der[1], aux_der[0]]
 	 	aux_izq=self.posSeguidores[12:15]
+		aux_izq = [aux_izq[2], aux_izq[1], aux_izq[0]]
 
 		self.posSeguidores[3:6]=aux_izq
 		self.posSeguidores[6:9]=aux_der
