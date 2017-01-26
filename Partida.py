@@ -168,7 +168,6 @@ class Partida:
         z = 0
         # assume surface is a 2D image and surface[x][y] is the color at x, y.
         if self.tablero.tablero[x][y].territorio[0][1] == '-' or self.tablero.tablero[x][y].pintada == True : # the base case
-            print "EEEE"
             return
         self.actualizar_posSeguidores(self.tablero.tablero[x][y],(x,y))
         self.tablero.tablero[x][y].pintada = True
@@ -197,6 +196,7 @@ class Partida:
         #    colocar un seguidor en su turno, si dispone de seguidores para colocar.
         #7)  Se comprobara si hay que sumarle puntos al jugador en ese turno.
         #8)  El turno pasara al siguiente jugador.
+
         while len(self.saco) <= 71:
             ficha = self.saco.sacar_ficha()
             if not self.tablero.comprobacion_ficha_valida(ficha): #valida para todos los giros en todas las posiciones que hay disponibles
@@ -215,7 +215,8 @@ class Partida:
                 if jugador.seguidores != 0:
                     ficha = self.colocar_seguidores(ficha, jugador) #te devuelve una ficha con el vector pos_seguidores actualizado
                 self.tablero.insertar(eleccion[0], eleccion[1], ficha)
-                self.computar_puntos_turno(tablero, ficha, jugador)
+                self.algoritmo_relleno(eleccion[0],eleccion[1])
+                #self.computar_puntos_turno(tablero, ficha, jugador)
                 next_jugador = self.pasar_turno(jugador)
                 break
             self.jugar_turno(next_jugador)

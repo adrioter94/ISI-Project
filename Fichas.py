@@ -9,6 +9,7 @@ class Fichas:
 		self.territorio=[centro, arriba, abajo, derecha, izquierda]
 		self.posSeguidores=posSeguidores
 		self.escudo=escudo
+		self.pintada= False
 
 	def pintar_ficha(self,zona,seguidor):
 		i=0
