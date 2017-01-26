@@ -5,17 +5,16 @@ import unittest
 
 class CarcassoneTest(unittest.TestCase):
 
+    # test constructor ficha inicial
     def test_constructor(self):
         t=Tablero()
-        expected="""-- -- --
--- -- --
--- -- --
--- -- --
--- -- --
+        expected="""A2 A2 A2
+P4 C1 P4
+C1 C1 C1
+P3 C1 P3
+P3 P3 P3
 """
-        for y in range(0,t.w): #w columnas
-            for x in range(0,t.h): # h filas
-                 self.assertEqual(expected,t.tablero[x][y].imprimir())
+        self.assertEqual(expected,t.tablero[int(round((t.w-1)/2.0))][int(round((t.h-1)/2.0))].imprimir())
 
     def insertar_ficha_tablero(self):
         t = Tablero()
