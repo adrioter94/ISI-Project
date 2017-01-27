@@ -181,3 +181,19 @@ class Logica:
             self.array_aldeas.remove(aldea) #eliminamos la antigua aldea
             aldea.append(pos)
             self.array_aldeas.append(aldea) #agregamos la aldea completa
+
+
+    def comprueba_ficha(self, tablero, pos, ficha):
+        #Segun el tipo de ficha del que se trate (con camino, con aldea, con camino y aldea),
+        #agregaremos esa ficha a una aldea o/y a un camino de los arrays correspondientes
+        tipo_ficha = self.que_ficha_es(ficha)
+
+        if tipo_ficha == "con_C":
+            self.coloca_ficha_con_C(tablero, pos)
+
+        elif tipo_ficha == "con_A":
+            self.coloca_ficha_con_A(tablero, pos)
+
+        elif tipo_ficha == "con_CA":
+            self.coloca_ficha_con_C(tablero, pos)
+            self.coloca_ficha_con_A(tablero, pos)

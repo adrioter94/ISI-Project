@@ -307,8 +307,97 @@ class LogicaTest(unittest.TestCase):
         self.assertEqual(expected, l.dame_aldea((2,3)))
 
 
+    def test_comprueba_Ficha_conA(self):
+        p = Partida()
+        l = Logica()
+        l.array_aldeas.append([(2,2)]) #aldea de la fichaA1
+        l.array_aldeas.append([(2,4)]) #aldea de la fichaA2
+        l.array_aldeas.append([(1,1), (2,1), (3,1)])
+        l.array_caminos.append([(5,2), (5,3)])
+        l.array_caminos.append([(4,3)]) #camino de la fichaC1
+
+        fichaA1 = ArrayFichas().sacar_ficha(1) #tipo2
+        p.tablero.insertar(fichaA1, 2, 2)
+
+        fichaA2 = ArrayFichas().sacar_ficha(2) #tipo2
+        p.tablero.insertar(fichaA2, 2, 4)
+
+        fichaC1 = ArrayFichas().sacar_ficha(57) #tipo17
+        fichaC1.girar()
+        p.tablero.insertar(fichaC1, 4, 3)
+
+        mi_ficha = ArrayFichas().sacar_ficha(5) #tipo3
+        p.tablero.insertar(mi_ficha, 2, 3) #coloco mi_ficha entre la fichaA1 y la fichaA2
+
+        l.comprueba_ficha(p.tablero, (2,3), mi_ficha)
+
+        expected = [(2,4), (2,3), (2,2)]
+
+        self.assertEqual(expected, l.dame_aldea((2,3)))
 
 
+    def test_comprueba_Ficha_conC(self):
+        p = Partida()
+        l = Logica()
+        l.array_aldeas.append([(2,2)]) #aldea de la fichaA1
+        l.array_aldeas.append([(2,4)]) #aldea de la fichaA2
+        l.array_aldeas.append([(1,1), (2,1), (3,1)])
+        l.array_caminos.append([(5,2), (5,1)])
+        l.array_caminos.append([(4,3)]) #camino de la fichaC1
+
+        fichaA1 = ArrayFichas().sacar_ficha(1) #tipo2
+        p.tablero.insertar(fichaA1, 2, 2)
+
+        fichaA2 = ArrayFichas().sacar_ficha(2) #tipo2
+        p.tablero.insertar(fichaA2, 2, 4)
+
+        fichaC1 = ArrayFichas().sacar_ficha(57) #tipo17
+        p.tablero.insertar(fichaC1, 4, 3)
+
+        mi_ficha = ArrayFichas().sacar_ficha(57) #tipo17
+        p.tablero.insertar(mi_ficha, 5, 3) #coloco mi_ficha debajo de la fichaC1
+
+        l.comprueba_ficha(p.tablero, (5,3), mi_ficha)
+
+        expected = [(4,3), (5,3)]
+
+        self.assertEqual(expected, l.dame_camino((5,3)))
+
+
+    def test_comprueba_Ficha_conCA(self):
+        todos = []
+        p = Partida()
+        l = Logica()
+        l.array_aldeas.append([(2,2)]) #aldea de la fichaA1
+        l.array_aldeas.append([(2,4)]) #aldea de la fichaA2
+        l.array_aldeas.append([(1,1), (2,1), (3,1)])
+        l.array_caminos.append([(5,2), (5,3)])
+        l.array_caminos.append([(4,3)]) #camino de la fichaC1
+        l.array_caminos.append([(3,3)]) #camino de la fichaC2
+
+        fichaA1 = ArrayFichas().sacar_ficha(1) #tipo2
+        p.tablero.insertar(fichaA1, 2, 2)
+
+        fichaA2 = ArrayFichas().sacar_ficha(2) #tipo2
+        p.tablero.insertar(fichaA2, 2, 4)
+
+        fichaC1 = ArrayFichas().sacar_ficha(57) #tipo17
+        fichaC1.girar()
+        p.tablero.insertar(fichaC1, 4, 3)
+
+        fichaC2 = ArrayFichas().sacar_ficha(56) #tipo17
+        p.tablero.insertar(fichaC2, 3, 3)
+
+        mi_ficha = ArrayFichas().sacar_ficha(23) #tipo8
+        p.tablero.insertar(mi_ficha, 2, 3) #coloco mi_ficha entre la fichaA1 y la fichaA2 y encima de la fichaC2
+
+        l.comprueba_ficha(p.tablero, (2,3), mi_ficha)
+        todos.append(l.dame_aldea((2,3)))
+        todos.append(l.dame_camino((2,3)))
+
+        expected = [[(2,4), (2,3), (2,2)], [(3,3), (2,3)]]
+
+        self.assertEqual(expected, todos)
 
 
 if __name__ == '__main__':
