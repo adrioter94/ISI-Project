@@ -400,5 +400,18 @@ class LogicaTest(unittest.TestCase):
         self.assertEqual(expected, todos)
 
 
+    def test_dame_camino_valido_B(self):
+        todos = []
+        p = Partida()
+        l = Logica()
+        l.array_caminos.append([(4,3), (5,3)])
+        l.array_caminos.append([(4,3), (3,3), (3,2)])
+        l.array_caminos.append([(4,3)]) #la bifuracion se encuentra en la posicion (4,3)
+
+        expected = [(4,3)]
+        
+        self.assertEqual(expected, l.dame_camino_valido_B((4,3)))
+
+
 if __name__ == '__main__':
 	unittest.main()

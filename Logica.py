@@ -61,6 +61,20 @@ class Logica:
                 return camino #devolvemos el camino que contenga la posicion
 
 
+    def dame_camino_valido_B(self, pos_B):
+        #Si una de las fichas adyacentes resulta ser una bifurcacion, no podemos pedir
+        #un camino que contenga esa posicion sin mas, necesitamos uno que contenga la
+        #posicion de la bifurcacion y solo esa posicion
+        caminos_con_B = []
+        for camino in self.array_caminos:
+            if pos_B in camino:
+                caminos_con_B.append(camino) #nos quedamos con todos los caminos que contengan esa posicion
+
+        for c in caminos_con_B:
+            if len(c) == 1:
+                return c  #elegimos el primero que contenga solo esa posicion y ninguna mas
+
+
     def dame_aldea(self, pos):
         #Devuelve la aldea dentro del array de todas las aldeas
         #en el que se encuentre la posicion pasada como parametro
