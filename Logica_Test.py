@@ -237,6 +237,79 @@ class LogicaTest(unittest.TestCase):
         self.assertEqual(expected, l.dame_camino((2,3)))
 
 
+    def test_coloca_ficha_con_A_aldeasInconexas(self):
+        p = Partida()
+        l = Logica()
+        l.array_aldeas.append([(2,2)]) #aldea de la ficha1
+        l.array_aldeas.append([(2,4)]) #aldea de la ficha2
+        l.array_aldeas.append([(1,1), (2,1), (3,1)])
+        l.array_aldeas.append([(4,3)])
+
+        ficha1 = ArrayFichas().sacar_ficha(1) #tipo2
+        p.tablero.insertar(ficha1, 2, 2)
+
+        ficha2 = ArrayFichas().sacar_ficha(2) #tipo2
+        p.tablero.insertar(ficha2, 2, 4)
+
+        mi_ficha = ArrayFichas().sacar_ficha(5) #tipo3
+        p.tablero.insertar(mi_ficha, 2, 3) #coloco mi_ficha entre la ficha1 y la ficha2
+
+        l.coloca_ficha_con_A(p.tablero, (2,3))
+
+        expected = [(2,4), (2,3), (2,2)]
+
+        self.assertEqual(expected, l.dame_aldea((2,3)))
+
+
+    def test_coloca_ficha_con_A_unionUnaSolaAldea(self):
+        p = Partida()
+        l = Logica()
+        l.array_aldeas.append([(2,4)]) #aldea de la ficha1
+        l.array_aldeas.append([(1,1), (2,1), (3,1)])
+        l.array_aldeas.append([(4,3)])
+
+        ficha1 = ArrayFichas().sacar_ficha(1) #tipo2
+        p.tablero.insertar(ficha1, 2, 4)
+
+        ficha2 = ArrayFichas().sacar_ficha(70) #tipo19
+        p.tablero.insertar(ficha2, 2, 2)
+
+        mi_ficha = ArrayFichas().sacar_ficha(18) #tipo6
+        mi_ficha.girar()
+        p.tablero.insertar(mi_ficha, 2, 3) #coloco mi_ficha entre la ficha1 y la ficha2
+
+        l.coloca_ficha_con_A(p.tablero, (2,3))
+
+        expected = [(2,4), (2,3)]
+
+        self.assertEqual(expected, l.dame_aldea((2,3)))
+
+
+    def test_coloca_ficha_con_A_sinUnion(self):
+        p = Partida()
+        l = Logica()
+        l.array_aldeas.append([(4,4), (4,5)])
+        l.array_aldeas.append([(1,1), (2,1), (3,1)])
+
+        ficha1 = ArrayFichas().sacar_ficha(69) #tipo19
+        p.tablero.insertar(ficha1, 2, 4)
+
+        ficha2 = ArrayFichas().sacar_ficha(70) #tipo19
+        p.tablero.insertar(ficha2, 2, 2)
+
+        mi_ficha = ArrayFichas().sacar_ficha(18) #tipo6
+        p.tablero.insertar(mi_ficha, 2, 3) #coloco mi_ficha entre la ficha1 y la ficha2
+
+        l.coloca_ficha_con_A(p.tablero, (2,3))
+
+        expected = [(2,3)]
+
+        self.assertEqual(expected, l.dame_aldea((2,3)))
+
+
+
+
+
 
 if __name__ == '__main__':
 	unittest.main()

@@ -131,7 +131,7 @@ class Logica:
         #Guardamos en posiciones las fichas adyacentes que continuen el camino
         for i in range(len(lados)):
             if self.continua_camino(tablero, pos, pos_contiguas[i], lados[i]): #si pertenece a un camino existente
-                posiciones.append(pos_contiguas[i]) #agregamos esa posicionflag = False #es continuacion de un camino existente
+                posiciones.append(pos_contiguas[i]) #nos quedamos con esa posicion
 
         if posiciones == []: #no pertenece a un camino existente
             self.array_caminos.append([pos])
@@ -149,3 +149,35 @@ class Logica:
             self.array_caminos.remove(camino) #eliminamos el antiguo camino
             camino.append(pos)
             self.array_caminos.append(camino) #agregamos el camino completo
+
+
+    def coloca_ficha_con_A(self, tablero, pos):
+        #Busca si la ficha pertenece a alguna aldea existente
+        #Si pertenece a una aldea, incluye la posicion de la ficha en esa aldea
+        #Si pertenece a aldeas inconexas, las une en una misma aldea
+        #Si no pertence a ninguna aldea, crea una nueva aldea con la posicion de la ficha
+        posiciones = [] #array en el que se iran agregrando las posiciones contiguas a la aldea
+        pos_contiguas = self.dame_pos_contiguas(pos[0], pos[1])[0]
+        lados = self.dame_pos_contiguas(pos[0], pos[1])[1]
+
+        #Guardamos en posiciones las fichas adyacentes que continuen la aldea
+        for i in range(len(lados)):
+            if self.continua_aldea(tablero, pos, pos_contiguas[i], lados[i]): #si pertenece a una aldea existente
+                posiciones.append(pos_contiguas[i]) #nos quedamos con esa posicion
+
+        if posiciones == []: #no pertenece a una aldea existente
+            self.array_aldeas.append([pos])
+        elif len(posiciones) == 2: #pertenece a dos aldeas que estaban inconexas
+            aldea1 = self.dame_aldea(posiciones[0])
+            aldea2 = self.dame_aldea(posiciones[1])
+            self.array_aldeas.remove(aldea1) #eliminamos las antiguas aldeas
+            self.array_aldeas.remove(aldea2)
+            aldea1.append(pos)
+            for elem in aldea2:
+                aldea1.append(elem)
+            self.array_aldeas.append(aldea1) #agregamos la aldea completa
+        else: #pertence a una sola aldea existente
+            aldea = self.dame_aldea(posiciones[0]) #busco la aldea a la que pertenece
+            self.array_aldeas.remove(aldea) #eliminamos la antigua aldea
+            aldea.append(pos)
+            self.array_aldeas.append(aldea) #agregamos la aldea completa
