@@ -503,15 +503,72 @@ class LogicaTest(unittest.TestCase):
 
         l.array_caminos.append([(2,2), (3,2), (4,2)]) #camino de las fichas
 
-        fichaC1 = ArrayFichas().sacar_ficha(23) #tipo8
+        fichaC1 = ArrayFichas().sacar_ficha(24) #tipo8
         fichaC2 = ArrayFichas().sacar_ficha(55) #tipo17
-        fichaC3 = ArrayFichas().sacar_ficha(45) #tipo17
+        fichaC3 = ArrayFichas().sacar_ficha(46) #tipo15
 
         p.tablero.insertar(fichaC1, 2, 2)
         p.tablero.insertar(fichaC2, 3, 2)
         p.tablero.insertar(fichaC3, 4, 2)
 
         self.assertTrue(l.camino_completado(p.tablero,l.dame_camino((2,2))))
+
+
+    def test_aldea_no_completada(self):
+        p=Partida();
+        l = Logica()
+
+        l.array_aldeas.append([(2,2), (2,3)]) #aldea de las fichas
+
+        fichaC1 = ArrayFichas().sacar_ficha(14) #tipo5
+        fichaC2 = ArrayFichas().sacar_ficha(6) #tipo3
+
+
+        p.tablero.insertar(fichaC1, 2, 2)
+        p.tablero.insertar(fichaC2, 2, 3)
+
+
+        self.assertFalse(l.aldea_completada(p.tablero,l.dame_aldea((2,2))))
+
+    def test_aldea_completada(self):
+        p=Partida();
+        l = Logica()
+
+        l.array_aldeas.append([(2,2), (2,3), (2,4)]) #aldea de las fichas
+
+        fichaC1 = ArrayFichas().sacar_ficha(21) #tipo7
+        fichaC1.girar()
+
+        fichaC2 = ArrayFichas().sacar_ficha(5) #tipo3
+
+        fichaC3 = ArrayFichas().sacar_ficha(22) #tipo7
+        fichaC3.girar()
+        fichaC3.girar()
+        fichaC3.girar()
+
+
+        p.tablero.insertar(fichaC1, 2, 2)
+        p.tablero.insertar(fichaC2, 2, 3)
+        p.tablero.insertar(fichaC3, 2, 4)
+
+
+        self.assertTrue(l.aldea_completada(p.tablero,l.dame_aldea((2,2))))
+
+    def test_aldea_completada(self):
+        p=Partida();
+        l = Logica()
+
+        l.array_aldeas.append([(2,2), (2,3), (2,4)]) #aldea de las fichas
+
+        fichaC1 = ArrayFichas().sacar_ficha(14) #tipo5
+        fichaC2 = ArrayFichas().sacar_ficha(5) #tipo3
+        fichaC3 = ArrayFichas().sacar_ficha(16) #tipo6
+
+        p.tablero.insertar(fichaC1, 2, 2)
+        p.tablero.insertar(fichaC2, 2, 3)
+        p.tablero.insertar(fichaC3, 2, 4)
+
+        self.assertTrue(l.aldea_completada(p.tablero,l.dame_aldea((2,2))))
 
 
 if __name__ == '__main__':

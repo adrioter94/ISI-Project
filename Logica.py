@@ -36,6 +36,8 @@ class Logica:
     def es_limite_camino(self, ficha):
         return ArrayFichas().type(ficha) in [8, 10, 13, 15, 16]
 
+    def es_doble_limite_aldea(self,ficha):
+        return ArrayFichas().type(ficha) in [5, 6]
 
     def que_ficha_es(self, ficha):
         if self.contiene_camino(ficha) and not self.es_bifurcacion(ficha):
@@ -258,3 +260,21 @@ class Logica:
             return True
         else:
             return False
+
+    def aldea_completada(self, tablero ,aldea):
+        #Para cada ficha que compone la aldea, si en alguno de sus lados necesita otra
+        #ficha con aldea para cerrar y la ficha contigua correspondiente no se encuentra
+        #en la aldea, la aldea aun no esta completada
+        if len(aldea) == 1:
+            return False
+
+        for elem in aldea: #comprobamos cada ficha que compone la aldea
+            ficha = tablero.dame_ficha(elem)
+            if not self.es_doble_limite_aldea(ficha):# en estos dos casos no es necesario hacer la comprobacion por ser limites
+                pos_contiguas = self.dame_pos_contiguas(elem[0], elem[1])[0]
+                lados = self.dame_pos_contiguas(elem[0], elem[1])[1]
+                for i in range(1,5):  #1 arriba, 2 abajo, 3 derecha, 5 izquierda
+                    if ficha.territorio[i][1] == 'A': #Si hay aldea abierta por ese lado
+                        if not pos_contiguas[i-1] in aldea: #y la posicion contigua por ese lado no se encuentra dentro de la aldea
+                            return False
+        return True #si todas las fichas por todos los lados estan cubiertas por las fichas adyacentes correspondientes, esta completa
