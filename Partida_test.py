@@ -215,7 +215,38 @@ Pr Pr Pr
 """
         self.assertEqual(expected,p.tablero.tablero[5][5].imprimir())
 
+    def test_algoritmo_relleno3(self):
+        p = Partida()
+        jugador = Jugador('Adrian', 'rojo')
+        jugador1 = Jugador('Alberto', 'verde')
+        ficha1= ArrayFichas().sacar_ficha(0) # FICHA IGLESIA
+        ficha2= ArrayFichas().sacar_ficha(16)
+        ficha3= ArrayFichas().sacar_ficha(12)
 
+        p.actualizar_posSeguidores(ficha2,(7,4))
+        p.colocar_seguidor(ficha2,jugador,10)
+        p.tablero.insertar(ficha2,7,4)
+        p.algoritmo_relleno(7,4)
+        p.pintada_false()
+
+        p.actualizar_posSeguidores(ficha3,(7,6))
+        p.colocar_seguidor(ficha3,jugador1,12)
+        p.tablero.insertar(ficha3,7,6)
+        p.algoritmo_relleno(7,6)
+        p.pintada_false()
+
+        p.actualizar_posSeguidores(ficha1,(7,5))
+        p.tablero.insertar(ficha1,7,5)
+        p.algoritmo_relleno(7,5)
+        p.pintada_false()
+
+        expected="""P1 P1 P1
+A2 P1 Ar
+A2 P1 Ar
+A2 P1 Ar
+P1 P1 P1
+"""
+        self.assertEqual(expected,p.tablero.tablero[7][4].imprimir())
 
 if __name__ == '__main__':
 	unittest.main()

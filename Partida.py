@@ -134,10 +134,13 @@ class Partida:
         b = self.tablero.tablero[x+1][y] #bottom
         r = self.tablero.tablero[x][y+1] #right
         l = self.tablero.tablero[x][y-1] #left
+
         if u.territorio[0][1] != '-':
             while i < 3:
                 if u.posSeguidores[6 + i] in colores:
                     zona1 = ficha.posSeguidores[3 + i]
+                    if zona1 in colores:
+                        return
                     ficha.pintar_ficha(zona1,u.posSeguidores[6 + i])
                 i += 1
         i = 0
@@ -145,6 +148,8 @@ class Partida:
             while i < 3:
                 if b.posSeguidores[3 + i] in colores:
                     zona1 = ficha.posSeguidores[6 + i]
+                    if zona1 in colores:
+                        return
                     ficha.pintar_ficha(zona1,b.posSeguidores[3 + i])
                 i += 1
         i = 0
@@ -152,6 +157,8 @@ class Partida:
             while i < 3:
                 if r.posSeguidores[12 + i] in colores:
                     zona1 = ficha.posSeguidores[9 + i]
+                    if zona1 in colores:
+                        return
                     ficha.pintar_ficha(zona1,r.posSeguidores[12 + i])
                 i += 1
         i = 0
@@ -159,6 +166,8 @@ class Partida:
             while i < 3:
                 if l.posSeguidores[9 + i] in colores:
                     zona1 = ficha.posSeguidores[12 + i]
+                    if zona1 in colores:
+                        return
                     ficha.pintar_ficha(zona1,l.posSeguidores[9 + i])
                 i += 1
 

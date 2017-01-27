@@ -49,7 +49,7 @@ class ArrayFichas:
 		self.tipos.append(tipo5)
 
 		for i in range(3):
-			tipo6 = Fichas('P','P','P','P','P','P','P','A','A','A','A','A','A',[1,1,1,1,1,1,1,1,1,2,2,2,2,2,2],False)
+			tipo6 = Fichas('P','P','P','P','P','P','P','A','A','A','A','A','A',[1,1,1,1,1,1,1,1,1,3,3,3,2,2,2],False)
 			self.saco.append(tipo6)
 		self.tipos.append(tipo6)
 
