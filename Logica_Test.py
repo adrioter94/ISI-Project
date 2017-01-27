@@ -12,34 +12,35 @@ class LogicaTest(unittest.TestCase):
         expected = "con_C"
         ficha = ArrayFichas().sacar_ficha(66) #tipo18
         self.assertEqual(expected, Logica().que_ficha_es(ficha))
-        Logica().que_ficha_es(ficha)
 
 
     def test_ficha_aldea(self):
         expected = "con_A"
         ficha = ArrayFichas().sacar_ficha(0) #tipo1
         self.assertEqual(expected, Logica().que_ficha_es(ficha))
-        Logica().que_ficha_es(ficha)
 
 
     def test_ficha_aldea_y_camino(self):
         expected = "con_CA"
         ficha = ArrayFichas().sacar_ficha(35) #tipo11
         self.assertEqual(expected, Logica().que_ficha_es(ficha))
-        Logica().que_ficha_es(ficha)
 
     def test_ficha_no_aldea_no_camino(self):
         expected = "sin_CA"
         ficha = ArrayFichas().sacar_ficha(70) #tipo19
         self.assertEqual(expected, Logica().que_ficha_es(ficha))
-        Logica().que_ficha_es(ficha)
 
 
     def test_ficha_bifurcacion(self):
         expected = "con_B"
         ficha = ArrayFichas().sacar_ficha(49) #tipo16
         self.assertEqual(expected, Logica().que_ficha_es(ficha))
-        Logica().que_ficha_es(ficha)
+
+
+    def test_ficha_bifurcacion_y_aldea(self):
+        expected = "con_BA"
+        ficha = ArrayFichas().sacar_ficha(40) #tipo13
+        self.assertEqual(expected, Logica().que_ficha_es(ficha))
 
 
     def test_dame_pos_contiguas(self):
@@ -409,8 +410,77 @@ class LogicaTest(unittest.TestCase):
         l.array_caminos.append([(4,3)]) #la bifuracion se encuentra en la posicion (4,3)
 
         expected = [(4,3)]
-        
+
         self.assertEqual(expected, l.dame_camino_valido_B((4,3)))
+
+
+    def test_coloca_ficha_con_B(self):
+        todos = []
+        p = Partida()
+        l = Logica()
+
+        #mi_ficha = ArrayFichas().sacar_ficha(44) #tipo15
+        mi_ficha = ArrayFichas().sacar_ficha(48) #tipo16
+        p.tablero.insertar(mi_ficha, 2, 3)
+
+        l.comprueba_ficha(p.tablero, (2,3), mi_ficha)
+
+        expected = [[(2,3)], [(2,3)], [(2,3)]]
+
+        self.assertEqual(expected, l.array_caminos)
+
+
+    def test_coloca_ficha_con_B2(self):
+
+        p = Partida()
+        l = Logica()
+        l.array_caminos.append([(2,4)]) #camino de la fichaC1
+
+        fichaC1 = ArrayFichas().sacar_ficha(66) #tipo18
+        p.tablero.insertar(fichaC1, 2, 4)
+
+        #mi_ficha = ArrayFichas().sacar_ficha(44) #tipo15
+        mi_ficha = ArrayFichas().sacar_ficha(48) #tipo16
+        p.tablero.insertar(mi_ficha, 2, 3)
+
+        l.comprueba_ficha(p.tablero, (2,3), mi_ficha)
+
+        expected = [[(2,3)], [(2,4), (2,3)], [(2,3)]]
+
+        self.assertEqual(expected, l.array_caminos)
+
+
+    #test 2 bifurcaciones
+    def test_coloca_B2(self):
+        p=Partida();
+        l = Logica()
+        l.array_caminos.append([(2,2)]) #camino de la fichaC1
+        l.array_caminos.append([(2,2)]) #camino de la fichaC1
+        l.array_caminos.append([(2,2),(2,1)]) #camino de la fichaC1 y fichaC4
+        l.array_caminos.append([(2,4)]) #camino de la fichaC2
+        l.array_caminos.append([(3,3)]) #camino de la fichaC3
+        l.array_caminos.append([(3,3)]) #camino de la fichaC3
+        l.array_caminos.append([(3,3)]) #camino de la fichaC3
+        l.array_caminos.append([(3,3)]) #camino de la fichaC3
+
+        fichaC1 = ArrayFichas().sacar_ficha(41) #tipo13
+        fichaC2 = ArrayFichas().sacar_ficha(60) #tipo18
+        fichaC3 = ArrayFichas().sacar_ficha(45) #tipo15
+        fichaC4 = ArrayFichas().sacar_ficha(35) #tipo11
+        mi_ficha = ArrayFichas().sacar_ficha(48) #tipo16
+
+        p.tablero.insertar(mi_ficha, 2, 3)
+        p.tablero.insertar(fichaC1, 2, 2)
+        p.tablero.insertar(fichaC2, 2, 4)
+        p.tablero.insertar(fichaC3, 3, 3)
+        p.tablero.insertar(fichaC3, 2, 1)
+
+        l.comprueba_ficha(p.tablero, (2,3), mi_ficha)
+
+        expected=[[(2, 2)], [(2, 2), (2, 1)], [(3, 3)], [(3, 3)], [(3, 3)], [(3, 3), (2, 3)], [(2, 4), (2, 3)], [(2, 2), (2, 3)]]
+
+
+        self.assertEqual(expected, l.array_caminos)
 
 
 if __name__ == '__main__':
