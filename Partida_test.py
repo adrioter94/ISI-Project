@@ -100,33 +100,52 @@ class PArtidaTest(unittest.TestCase):
         jugador = Jugador('Adrian', 'rojo')
         ficha1 = ArrayFichas().sacar_ficha(70) #tipo19
         ficha2 = ArrayFichas().sacar_ficha(35) #tipo11
-        p.tablero.insertar(ficha1, 6, 5)
+        p.actualizar_posSeguidores(ficha1, (6, 6))
         p.colocar_seguidor(ficha1, jugador, 3) #3 de arriba
+        p.tablero.insertar(ficha1, 6, 5)
         p.actualizar_posSeguidores(ficha2, (6, 6))
         p.tablero.insertar(ficha2, 6, 6)
         expected = ["r","r","r",2,2,2,"r",3,4,"r",3,4,"r","r","r"]
         self.assertEqual(expected,ficha2.posSeguidores)
 
-    # izquierda -arriba
-#     def test_algoritmo_relleno(self):
-#         p = Partida()
-#         jugador = Jugador('Adrian', 'rojo')
-#         ficha1 = ArrayFichas().sacar_ficha(70) #tipo19
-#         ficha2 = ArrayFichas().sacar_ficha(35) #tipo11
-#         p.tablero.insertar(ficha1, 6, 5)
-#         p.tablero.insertar(ficha2, 6, 6)
-#         p.actualizar_posSeguidores(ficha2,(6,6))
-#         p.colocar_seguidor(ficha2, jugador, 13) #3 de arriba
-#         p.algoritmo_relleno(6,6)
-#         p.pintada_false()
-#         expected = """A2 A2 A2
-# P4 C1 P4
-# C1 C1 C1
-# Pr C1 Pr
-# Pr Pr Pr
-# """
-        #
-        # self.assertEqual(expected,p.tablero.tablero[5][5].imprimir())
+    def test_pintada_false(self):
+        p = Partida()
+        jugador = Jugador('Adrian', 'rojo')
+        ficha1 = ArrayFichas().sacar_ficha(70) #tipo19
+        ficha2 = ArrayFichas().sacar_ficha(35) #tipo11
+
+        p.actualizar_posSeguidores(ficha1,(6,5))
+        p.colocar_seguidor(ficha1, jugador, 13) #3 de arriba
+        p.tablero.insertar(ficha1, 6, 5)
+        p.algoritmo_relleno(6,5)
+        p.pintada_false()
+
+        self.assertEqual(False,p.tablero.tablero[6][5].pintada)
+
+    #izquierda -arriba
+    def test_algoritmo_relleno(self):
+        p = Partida()
+        jugador = Jugador('Adrian', 'rojo')
+        ficha1 = ArrayFichas().sacar_ficha(70) #tipo19
+        ficha2 = ArrayFichas().sacar_ficha(35) #tipo11
+
+        p.actualizar_posSeguidores(ficha1,(6,5))
+        p.tablero.insertar(ficha1, 6, 5)
+
+        p.actualizar_posSeguidores(ficha2,(6,6))
+        p.colocar_seguidor(ficha2, jugador, 13) #3 de arriba
+        p.tablero.insertar(ficha2, 6, 6)
+        p.algoritmo_relleno(6,6)
+        p.pintada_false()
+        expected = """A2 A2 A2
+P4 C1 P4
+C1 C1 C1
+Pr C1 Pr
+Pr Pr Pr
+"""
+
+        self.assertEqual(expected,p.tablero.tablero[5][5].imprimir())
+
 
 
     #1 ACTUALIZAR pos_seguidores
@@ -137,6 +156,7 @@ class PArtidaTest(unittest.TestCase):
     def test_algoritmo_relleno2 (self):
         p = Partida()
         jugador = Jugador('Adrian', 'rojo')
+        jugador1 = Jugador('Alberto', 'verde')
         ficha1= ArrayFichas().sacar_ficha(70) # FICHA IGLESIA
         ficha2= ArrayFichas().sacar_ficha(20)
         ficha3= ArrayFichas().sacar_ficha(21)
@@ -145,6 +165,10 @@ class PArtidaTest(unittest.TestCase):
         ficha6= ArrayFichas().sacar_ficha(51)
         ficha7= ArrayFichas().sacar_ficha(52)
         ficha8 = ArrayFichas().sacar_ficha(46)
+        ficha9= ArrayFichas().sacar_ficha(18)
+
+        ficha9.girar()
+        ficha9.girar()
 
         ficha4.girar()
         ficha4.girar()
@@ -173,14 +197,23 @@ class PArtidaTest(unittest.TestCase):
         p.tablero.insertar(ficha2,7,5)
 
         p.actualizar_posSeguidores(ficha3,(7,6))
-
         p.colocar_seguidor(ficha3,jugador,13)
-
         p.tablero.insertar(ficha3,7,6)
         p.algoritmo_relleno(7,6)
         p.pintada_false()
 
-        p.tablero.imprimir()
+        p.actualizar_posSeguidores(ficha9,(4,5))
+        p.colocar_seguidor(ficha9,jugador1,7)
+        p.tablero.insertar(ficha9,4,5)
+        p.algoritmo_relleno(4,5)
+        p.pintada_false()
+        expected="""Av Av Av
+P4 C1 P4
+C1 C1 C1
+Pr C1 Pr
+Pr Pr Pr
+"""
+        self.assertEqual(expected,p.tablero.tablero[5][5].imprimir())
 
 
 
