@@ -18,7 +18,7 @@ class Logica:
 
 
     def contiene_camino_y_aldea(self, ficha):
-        return ArrayFichas().type(ficha) in [8, 9, 11, 12, 13, 14]
+        return ArrayFichas().type(ficha) in [8, 9, 11, 12, 14]
 
 
     def no_camino_no_aldea(self, ficha):
@@ -26,7 +26,11 @@ class Logica:
 
 
     def es_bifurcacion(self, ficha):
-        return ArrayFichas().type(ficha) in [13, 15, 16]
+        return ArrayFichas().type(ficha) in [15, 16]
+
+
+    def es_bifurcacion_y_aldea(self, ficha):
+        return ArrayFichas().type(ficha) == 13
 
 
     def es_limite_camino(self, ficha):
@@ -44,6 +48,8 @@ class Logica:
             return "sin_CA"
         if self.es_bifurcacion(ficha):
             return "con_B"
+        if self.es_bifurcacion_y_aldea(ficha):
+            return "con_BA"
 
 
     def dame_pos_contiguas(self, x, y):
@@ -108,7 +114,7 @@ class Logica:
         return response
 
 
-    def continua_aldea(self, tablero, pos, pos_contigua, lado): #lado: arriba,abajo,izda,dcha
+    def continua_aldea(self, tablero, pos, pos_contigua, lado): #lado: arriba,abajo,dcha,izda
         #Comprueba si la ficha que estamos colocando y una de las fichas contiguas
         #forman una misma aldea
         ficha_contigua = tablero.dame_ficha(pos_contigua)
@@ -165,6 +171,30 @@ class Logica:
             self.array_caminos.append(camino) #agregamos el camino completo
 
 
+    def coloca_ficha_con_B(self, tablero, pos):
+        #Si la ficha que hay que colocar contiene una bifurcacion:
+        #Hay que incluirla en tantos caminos como ramas tenga la bifurcacion
+        #Por cada lado, si es continuacion de camino agregaremos la ficha al camino correspondiente,
+        #si no es continuacion crearemos un camino nuevo para esa posicion
+        ficha_actual = tablero.dame_ficha(pos)
+        pos_contiguas = self.dame_pos_contiguas(pos[0], pos[1])[0]
+        lados = self.dame_pos_contiguas(pos[0], pos[1])[1]
+
+        for i in range(1,5): #1 arriba, 2 abajo, 3 derecha, 4 izquierda
+            if ficha_actual.territorio[i][1] == 'C': #comprobamos si en ese lado hay rama
+                if self.continua_camino(tablero, pos, pos_contiguas[i-1], lados[i-1]): #si hay rama y continua un camino existente
+                    if self.es_bifurcacion(tablero.dame_ficha(pos_contiguas[i-1])): #si la ficha adyacente tambien es bifurcacion
+                        camino = self.dame_camino_valido_B(pos_contiguas[i-1])
+                    else:
+                        camino = self.dame_camino(pos_contiguas[i-1])
+                    self.array_caminos.remove(camino)
+                    camino.append(pos)
+                    self.array_caminos.append(camino)
+                else:
+                    self.array_caminos.append([pos]) #si no continua creamos un nuevo camino
+
+
+
     def coloca_ficha_con_A(self, tablero, pos):
         #Busca si la ficha pertenece a alguna aldea existente
         #Si pertenece a una aldea, incluye la posicion de la ficha en esa aldea
@@ -209,5 +239,12 @@ class Logica:
             self.coloca_ficha_con_A(tablero, pos)
 
         elif tipo_ficha == "con_CA":
+            self.coloca_ficha_con_A(tablero, pos)
             self.coloca_ficha_con_C(tablero, pos)
+
+        elif tipo_ficha == "con_B":
+            self.coloca_ficha_con_B(tablero, pos)
+
+        elif tipo_ficha == "con_BA":
+            self.coloca_ficha_con_B(tablero, pos)
             self.coloca_ficha_con_A(tablero, pos)
