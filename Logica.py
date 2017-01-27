@@ -248,3 +248,13 @@ class Logica:
         elif tipo_ficha == "con_BA":
             self.coloca_ficha_con_B(tablero, pos)
             self.coloca_ficha_con_A(tablero, pos)
+
+    def camino_completado(self, tablero ,camino):
+        cont = 0
+        for elem in camino:
+            if self.es_limite_camino(tablero.dame_ficha(elem)):
+                cont += 1
+        if cont == 2:
+            return True
+        else:
+            return False

@@ -483,5 +483,36 @@ class LogicaTest(unittest.TestCase):
         self.assertEqual(expected, l.array_caminos)
 
 
+    def test_camino_no_completado(self):
+        p=Partida();
+        l = Logica()
+
+        l.array_caminos.append([(2,2), (3,2)]) #camino de las fichas
+
+        fichaC1 = ArrayFichas().sacar_ficha(23) #tipo8
+        fichaC2 = ArrayFichas().sacar_ficha(55) #tipo17
+
+        p.tablero.insertar(fichaC1, 2, 2)
+        p.tablero.insertar(fichaC2, 3, 2)
+
+        self.assertFalse(l.camino_completado(p.tablero,l.dame_camino((2,2))))
+
+    def test_camino_completado(self):
+        p=Partida();
+        l = Logica()
+
+        l.array_caminos.append([(2,2), (3,2), (4,2)]) #camino de las fichas
+
+        fichaC1 = ArrayFichas().sacar_ficha(23) #tipo8
+        fichaC2 = ArrayFichas().sacar_ficha(55) #tipo17
+        fichaC3 = ArrayFichas().sacar_ficha(45) #tipo17
+
+        p.tablero.insertar(fichaC1, 2, 2)
+        p.tablero.insertar(fichaC2, 3, 2)
+        p.tablero.insertar(fichaC3, 4, 2)
+
+        self.assertTrue(l.camino_completado(p.tablero,l.dame_camino((2,2))))
+
+
 if __name__ == '__main__':
 	unittest.main()
