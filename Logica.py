@@ -49,7 +49,7 @@ class Logica:
     def dame_pos_contiguas(self, x, y):
         #Devuelve dos arrays con las posiciones de las fichas contiguas y sus direcciones
         pos_contiguas = [(x-1, y), (x+1, y), (x, y+1), (x, y-1)]
-        lados = ["arriba", "derecha", "abajo", "izquierda"]
+        lados = ["arriba", "abajo", "derecha", "izquierda"]
         return (pos_contiguas, lados)
 
 
@@ -69,7 +69,7 @@ class Logica:
                 return aldea #devolvemos la aldea que contenga la posicion
 
 
-    def continua_camino(self, tablero, pos, pos_contigua, lado): #lado: arriba,abajo,izda,dcha
+    def continua_camino(self, tablero, pos, pos_contigua, lado): #lado: arriba,abajo,dcha,izda
         #Comprueba si la ficha que estamos colocando y una de las fichas contiguas
         #forman un mismo camino
         ficha_contigua = tablero.dame_ficha(pos_contigua)
@@ -117,3 +117,35 @@ class Logica:
                 if ficha_actual.territorio[4][1] == ficha_contigua.territorio[3][1]: #si la ficha contigua no es vacia
                     response = True
         return response
+
+
+    def coloca_ficha_con_C(self, tablero, pos):
+        #Busca si la ficha pertenece a algun camino existente
+        #Si pertenece a un camino, incluye la posicion de la ficha en ese camino
+        #Si pertenece a caminos inconexos, los une en un mismo camino
+        #Si no pertence a ningun camino, crea un nuevo camino con la posicion de la ficha
+        posiciones = [] #array en el que se iran agregrando las posiciones contiguas al camino
+        pos_contiguas = self.dame_pos_contiguas(pos[0], pos[1])[0]
+        lados = self.dame_pos_contiguas(pos[0], pos[1])[1]
+
+        #Guardamos en posiciones las fichas adyacentes que continuen el camino
+        for i in range(len(lados)):
+            if self.continua_camino(tablero, pos, pos_contiguas[i], lados[i]): #si pertenece a un camino existente
+                posiciones.append(pos_contiguas[i]) #agregamos esa posicionflag = False #es continuacion de un camino existente
+
+        if posiciones == []: #no pertenece a un camino existente
+            self.array_caminos.append([pos])
+        elif len(posiciones) == 2: #pertenece a dos caminos que estaban inconexos
+            camino1 = self.dame_camino(posiciones[0])
+            camino2 = self.dame_camino(posiciones[1])
+            self.array_caminos.remove(camino1) #eliminamos los antiguos caminos
+            self.array_caminos.remove(camino2)
+            camino1.append(pos)
+            for elem in camino2:
+                camino1.append(elem)
+            self.array_caminos.append(camino1) #agregamos el camino completo
+        else: #pertence a un solo camino existente
+            camino = self.dame_camino(posiciones[0]) #busco el camino al que pertenece
+            self.array_caminos.remove(camino) #eliminamos el antiguo camino
+            camino.append(pos)
+            self.array_caminos.append(camino) #agregamos el camino completo
