@@ -8,8 +8,8 @@ class CarcassoneTest(unittest.TestCase):
     # Long saco (0-70)
     # test constructor ficha inicial
     def test_constructor(self):
-        t=Tablero()
-        expected="""A2 A2 A2
+        t = Tablero()
+        expected = """A2 A2 A2
 P4 C1 P4
 C1 C1 C1
 P3 C1 P3
@@ -47,7 +47,6 @@ A0 A0 A0
         self.assertEqual(expected, t.todas_pos_validas(ficha2))
 
 
-    # hay que contar que ya esta puesta la ficha inicial
     def test_comprobacion_ficha_valida(self):
         t = Tablero()
         ficha1 = ArrayFichas().sacar_ficha(21) # tipo7 Aldea por arriba y el resto pradera

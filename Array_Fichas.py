@@ -1,6 +1,7 @@
 from Fichas import Fichas
 import random
 
+#Clase que contine las 72 fichas del jugo.
 class ArrayFichas:
 
 
@@ -125,15 +126,18 @@ class ArrayFichas:
 			self.saco.append(tipo19)
 		self.tipos.append(tipo19)
 
+
+	#Escoge una de las 72 fichas (alguna en concreto o al azar).
 	def sacar_ficha(self,pos=None):
 		if pos == None:
 			pos=random.randint(0,len(self.saco)-1)
 		return self.saco[pos]
 
-
+    # Elimina una ficha (para cuando se coloque en el tablero).
 	def eliminar_ficha(self, ficha):
 		self.saco.remove(ficha)
 
+    #Devuelve el tipo de ficha que es.
 	def type(self, ficha):
 		for i in range(19):
 			if self.tipos[i].territorio == ficha.territorio:

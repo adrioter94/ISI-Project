@@ -93,20 +93,20 @@ class PArtidaTest(unittest.TestCase):
         jugador= Jugador('Adrian', 'rojo')
         p.colocar_seguidor(ficha,jugador,0)
         expected=["r","r","r","r","r","r","r","r","r","r","r","r","r","r","r"]
-        self.assertEqual(expected,ficha.posSeguidores)
+        self.assertEqual(expected,ficha.zona)
 
-    def test_actualizar_posSeguidores(self):
+    def test_actualizar_zona(self):
         p = Partida()
         jugador = Jugador('Adrian', 'rojo')
         ficha1 = ArrayFichas().sacar_ficha(70) #tipo19
         ficha2 = ArrayFichas().sacar_ficha(35) #tipo11
-        p.actualizar_posSeguidores(ficha1, (6, 6))
+        p.actualizar_zona(ficha1, (6, 6))
         p.colocar_seguidor(ficha1, jugador, 3) #3 de arriba
         p.tablero.insertar(ficha1, 6, 5)
-        p.actualizar_posSeguidores(ficha2, (6, 6))
+        p.actualizar_zona(ficha2, (6, 6))
         p.tablero.insertar(ficha2, 6, 6)
         expected = ["r","r","r",2,2,2,"r",3,4,"r",3,4,"r","r","r"]
-        self.assertEqual(expected,ficha2.posSeguidores)
+        self.assertEqual(expected,ficha2.zona)
 
     def test_pintada_false(self):
         p = Partida()
@@ -114,7 +114,7 @@ class PArtidaTest(unittest.TestCase):
         ficha1 = ArrayFichas().sacar_ficha(70) #tipo19
         ficha2 = ArrayFichas().sacar_ficha(35) #tipo11
 
-        p.actualizar_posSeguidores(ficha1,(6,5))
+        p.actualizar_zona(ficha1,(6,5))
         p.colocar_seguidor(ficha1, jugador, 13) #3 de arriba
         p.tablero.insertar(ficha1, 6, 5)
         p.algoritmo_relleno(6,5)
@@ -129,10 +129,10 @@ class PArtidaTest(unittest.TestCase):
         ficha1 = ArrayFichas().sacar_ficha(70) #tipo19
         ficha2 = ArrayFichas().sacar_ficha(35) #tipo11
 
-        p.actualizar_posSeguidores(ficha1,(6,5))
+        p.actualizar_zona(ficha1,(6,5))
         p.tablero.insertar(ficha1, 6, 5)
 
-        p.actualizar_posSeguidores(ficha2,(6,6))
+        p.actualizar_zona(ficha2,(6,6))
         p.colocar_seguidor(ficha2, jugador, 13) #3 de arriba
         p.tablero.insertar(ficha2, 6, 6)
         p.algoritmo_relleno(6,6)
@@ -196,13 +196,13 @@ Pr Pr Pr
         p.tablero.insertar(ficha1,6,5)
         p.tablero.insertar(ficha2,7,5)
 
-        p.actualizar_posSeguidores(ficha3,(7,6))
+        p.actualizar_zona(ficha3,(7,6))
         p.colocar_seguidor(ficha3,jugador,13)
         p.tablero.insertar(ficha3,7,6)
         p.algoritmo_relleno(7,6)
         p.pintada_false()
 
-        p.actualizar_posSeguidores(ficha9,(4,5))
+        p.actualizar_zona(ficha9,(4,5))
         p.colocar_seguidor(ficha9,jugador1,7)
         p.tablero.insertar(ficha9,4,5)
         p.algoritmo_relleno(4,5)
@@ -223,19 +223,19 @@ Pr Pr Pr
         ficha2= ArrayFichas().sacar_ficha(16)
         ficha3= ArrayFichas().sacar_ficha(12)
 
-        p.actualizar_posSeguidores(ficha2,(7,4))
+        p.actualizar_zona(ficha2,(7,4))
         p.colocar_seguidor(ficha2,jugador,10)
         p.tablero.insertar(ficha2,7,4)
         p.algoritmo_relleno(7,4)
         p.pintada_false()
 
-        p.actualizar_posSeguidores(ficha3,(7,6))
+        p.actualizar_zona(ficha3,(7,6))
         p.colocar_seguidor(ficha3,jugador1,12)
         p.tablero.insertar(ficha3,7,6)
         p.algoritmo_relleno(7,6)
         p.pintada_false()
 
-        p.actualizar_posSeguidores(ficha1,(7,5))
+        p.actualizar_zona(ficha1,(7,5))
         p.tablero.insertar(ficha1,7,5)
         p.algoritmo_relleno(7,5)
         p.pintada_false()

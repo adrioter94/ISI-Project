@@ -152,9 +152,7 @@ A1 A1 A1
 
 	def test_girar_bif(self):
 		f = Fichas('B','P','C','P','P','C','P','P','C','P','P','C','P',[0,0,0,1,2,3,4,5,6,3,7,6,1,8,4],False)
-		print f.posSeguidores
 		f.girar()
-		print f.posSeguidores
 		expected="""P4 C8 P1
 P4 B0 P1
 C5 B0 C2
