@@ -414,6 +414,19 @@ class LogicaTest(unittest.TestCase):
         self.assertEqual(expected, l.dame_camino_valido_B((4,3)))
 
 
+    def test_dame_aldea_valida_DLA(self):
+        todos = []
+        p = Partida()
+        l = Logica()
+        l.array_aldeas.append([(4,3), (5,3)])
+        l.array_aldeas.append([(4,3), (3,3), (3,2)])
+        l.array_aldeas.append([(4,3)]) #la ficha de aldea con DLA se encuentra en la posicion (4,3)
+
+        expected = [(4,3)]
+
+        self.assertEqual(expected, l.dame_aldea_valida_DLA((4,3)))
+
+
     def test_coloca_ficha_con_B(self):
         todos = []
         p = Partida()
@@ -481,6 +494,37 @@ class LogicaTest(unittest.TestCase):
 
 
         self.assertEqual(expected, l.array_caminos)
+
+
+    def test_comprueba_Ficha_conDLA(self):
+        todos = []
+        p = Partida()
+        l = Logica()
+        l.array_aldeas.append([(2,1), (1,1)]) #aldea de la fichaA1 y fichaA2
+        l.array_aldeas.append([(2,1)]) #aldea de la fichaA1
+        l.array_aldeas.append([(2,3)]) #aldea de la fichaA3
+        l.array_aldeas.append([(2,3)]) #aldea de la fichaA3
+
+        fichaA1 = ArrayFichas().sacar_ficha(14) #tipo5
+        p.tablero.insertar(fichaA1, 2, 1)
+
+        fichaA2 = ArrayFichas().sacar_ficha(19) #tipo7
+        fichaA2.girar()
+        fichaA2.girar()
+        p.tablero.insertar(fichaA2, 1, 1)
+
+        fichaA3 = ArrayFichas().sacar_ficha(16) #tipo6
+        p.tablero.insertar(fichaA3, 2, 3)
+
+        mi_ficha = ArrayFichas().sacar_ficha(5) #tipo3
+        p.tablero.insertar(mi_ficha, 2, 2)
+
+        l.comprueba_ficha(p.tablero, (2,2), mi_ficha)
+
+        expected = [[(2,1), (1,1)], [(2,3)], [(2,3), (2,2), (2,1)]]
+
+        self.assertEqual(expected, l.array_aldeas)
+
 
 
     def test_camino_no_completado(self):
@@ -554,7 +598,7 @@ class LogicaTest(unittest.TestCase):
 
         self.assertTrue(l.aldea_completada(p.tablero,l.dame_aldea((2,2))))
 
-    def test_aldea_completada(self):
+    def test_aldea_completada2(self):
         p=Partida();
         l = Logica()
 
