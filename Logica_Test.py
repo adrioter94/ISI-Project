@@ -473,7 +473,7 @@ class LogicaTest(unittest.TestCase):
         p.tablero.insertar(fichaC1, 2, 2)
         p.tablero.insertar(fichaC2, 2, 4)
         p.tablero.insertar(fichaC3, 3, 3)
-        p.tablero.insertar(fichaC3, 2, 1)
+        p.tablero.insertar(fichaC4, 2, 1)
 
         l.comprueba_ficha(p.tablero, (2,3), mi_ficha)
 
