@@ -147,25 +147,27 @@ Pr Pr Pr
         self.assertEqual(expected,p.tablero.tablero[5][5].imprimir())
 
 
-
+    # Para los test organizacion:
     #1 ACTUALIZAR pos_seguidores
     #2 COLOCAR seguidor
     #3 INSERTAR LA ficha
     #4 ALGORITMO DE RELLENO
     #5 PINTADA A FALSE
+
+    # test algoritmo relleno con piezas como bifurcacion
     def test_algoritmo_relleno2 (self):
         p = Partida()
         jugador = Jugador('Adrian', 'rojo')
         jugador1 = Jugador('Alberto', 'verde')
         ficha1= ArrayFichas().sacar_ficha(70) # FICHA IGLESIA
-        ficha2= ArrayFichas().sacar_ficha(20)
-        ficha3= ArrayFichas().sacar_ficha(21)
-        ficha4= ArrayFichas().sacar_ficha(24)
-        ficha5= ArrayFichas().sacar_ficha(47)
-        ficha6= ArrayFichas().sacar_ficha(51)
-        ficha7= ArrayFichas().sacar_ficha(52)
-        ficha8 = ArrayFichas().sacar_ficha(46)
-        ficha9= ArrayFichas().sacar_ficha(18)
+        ficha2= ArrayFichas().sacar_ficha(20) # tipo7
+        ficha3= ArrayFichas().sacar_ficha(21) # tipo7
+        ficha4= ArrayFichas().sacar_ficha(24) #tipo8
+        ficha5= ArrayFichas().sacar_ficha(47) #tipo16
+        ficha6= ArrayFichas().sacar_ficha(51) #tipo18
+        ficha7= ArrayFichas().sacar_ficha(52) #tipo18
+        ficha8 = ArrayFichas().sacar_ficha(46) # tipo 15 --- bifurcacion 4 caminos
+        ficha9= ArrayFichas().sacar_ficha(18) # tipo 6
 
         ficha9.girar()
         ficha9.girar()
@@ -215,13 +217,14 @@ Pr Pr Pr
 """
         self.assertEqual(expected,p.tablero.tablero[5][5].imprimir())
 
+    # test que comprueba el algoritmo de relleno ficha tipo 6 - ficha tipo 4 - iglesia
     def test_algoritmo_relleno3(self):
         p = Partida()
         jugador = Jugador('Adrian', 'rojo')
         jugador1 = Jugador('Alberto', 'verde')
         ficha1= ArrayFichas().sacar_ficha(0) # FICHA IGLESIA
-        ficha2= ArrayFichas().sacar_ficha(16)
-        ficha3= ArrayFichas().sacar_ficha(12)
+        ficha2= ArrayFichas().sacar_ficha(16) # ficha tipo 6
+        ficha3= ArrayFichas().sacar_ficha(12) # tipo 4
 
         p.actualizar_posSeguidores(ficha2,(7,4))
         p.colocar_seguidor(ficha2,jugador,10)
@@ -247,6 +250,8 @@ A2 P1 Ar
 P1 P1 P1
 """
         self.assertEqual(expected,p.tablero.tablero[7][4].imprimir())
+
+    
 
 if __name__ == '__main__':
 	unittest.main()
