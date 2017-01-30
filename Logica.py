@@ -255,6 +255,7 @@ class Logica:
         cont = 0
         for elem in camino:
             if self.es_limite_camino(tablero.dame_ficha(elem)):
+
                 cont += 1
         if cont == 2:
             return True
@@ -278,3 +279,36 @@ class Logica:
                         if not pos_contiguas[i-1] in aldea: #y la posicion contigua por ese lado no se encuentra dentro de la aldea
                             return False
         return True #si todas las fichas por todos los lados estan cubiertas por las fichas adyacentes correspondientes, esta completa
+
+
+    def numero_escudos_aldea(self, tablero, aldea):
+        escudos = 0
+        for pos in aldea:
+            ficha = tablero.dame_ficha(pos)
+            if ficha.escudo == True:
+                escudos += 1
+        return escudos
+
+
+    def computar_puntos_turno(self,tablero,pos,seguidor,jugador):
+        ficha=tablero.dame_ficha(pos)
+        tipo=self.que_ficha_es(ficha)
+        puntos=0;
+        if seguidor:
+            if tipo == "con_C" or tipo == "con_B":
+                camino = self.dame_camino(pos)
+
+                if self.camino_completado(tablero,camino):
+                    puntos= len(camino) + 1 # 1 del seguidor
+                    jugador.puntuacion+=puntos
+                    jugador.seguidores += 1
+                    self.array_caminos.remove(camino)
+            elif tipo == "con_A":
+                aldea= self.dame_aldea(pos)
+                if self.aldea_completada(tablero,aldea):
+                    escudos=self.numero_escudos_aldea(tablero,aldea)
+                    puntos= 2*len(aldea) + 1 + 2 * escudos
+                    jugador.puntuacion+=puntos
+                    jugador.seguidores +=1
+                    self.array_aldeas.remove(aldea)
+        return puntos

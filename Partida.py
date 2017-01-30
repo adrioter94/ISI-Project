@@ -87,14 +87,14 @@ class Partida:
             seguidor = 'n'
         if jugador.color == "amarillo":
             seguidor = 'y'
-        if ficha.zona[indice] != 'v' and ficha.zona[indice] != 'r' and ficha.zona[indice] != 'a' \
-        and ficha.zona[indice] != 'n' and ficha.zona[indice] != 'y' and ficha.zona[indice] != '0':
-            numero_zona=ficha.zona[indice] #la zona donde hemos colocado la ficha
-            ficha.pintar_ficha(numero_zona,seguidor)
+        if ficha.zonas[indice] != 'v' and ficha.zonas[indice] != 'r' and ficha.zonas[indice] != 'a' \
+        and ficha.zonas[indice] != 'n' and ficha.zonas[indice] != 'y' and ficha.zonas[indice] != '0':
+            numero_zonas=ficha.zonas[indice] #la zona donde hemos colocado la ficha
+            ficha.pintar_ficha(numero_zonas,seguidor)
             jugador.seguidores -= 1
         return ficha
 
-    def actualizar_zona(self, ficha, posicion):
+    def actualizar_zonas(self, ficha, posicion):
         #Actualiza las zonas de una ficha con el color que corresponda
         #cuando se vaya a poner en una posicion dada del tablero.
         i = 0
@@ -108,42 +108,42 @@ class Partida:
 
         if u.territorio[0][1] != '-':
             while i < 3:
-                if u.zona[6 + i] in colores:
-                    zona1 = ficha.zona[3 + i]
+                if u.zonas[6 + i] in colores:
+                    zona1 = ficha.zonas[3 + i]
                     if zona1 in colores:
                         pass
                     else:
-                        ficha.pintar_ficha(zona1,u.zona[6 + i])
+                        ficha.pintar_ficha(zona1,u.zonas[6 + i])
                 i += 1
         i = 0
         if b.territorio[0][1] != '-':
             while i < 3:
-                if b.zona[3 + i] in colores:
-                    zona1 = ficha.zona[6 + i]
+                if b.zonas[3 + i] in colores:
+                    zona1 = ficha.zonas[6 + i]
                     if zona1 in colores:
                         pass
                     else:
-                        ficha.pintar_ficha(zona1,b.zona[3 + i])
+                        ficha.pintar_ficha(zona1,b.zonas[3 + i])
                 i += 1
         i = 0
         if r.territorio[0][1] != '-':
             while i < 3:
-                if r.zona[12 + i] in colores:
-                    zona1 = ficha.zona[9 + i]
+                if r.zonas[12 + i] in colores:
+                    zona1 = ficha.zonas[9 + i]
                     if zona1 in colores:
                         pass
                     else:
-                        ficha.pintar_ficha(zona1,r.zona[12 + i])
+                        ficha.pintar_ficha(zona1,r.zonas[12 + i])
                 i += 1
         i = 0
         if l.territorio[0][1] != '-':
             while i < 3:
-                if l.zona[9 + i] in colores:
-                    zona1 = ficha.zona[12 + i]
+                if l.zonas[9 + i] in colores:
+                    zona1 = ficha.zonas[12 + i]
                     if zona1 in colores:
                         pass
                     else:
-                        ficha.pintar_ficha(zona1,l.zona[9 + i])
+                        ficha.pintar_ficha(zona1,l.zonas[9 + i])
                 i += 1
 
 
@@ -152,7 +152,7 @@ class Partida:
         #en una ficha.
         if self.tablero.tablero[x][y].territorio[0][1] == '-' or self.tablero.tablero[x][y].pintada == True : # the base case
             return
-        self.actualizar_zona(self.tablero.tablero[x][y],(x,y))
+        self.actualizar_zonas(self.tablero.tablero[x][y],(x,y))
         self.tablero.tablero[x][y].pintada = True
         self.algoritmo_relleno(x - 1, y) # arriba
         self.algoritmo_relleno(x + 1, y) # abajo
@@ -184,7 +184,7 @@ class Partida:
 		# en el caso de que sea que "SI" que nos pase tambien su posicion.
         pos_validas = self.tablero.todas_pos_validas(ficha) #posiciones validas para una posicion concreta (NO todos los giros)
         if posicion_elegida in pos_validas:
-            self.actualizar_zona(ficha, posicion_elegida)
+            self.actualizar_zonas(ficha, posicion_elegida)
             self.saco.eliminar_ficha(ficha)
             if jugador.seguidores != 0:
                 if quiere_seguidor == "SI":

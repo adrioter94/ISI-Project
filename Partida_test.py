@@ -5,7 +5,7 @@ from Array_Fichas import ArrayFichas
 import unittest
 
 
-class PArtidaTest(unittest.TestCase):
+class PartidaTest(unittest.TestCase):
 
     # Test para Nombre Adrian-- meter Adrian de nombre
     def test_info_jugador_nombre(self):
@@ -62,20 +62,20 @@ class PArtidaTest(unittest.TestCase):
          self.assertEqual(expected,jugador.nombre)
 
 
-     # test pos valida
-    def test_elegir_coord_correcta(self):
-         p=Partida()
-         p.info_jugadores(2,"Adrian","azul","Alberto","verde")
-         expected="(12, 15)"
-         self.assertEqual(expected,p.elegir([(12,15), (25,32), (25,39)],"(12, 15)"))
+    #  # test pos valida
+    # def test_elegir_coord_correcta(self):
+    #      p=Partida()
+    #      p.info_jugadores(2,"Adrian","azul","Alberto","verde")
+    #      expected="(12, 15)"
+    #      self.assertEqual(expected,p.elegir([(12,15), (25,32), (25,39)],"(12, 15)"))
 
 
-     # test para girar
-    def test_elegir_coord_incorrecta(self):
-         p=Partida()
-         p.info_jugadores(2,"Adrian","azul","Alberto","verde")
-         expected="G"
-         self.assertEqual(expected,p.elegir([(12,15), (25,32), (25,39)],"G"))
+    #  # test para girar
+    # def test_elegir_coord_incorrecta(self):
+    #      p=Partida()
+    #      p.info_jugadores(2,"Adrian","azul","Alberto","verde")
+    #      expected="G"
+    #      self.assertEqual(expected,p.elegir([(12,15), (25,32), (25,39)],"G"))
 
     # test comprueba seguidores del jugador -1
     def test_colocar_seg(self):
@@ -93,20 +93,20 @@ class PArtidaTest(unittest.TestCase):
         jugador= Jugador('Adrian', 'rojo')
         p.colocar_seguidor(ficha,jugador,0)
         expected=["r","r","r","r","r","r","r","r","r","r","r","r","r","r","r"]
-        self.assertEqual(expected,ficha.zona)
+        self.assertEqual(expected,ficha.zonas)
 
-    def test_actualizar_zona(self):
+    def test_actualizar_zonas(self):
         p = Partida()
         jugador = Jugador('Adrian', 'rojo')
         ficha1 = ArrayFichas().sacar_ficha(70) #tipo19
         ficha2 = ArrayFichas().sacar_ficha(35) #tipo11
-        p.actualizar_zona(ficha1, (6, 6))
+        p.actualizar_zonas(ficha1, (6, 6))
         p.colocar_seguidor(ficha1, jugador, 3) #3 de arriba
         p.tablero.insertar(ficha1, 6, 5)
-        p.actualizar_zona(ficha2, (6, 6))
+        p.actualizar_zonas(ficha2, (6, 6))
         p.tablero.insertar(ficha2, 6, 6)
         expected = ["r","r","r",2,2,2,"r",3,4,"r",3,4,"r","r","r"]
-        self.assertEqual(expected,ficha2.zona)
+        self.assertEqual(expected,ficha2.zonas)
 
     def test_pintada_false(self):
         p = Partida()
@@ -114,7 +114,7 @@ class PArtidaTest(unittest.TestCase):
         ficha1 = ArrayFichas().sacar_ficha(70) #tipo19
         ficha2 = ArrayFichas().sacar_ficha(35) #tipo11
 
-        p.actualizar_zona(ficha1,(6,5))
+        p.actualizar_zonas(ficha1,(6,5))
         p.colocar_seguidor(ficha1, jugador, 13) #3 de arriba
         p.tablero.insertar(ficha1, 6, 5)
         p.algoritmo_relleno(6,5)
@@ -129,10 +129,10 @@ class PArtidaTest(unittest.TestCase):
         ficha1 = ArrayFichas().sacar_ficha(70) #tipo19
         ficha2 = ArrayFichas().sacar_ficha(35) #tipo11
 
-        p.actualizar_zona(ficha1,(6,5))
+        p.actualizar_zonas(ficha1,(6,5))
         p.tablero.insertar(ficha1, 6, 5)
 
-        p.actualizar_zona(ficha2,(6,6))
+        p.actualizar_zonas(ficha2,(6,6))
         p.colocar_seguidor(ficha2, jugador, 13) #3 de arriba
         p.tablero.insertar(ficha2, 6, 6)
         p.algoritmo_relleno(6,6)
@@ -198,13 +198,13 @@ Pr Pr Pr
         p.tablero.insertar(ficha1,6,5)
         p.tablero.insertar(ficha2,7,5)
 
-        p.actualizar_zona(ficha3,(7,6))
+        p.actualizar_zonas(ficha3,(7,6))
         p.colocar_seguidor(ficha3,jugador,13)
         p.tablero.insertar(ficha3,7,6)
         p.algoritmo_relleno(7,6)
         p.pintada_false()
 
-        p.actualizar_zona(ficha9,(4,5))
+        p.actualizar_zonas(ficha9,(4,5))
         p.colocar_seguidor(ficha9,jugador1,7)
         p.tablero.insertar(ficha9,4,5)
         p.algoritmo_relleno(4,5)
@@ -227,19 +227,19 @@ Pr Pr Pr
         ficha2= ArrayFichas().sacar_ficha(16) # ficha tipo 6
         ficha3= ArrayFichas().sacar_ficha(12) # tipo 4
 
-        p.actualizar_zona(ficha2,(7,4))
+        p.actualizar_zonas(ficha2,(7,4))
         p.colocar_seguidor(ficha2,p.jugadores[0],10)
         p.tablero.insertar(ficha2,7,4)
         p.algoritmo_relleno(7,4)
         p.pintada_false()
 
-        p.actualizar_zona(ficha3,(7,6))
+        p.actualizar_zonas(ficha3,(7,6))
         p.colocar_seguidor(ficha3,p.jugadores[1],12)
         p.tablero.insertar(ficha3,7,6)
         p.algoritmo_relleno(7,6)
         p.pintada_false()
 
-        p.actualizar_zona(ficha1,(7,5))
+        p.actualizar_zonas(ficha1,(7,5))
         p.tablero.insertar(ficha1,7,5)
         p.algoritmo_relleno(7,5)
         p.pintada_false()
@@ -253,7 +253,7 @@ P1 P1 P1
         self.assertEqual(expected,p.tablero.tablero[7][4].imprimir())
 
 
-    # test que compone de otras llamadas a otros test para ir poco a poco recopilando todos los metodos 
+    # test que compone de otras llamadas a otros test para ir poco a poco recopilando todos los metodos
     def test_partida (self):
         p=self.test_info_jugador_nombre()
 
@@ -261,7 +261,7 @@ P1 P1 P1
         ficha2= ArrayFichas().sacar_ficha(16) # ficha tipo 6
         ficha3= ArrayFichas().sacar_ficha(12) # tipo 4
 
-        p.actualizar_zona(ficha2,(7,4))
+        p.actualizar_zonas(ficha2,(7,4))
         p.colocar_seguidor(ficha2,p.jugadores[0],10)
         p.tablero.insertar(ficha2,7,4)
         p.algoritmo_relleno(7,4)
@@ -269,13 +269,13 @@ P1 P1 P1
 
         self.test_pasar_turno()
 
-        p.actualizar_zona(ficha3,(7,6))
+        p.actualizar_zonas(ficha3,(7,6))
         p.colocar_seguidor(ficha3,p.jugadores[1],12)
         p.tablero.insertar(ficha3,7,6)
         p.algoritmo_relleno(7,6)
         p.pintada_false()
 
-        p.actualizar_zona(ficha1,(7,5))
+        p.actualizar_zonas(ficha1,(7,5))
         p.tablero.insertar(ficha1,7,5)
         p.algoritmo_relleno(7,5)
         p.pintada_false()

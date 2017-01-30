@@ -3,6 +3,7 @@ from Fichas import Fichas
 from Jugador import Jugador
 from Array_Fichas import ArrayFichas
 from Logica import Logica
+from Partida_test import PartidaTest
 import unittest
 
 
@@ -560,16 +561,58 @@ class LogicaTest(unittest.TestCase):
 
         l.array_aldeas.append([(2,2), (2,3), (2,4)]) #aldea de las fichas
 
-        fichaC1 = ArrayFichas().sacar_ficha(14) #tipo5
-        fichaC2 = ArrayFichas().sacar_ficha(5) #tipo3
-        fichaC3 = ArrayFichas().sacar_ficha(16) #tipo6
+        fichaA1 = ArrayFichas().sacar_ficha(14) #tipo5
+        fichaA2 = ArrayFichas().sacar_ficha(5) #tipo3
+        fichaA3 = ArrayFichas().sacar_ficha(41) #tipo13
+        fichaA3.girar()
+        fichaA3.girar()
+        fichaA3.girar()
+
+        p.tablero.insertar(fichaA1, 2, 2)
+        p.tablero.insertar(fichaA2, 2, 3)
+        p.tablero.insertar(fichaA3, 2, 4)
+
+        self.assertTrue(l.aldea_completada(p.tablero,l.dame_aldea((2,2))))
+
+    def test_computar_puntos_aldea (self):
+
+
+        l = Logica()
+        p=Partida()
+        l.array_aldeas.append([(2,2), (2,3), (2,4)])
+        l.array_aldeas.append([(2,2)])
+
+        p.info_jugadores(2,"Adrian","rojo","Alberto","verde")
+        fichaA1 = ArrayFichas().sacar_ficha(14) #tipo5
+        fichaA2 = ArrayFichas().sacar_ficha(6) #tipo3
+        fichaA3 = ArrayFichas().sacar_ficha(41) #tipo6
+        fichaA3.girar()
+        fichaA3.girar()
+        fichaA3.girar()
+
+        p.tablero.insertar(fichaA1, 2, 2)
+        p.tablero.insertar(fichaA2, 2, 3)
+        p.tablero.insertar(fichaA3, 2, 4)
+
+        expected=9
+        self.assertEqual(expected, l.computar_puntos_turno(p.tablero,(2,2),True,p.jugadores[0]))
+
+    def test_computar_puntos_camino(self):
+        p=Partida()
+        l = Logica()
+        l.array_caminos.append([(2,2), (2,3), (2,4)]) #camino de las fichas
+        p.info_jugadores(2,"Adrian","rojo","Alberto","verde")
+
+        fichaC1 = ArrayFichas().sacar_ficha(48) #tipo16
+        fichaC2 = ArrayFichas().sacar_ficha(52) #tipo17
+        fichaC3 = ArrayFichas().sacar_ficha(49) #tipo16
+
 
         p.tablero.insertar(fichaC1, 2, 2)
         p.tablero.insertar(fichaC2, 2, 3)
         p.tablero.insertar(fichaC3, 2, 4)
-
-        self.assertTrue(l.aldea_completada(p.tablero,l.dame_aldea((2,2))))
-
+        expected=4
+        self.assertEqual(expected,l.computar_puntos_turno(p.tablero,(2,2),True,p.jugadores[0]))
 
 if __name__ == '__main__':
 	unittest.main()
