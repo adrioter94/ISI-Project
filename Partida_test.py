@@ -10,12 +10,12 @@ class PArtidaTest(unittest.TestCase):
     # Test para Nombre Adrian-- meter Adrian de nombre
     def test_info_jugador_nombre(self):
         p=Partida()
-        p.info_jugadores(2,"Adrian","azul","Alberto","verde")
+        p.info_jugadores(2,"Adrian","rojo","Alberto","verde")
         expected="Adrian"
         self.assertEqual(p.jugadores[0].nombre,expected)
         expected="Alberto"
         self.assertEqual(p.jugadores[1].nombre,expected)
-
+        return p;
      # Test para color "azul" -- meter azul de color
     def test_info_jugador_color(self):
          p=Partida()
@@ -56,7 +56,7 @@ class PArtidaTest(unittest.TestCase):
      #test para comprobar que pasa de turno a los jugadores. primer turno Adrian
     def test_pasar_turno(self):
          p=Partida()
-         p.info_jugadores(2,"Adrian","azul","Alberto","verde")
+         p.info_jugadores(2,"Adrian","rojo","Alberto","verde")
          jugador=p.pasar_turno(p.jugadores[0])
          expected="Alberto"
          self.assertEqual(expected,jugador.nombre)
@@ -219,21 +219,22 @@ Pr Pr Pr
 
     # test que comprueba el algoritmo de relleno ficha tipo 6 - ficha tipo 4 - iglesia
     def test_algoritmo_relleno3(self):
-        p = Partida()
-        jugador = Jugador('Adrian', 'rojo')
-        jugador1 = Jugador('Alberto', 'verde')
+        #p = Partida()
+        #jugador = Jugador('Adrian', 'rojo')
+        #jugador1 = Jugador('Alberto', 'verde')
+        p=self.test_info_jugador_nombre()
         ficha1= ArrayFichas().sacar_ficha(0) # FICHA IGLESIA
         ficha2= ArrayFichas().sacar_ficha(16) # ficha tipo 6
         ficha3= ArrayFichas().sacar_ficha(12) # tipo 4
 
         p.actualizar_zona(ficha2,(7,4))
-        p.colocar_seguidor(ficha2,jugador,10)
+        p.colocar_seguidor(ficha2,p.jugadores[0],10)
         p.tablero.insertar(ficha2,7,4)
         p.algoritmo_relleno(7,4)
         p.pintada_false()
 
         p.actualizar_zona(ficha3,(7,6))
-        p.colocar_seguidor(ficha3,jugador1,12)
+        p.colocar_seguidor(ficha3,p.jugadores[1],12)
         p.tablero.insertar(ficha3,7,6)
         p.algoritmo_relleno(7,6)
         p.pintada_false()
@@ -251,7 +252,44 @@ P1 P1 P1
 """
         self.assertEqual(expected,p.tablero.tablero[7][4].imprimir())
 
-    
+
+    # test que compone de otras llamadas a otros test para ir poco a poco recopilando todos los metodos 
+    def test_partida (self):
+        p=self.test_info_jugador_nombre()
+
+        ficha1= ArrayFichas().sacar_ficha(0) # FICHA IGLESIA
+        ficha2= ArrayFichas().sacar_ficha(16) # ficha tipo 6
+        ficha3= ArrayFichas().sacar_ficha(12) # tipo 4
+
+        p.actualizar_zona(ficha2,(7,4))
+        p.colocar_seguidor(ficha2,p.jugadores[0],10)
+        p.tablero.insertar(ficha2,7,4)
+        p.algoritmo_relleno(7,4)
+        p.pintada_false()
+
+        self.test_pasar_turno()
+
+        p.actualizar_zona(ficha3,(7,6))
+        p.colocar_seguidor(ficha3,p.jugadores[1],12)
+        p.tablero.insertar(ficha3,7,6)
+        p.algoritmo_relleno(7,6)
+        p.pintada_false()
+
+        p.actualizar_zona(ficha1,(7,5))
+        p.tablero.insertar(ficha1,7,5)
+        p.algoritmo_relleno(7,5)
+        p.pintada_false()
+
+        expected="""P1 P1 P1
+A2 P1 Ar
+A2 P1 Ar
+A2 P1 Ar
+P1 P1 P1
+"""
+        self.assertEqual(expected,p.tablero.tablero[7][4].imprimir())
+
+
+
 
 if __name__ == '__main__':
 	unittest.main()
