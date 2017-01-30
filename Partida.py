@@ -118,18 +118,20 @@ class Partida:
             seguidor = 'n'
         if jugador.color == "amarillo":
             seguidor = 'y'
-        if ficha.posSeguidores[indice] != 'v' and ficha.posSeguidores[indice] != 'r' and ficha.posSeguidores[indice] != 'a' \
-        and ficha.posSeguidores[indice] != 'n' and ficha.posSeguidores[indice] != 'y' and ficha.posSeguidores[indice] != '0':
-            numero_zona=ficha.posSeguidores[indice] #la zona donde hemos colocado la ficha
+        if ficha.zona[indice] != 'v' and ficha.zona[indice] != 'r' and ficha.zona[indice] != 'a' \
+        and ficha.zona[indice] != 'n' and ficha.zona[indice] != 'y' and ficha.zona[indice] != '0':
+            numero_zona=ficha.zona[indice] #la zona donde hemos colocado la ficha
             ficha.pintar_ficha(numero_zona,seguidor)
             jugador.seguidores -= 1
         return ficha
 
-    def actualizar_posSeguidores(self, ficha, eleccion):
+    def actualizar_zona(self, ficha, posicion):
+        #Actualiza las zonas de una ficha con el color que corresponda
+        #cuando se vaya a poner en una posicion dada del tablero.
         i = 0
         colores = ['r', 'a', 'y', 'n', 'v']
-        x = eleccion[0]
-        y = eleccion[1]
+        x = posicion[0]
+        y = posicion[1]
         u = self.tablero.tablero[x-1][y] #up
         b = self.tablero.tablero[x+1][y] #bottom
         r = self.tablero.tablero[x][y+1] #right
@@ -137,47 +139,47 @@ class Partida:
 
         if u.territorio[0][1] != '-':
             while i < 3:
-                if u.posSeguidores[6 + i] in colores:
-                    zona1 = ficha.posSeguidores[3 + i]
+                if u.zona[6 + i] in colores:
+                    zona1 = ficha.zona[3 + i]
                     if zona1 in colores:
                         return
-                    ficha.pintar_ficha(zona1,u.posSeguidores[6 + i])
+                    ficha.pintar_ficha(zona1,u.zona[6 + i])
                 i += 1
         i = 0
         if b.territorio[0][1] != '-':
             while i < 3:
-                if b.posSeguidores[3 + i] in colores:
-                    zona1 = ficha.posSeguidores[6 + i]
+                if b.zona[3 + i] in colores:
+                    zona1 = ficha.zona[6 + i]
                     if zona1 in colores:
                         return
-                    ficha.pintar_ficha(zona1,b.posSeguidores[3 + i])
+                    ficha.pintar_ficha(zona1,b.zona[3 + i])
                 i += 1
         i = 0
         if r.territorio[0][1] != '-':
             while i < 3:
-                if r.posSeguidores[12 + i] in colores:
-                    zona1 = ficha.posSeguidores[9 + i]
+                if r.zona[12 + i] in colores:
+                    zona1 = ficha.zona[9 + i]
                     if zona1 in colores:
                         return
-                    ficha.pintar_ficha(zona1,r.posSeguidores[12 + i])
+                    ficha.pintar_ficha(zona1,r.zona[12 + i])
                 i += 1
         i = 0
         if l.territorio[0][1] != '-':
             while i < 3:
-                if l.posSeguidores[9 + i] in colores:
-                    zona1 = ficha.posSeguidores[12 + i]
+                if l.zona[9 + i] in colores:
+                    zona1 = ficha.zona[12 + i]
                     if zona1 in colores:
                         return
-                    ficha.pintar_ficha(zona1,l.posSeguidores[9 + i])
+                    ficha.pintar_ficha(zona1,l.zona[9 + i])
                 i += 1
 
 
     def algoritmo_relleno(self,x, y):
-        # assume surface is a 2D image and surface[x][y] is the color at x, y.
-        #print str(self.tablero.tablero[x][y].pintada) + ", " + str(self.tablero.tablero[x][y].territorio[0][1]) + ", x=" + str(x) + ", y=" + str(y)
+        #Pinta las zonas de las fichas del tablero que corresponda al poner un seguidor
+        #en una ficha.
         if self.tablero.tablero[x][y].territorio[0][1] == '-' or self.tablero.tablero[x][y].pintada == True : # the base case
             return
-        self.actualizar_posSeguidores(self.tablero.tablero[x][y],(x,y))
+        self.actualizar_zona(self.tablero.tablero[x][y],(x,y))
         self.tablero.tablero[x][y].pintada = True
         self.algoritmo_relleno(x - 1, y) # arriba
         self.algoritmo_relleno(x + 1, y) # abajo
@@ -185,6 +187,7 @@ class Partida:
         self.algoritmo_relleno(x, y - 1) # izquierd
 
     def pintada_false(self):
+        #Metodo que se utiliza junto a algoritmo_relleno
         i = 0
         z = 0
         while i < self.tablero.w:
@@ -223,7 +226,7 @@ class Partida:
                 elif eleccion not in pos_validas:
                     print "No hay ninguna posicion valida que coincida con tu eleccion."
                     continue
-                self.actualizar_posSeguidores(ficha, eleccion)
+                self.actualizar_zona(ficha, eleccion)
                 self.saco.eliminar_ficha(ficha)
                 if jugador.seguidores != 0:
                     ficha = self.colocar_seguidores(ficha, jugador) #te devuelve una ficha con el vector pos_seguidores actualizado
