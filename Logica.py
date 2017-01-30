@@ -91,6 +91,20 @@ class Logica:
                 return aldea #devolvemos la aldea que contenga la posicion
 
 
+    def dame_aldea_valida_DLA(self, pos): #Doble Limite Aldea
+        #Si una de las fichas adyacentes resulta ser una aldea con doble limite de aldea,
+        #no podemos pedir una aldea que contenga esa posicion sin mas, necesitamos una que
+        #contenga la posicion de la ficha de doble limite y solo esa posicion
+        aldeas_con_DLA = []
+        for aldea in self.array_aldeas:
+            if pos in aldea:
+                aldeas_con_DLA.append(aldea) #nos quedamos con todas las aldeas que contengan esa posicion
+
+        for a in aldeas_con_DLA:
+            if len(a) == 1:
+                return a  #elegimos la primera que contenga solo esa posicion y ninguna mas
+
+
     def continua_camino(self, tablero, pos, pos_contigua, lado): #lado: arriba,abajo,dcha,izda
         #Comprueba si la ficha que estamos colocando y una de las fichas contiguas
         #forman un mismo camino
@@ -214,8 +228,16 @@ class Logica:
         if posiciones == []: #no pertenece a una aldea existente
             self.array_aldeas.append([pos])
         elif len(posiciones) == 2: #pertenece a dos aldeas que estaban inconexas
-            aldea1 = self.dame_aldea(posiciones[0])
-            aldea2 = self.dame_aldea(posiciones[1])
+            ficha1 = tablero.dame_ficha(posiciones[0])
+            ficha2 = tablero.dame_ficha(posiciones[1])
+            if self.es_doble_limite_aldea(ficha1):
+                aldea1 = self.dame_aldea_valida_DLA(posiciones[0])
+            else:
+                aldea1 = self.dame_aldea(posiciones[0])
+            if self.es_doble_limite_aldea(ficha2):
+                aldea2 = self.dame_aldea_valida_DLA(posiciones[1])
+            else:
+                aldea2 = self.dame_aldea(posiciones[1])
             self.array_aldeas.remove(aldea1) #eliminamos las antiguas aldeas
             self.array_aldeas.remove(aldea2)
             aldea1.append(pos)
@@ -223,7 +245,11 @@ class Logica:
                 aldea1.append(elem)
             self.array_aldeas.append(aldea1) #agregamos la aldea completa
         else: #pertence a una sola aldea existente
-            aldea = self.dame_aldea(posiciones[0]) #busco la aldea a la que pertenece
+            ficha = tablero.dame_ficha(posiciones[0])
+            if self.es_doble_limite_aldea(ficha):
+                aldea = self.dame_aldea_valida_DLA(posiciones[0])
+            else:
+                aldea = self.dame_aldea(posiciones[0])
             self.array_aldeas.remove(aldea) #eliminamos la antigua aldea
             aldea.append(pos)
             self.array_aldeas.append(aldea) #agregamos la aldea completa
