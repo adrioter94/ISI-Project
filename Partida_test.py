@@ -80,7 +80,8 @@ class PartidaTest(unittest.TestCase):
     # test comprueba seguidores del jugador -1
     def test_colocar_seg(self):
         p=Partida()
-        ficha=Fichas('A','A','A','A','A','A','A','A','A','A','A','A','A',[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
+        ficha=Fichas('A','A','A','A','A','A','A','A','A','A','A','A','A',[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
         jugador= Jugador('Adrian', 'rojo')
         expected=jugador.seguidores-1
         p.colocar_seguidor(ficha,jugador,0)
@@ -89,11 +90,12 @@ class PartidaTest(unittest.TestCase):
     # test comprueba que en el indice que indico si hay un 1 ( posicion que se puede poner seguidor) meto el seguidor
     def test_colocar_seg(self):
         p=Partida()
-        ficha=Fichas('A','A','A','A','A','A','A','A','A','A','A','A','A',[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
+        ficha=Fichas('A','A','A','A','A','A','A','A','A','A','A','A','A',[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
         jugador= Jugador('Adrian', 'rojo')
         p.colocar_seguidor(ficha,jugador,0)
         expected=["r","r","r","r","r","r","r","r","r","r","r","r","r","r","r"]
-        self.assertEqual(expected,ficha.zonas)
+        self.assertEqual(expected,ficha.zona_colorear)
 
     def test_actualizar_zonas(self):
         p = Partida()
@@ -106,7 +108,7 @@ class PartidaTest(unittest.TestCase):
         p.actualizar_zonas(ficha2, (6, 6))
         p.tablero.insertar(ficha2, 6, 6)
         expected = ["r","r","r",2,2,2,"r",3,4,"r",3,4,"r","r","r"]
-        self.assertEqual(expected,ficha2.zonas)
+        self.assertEqual(expected,ficha2.zona_colorear)
 
     def test_pintada_false(self):
         p = Partida()

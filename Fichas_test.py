@@ -4,7 +4,8 @@ import unittest
 
 class CarcassoneTest(unittest.TestCase):
 	def test_first_ficha(self):
-		f = Fichas('A','A','A','A','A','A','A','A','A','A','A','A','A',[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],True)
+		f = Fichas('A','A','A','A','A','A','A','A','A','A','A','A','A',[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+		[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],True)
 		expected="""A1 A1 A1
 A1 A1 A1
 A1 A1 A1
@@ -14,7 +15,8 @@ A1 A1 A1
 		self.assertEqual(expected,f.imprimir())
 
 	def test_second_ficha(self):
-		f=Fichas('A','A','A','A','P','P','P','A','A','A','A','A','A',[1,1,1,1,1,1,2,2,2,1,1,1,1,1,1],False)
+		f=Fichas('A','A','A','A','P','P','P','A','A','A','A','A','A',[1,1,1,1,1,1,2,2,2,1,1,1,1,1,1],
+		[1,1,1,1,1,1,2,2,2,1,1,1,1,1,1],False)
 		expected="""A1 A1 A1
 A1 A1 A1
 A1 A1 A1
@@ -26,7 +28,8 @@ P2 P2 P2
 
 
 	def test_ficha_3(self):
-		f=Fichas('A','P','P','P','P','P','P','A','A','A','A','A','A',[1,1,1,2,2,2,2,2,2,1,1,1,1,1,1],False)
+		f=Fichas('A','P','P','P','P','P','P','A','A','A','A','A','A',[1,1,1,2,2,2,2,2,2,1,1,1,1,1,1],
+		[1,1,1,2,2,2,2,2,2,1,1,1,1,1,1],False)
 		expected="""P2 P2 P2
 A1 A1 A1
 A1 A1 A1
@@ -36,7 +39,8 @@ P2 P2 P2
 		self.assertEqual(expected, f.imprimir())
 
 	def test_ficha_4(self):
-		f=Fichas('P','A','A','A','P','P','P','P','P','P','A','A','A',[1,1,1,2,2,2,1,1,1,1,1,1,2,2,2],False)
+		f=Fichas('P','A','A','A','P','P','P','P','P','P','A','A','A',[1,1,1,2,2,2,1,1,1,1,1,1,2,2,2],
+		[1,1,1,2,2,2,1,1,1,1,1,1,2,2,2],False)
 		expected="""A2 A2 A2
 A2 P1 P1
 A2 P1 P1
@@ -46,7 +50,8 @@ P1 P1 P1
 		self.assertEqual(expected, f.imprimir())
 
 	def test_ficha_5(self):
-		f=Fichas('P','A','A','A','P','P','P','A','A','A','P','P','P',[1,1,1,2,2,2,1,1,1,3,3,3,1,1,1],False)
+		f=Fichas('P','A','A','A','P','P','P','A','A','A','P','P','P',[1,1,1,2,2,2,1,1,1,3,3,3,1,1,1],
+		[1,1,1,2,2,2,1,1,1,3,3,3,1,1,1],False)
 		expected="""A2 A2 A2
 P1 P1 A3
 P1 P1 A3
@@ -56,7 +61,8 @@ P1 P1 P1
 		self.assertEqual(expected, f.imprimir())
 
 	def test_ficha_6(self):
-		f=Fichas('P','P','P','P','P','P','P','A','A','A','A','A','A',[1,1,1,1,1,1,1,1,1,2,2,2,2,2,2],False)
+		f=Fichas('P','P','P','P','P','P','P','A','A','A','A','A','A',[1,1,1,1,1,1,1,1,1,2,2,2,2,2,2],
+		[1,1,1,1,1,1,1,1,1,2,2,2,2,2,2],False)
 		expected="""P1 P1 P1
 A2 P1 A2
 A2 P1 A2
@@ -66,7 +72,8 @@ P1 P1 P1
 		self.assertEqual(expected, f.imprimir())
 
 	def test_ficha_7(self):
-		f=Fichas('P','A','A','A','P','P','P','P','P','P','P','P','P',[1,1,1,2,2,2,1,1,1,1,1,1,1,1,1],False)
+		f=Fichas('P','A','A','A','P','P','P','P','P','P','P','P','P',[1,1,1,2,2,2,1,1,1,1,1,1,1,1,1],
+		[1,1,1,2,2,2,1,1,1,1,1,1,1,1,1],False)
 		expected="""A2 A2 A2
 P1 P1 P1
 P1 P1 P1
@@ -76,7 +83,8 @@ P1 P1 P1
 		self.assertEqual(expected, f.imprimir())
 
 	def test_ficha_8(self):
-		f=Fichas('A','A','A','A','P','C','P','A','A','A','A','A','A',[1,1,1,1,1,1,2,3,4,1,1,1,1,1,1],False)
+		f=Fichas('A','A','A','A','P','C','P','A','A','A','A','A','A',[1,1,1,1,1,1,2,3,4,1,1,1,1,1,1],
+		[1,1,1,1,1,1,2,3,4,1,1,1,1,1,1],False)
 		expected="""A1 A1 A1
 A1 A1 A1
 A1 A1 A1
@@ -100,7 +108,8 @@ P2 C3 P4
 		self.assertEqual(len(ArrayFichas().saco),71)
 
 	def test_sacar_ficha_primera(self):
-		f = Fichas('A','A','A','A','A','A','A','A','A','A','A','A','A',[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],True)
+		f = Fichas('A','A','A','A','A','A','A','A','A','A','A','A','A',[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+		[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],True)
 		expected="""A1 A1 A1
 A1 A1 A1
 A1 A1 A1
@@ -140,7 +149,8 @@ P2 C3 P4
 
  	def test_girar_ficha(self):
 
- 		f=Fichas('A','A','A','A','P','P','P','A','A','A','A','A','A',[1,1,1,1,1,1,2,2,2,1,1,1,1,1,1],False)
+ 		f=Fichas('A','A','A','A','P','P','P','A','A','A','A','A','A',[1,1,1,1,1,1,2,2,2,1,1,1,1,1,1],
+		[1,1,1,1,1,1,2,2,2,1,1,1,1,1,1],False)
  		f.girar()
  		expected="""A1 A1 A1
 P2 A1 A1
@@ -151,7 +161,8 @@ A1 A1 A1
 		self.assertEqual(expected,f.imprimir())
 
 	def test_girar_bif(self):
-		f = Fichas('B','P','C','P','P','C','P','P','C','P','P','C','P',[0,0,0,1,2,3,4,5,6,3,7,6,1,8,4],False)
+		f = Fichas('B','P','C','P','P','C','P','P','C','P','P','C','P',[0,0,0,1,2,3,4,5,6,3,7,6,1,8,4],
+		[0,0,0,1,2,3,4,5,6,3,7,6,1,8,4],False)
 		f.girar()
 		expected="""P4 C8 P1
 P4 B0 P1

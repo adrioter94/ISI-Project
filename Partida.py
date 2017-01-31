@@ -108,42 +108,42 @@ class Partida:
 
         if u.territorio[0][1] != '-':
             while i < 3:
-                if u.zonas[6 + i] in colores:
-                    zona1 = ficha.zonas[3 + i]
+                if u.zona_colorear[6 + i] in colores:
+                    zona1 = ficha.zona_colorear[3 + i]
                     if zona1 in colores:
                         pass
                     else:
-                        ficha.pintar_ficha(zona1,u.zonas[6 + i])
+                        ficha.pintar_ficha(zona1,u.zona_colorear[6 + i])
                 i += 1
         i = 0
         if b.territorio[0][1] != '-':
             while i < 3:
-                if b.zonas[3 + i] in colores:
-                    zona1 = ficha.zonas[6 + i]
+                if b.zona_colorear[3 + i] in colores:
+                    zona1 = ficha.zona_colorear[6 + i]
                     if zona1 in colores:
                         pass
                     else:
-                        ficha.pintar_ficha(zona1,b.zonas[3 + i])
+                        ficha.pintar_ficha(zona1,b.zona_colorear[3 + i])
                 i += 1
         i = 0
         if r.territorio[0][1] != '-':
             while i < 3:
-                if r.zonas[12 + i] in colores:
-                    zona1 = ficha.zonas[9 + i]
+                if r.zona_colorear[12 + i] in colores:
+                    zona1 = ficha.zona_colorear[9 + i]
                     if zona1 in colores:
                         pass
                     else:
-                        ficha.pintar_ficha(zona1,r.zonas[12 + i])
+                        ficha.pintar_ficha(zona1,r.zona_colorear[12 + i])
                 i += 1
         i = 0
         if l.territorio[0][1] != '-':
             while i < 3:
-                if l.zonas[9 + i] in colores:
-                    zona1 = ficha.zonas[12 + i]
+                if l.zona_colorear[9 + i] in colores:
+                    zona1 = ficha.zona_colorear[12 + i]
                     if zona1 in colores:
                         pass
                     else:
-                        ficha.pintar_ficha(zona1,l.zonas[9 + i])
+                        ficha.pintar_ficha(zona1,l.zona_colorear[9 + i])
                 i += 1
 
 
