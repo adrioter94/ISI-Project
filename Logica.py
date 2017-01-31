@@ -315,58 +315,105 @@ class Logica:
                 escudos += 1
         return escudos
 
+    def dar_puntuacion(self,jugadores,seguidores_total,len_array,escudos=0):
+        colores_maximos=[]
+        maximo=0
+        puntos=0
+        for valor in seguidores_total.values():
+            if valor > maximo:
+                    maximo = valor
 
-    def computar_puntos_turno(self,tablero,pos,seg,jugador):
+        for color in seguidores_total:
+            if seguidores_total[color] == maximo:
+                colores_maximos.append(color)
+
+        for color in colores_maximos:
+            for jugador in jugadores:
+                 if jugador.color == color:
+                     puntos= len_array+1
+                     if escudos > 0:
+                         puntos = puntos + 2*escudos
+                     jugador.puntuacion += puntos
+                     jugador.seguidores += 1
+                     break
+        return puntos
+
+    def computar_puntos_turno(self,tablero,pos,jugadores):
         seguidores_total = {'negro':0, 'rojo':0, 'amarillo':0, 'azul':0, 'verde':0}
         ficha=tablero.dame_ficha(pos)
         tipo=self.que_ficha_es(ficha)
-        puntos=0;
-        if seg:
-            if tipo == "con_C" or tipo == "con_B":
-                camino = self.dame_camino(pos)
-                if self.camino_completado(tablero,camino):
-                    for elem in camino:
-                        print elem
-                        x = elem[0]
-                        y = elem[1]
-                        pos = (x, y)
-                        ficha_aux = tablero.dame_ficha(pos)
-                        
-                        if ficha_aux.seguidor == None:
-                            continue
+        puntos = 0
 
-                        if (x-1, y) in camino: #Arriba
-                            zona = ficha_aux.zonas[4]
-                            print str(zona) + " " + str(ficha_aux.seguidor.zona)
-                            if zona == ficha_aux.seguidor.zona:
-                                seguidores_total[ficha_aux.seguidor.color] += 1
+        if tipo == "con_C" or tipo == "con_B":
+            camino = self.dame_camino(pos)
+            if self.camino_completado(tablero,camino):
+                for elem in camino:
+                    x = elem[0]
+                    y = elem[1]
+                    pos = (x, y)
+                    ficha_aux = tablero.dame_ficha(pos)
 
-                        elif (x+1, y) in camino: #Abajo
-                            zona = ficha_aux.zonas[7]
-                            if zona == ficha_aux.seguidor.zona:
-                                seguidores_total[ficha_aux.seguidor.color] += 1
+                    if ficha_aux.seguidor == None:
+                        continue
 
-                        elif (x, y+1) in camino: #Derecha
-                            zona = ficha_aux.zonas[10]
-                            if zona == ficha_aux.seguidor.zona:
-                                seguidores_total[ficha_aux.seguidor.color] += 1
+                    if (x-1, y) in camino: #Arriba
+                        zona = ficha_aux.zonas[4]
+                        print str(zona) + " " + str(ficha_aux.seguidor.zona)
+                        if zona == ficha_aux.seguidor.zona:
+                            seguidores_total[ficha_aux.seguidor.color] += 1
 
-                        elif (x, y-1) in camino: #Izquierda
-                            zona = ficha_aux.zonas[13]
-                            if zona == ficha_aux.seguidor.zona:
-                                seguidores_total[ficha_aux.seguidor.color] += 1
+                    elif (x+1, y) in camino: #Abajo
+                        zona = ficha_aux.zonas[7]
+                        if zona == ficha_aux.seguidor.zona:
+                            seguidores_total[ficha_aux.seguidor.color] += 1
 
-                        print seguidores_total
-                    puntos= len(camino)# 1 del seguidor
-                    jugador.puntuacion += puntos
-                    jugador.seguidores += 1
-                    self.array_caminos.remove(camino)
-            elif tipo == "con_A":
-                aldea= self.dame_aldea(pos)
-                if self.aldea_completada(tablero,aldea):
-                    escudos=self.numero_escudos_aldea(tablero,aldea)
-                    puntos= 2*len(aldea) + 1 + 2 * escudos
-                    jugador.puntuacion+=puntos
-                    jugador.seguidores +=1
-                    self.array_aldeas.remove(aldea)
+                    elif (x, y+1) in camino: #Derecha
+                        zona = ficha_aux.zonas[10]
+                        if zona == ficha_aux.seguidor.zona:
+                            seguidores_total[ficha_aux.seguidor.color] += 1
+
+                    elif (x, y-1) in camino: #Izquierda
+                        zona = ficha_aux.zonas[13]
+                        if zona == ficha_aux.seguidor.zona:
+                            seguidores_total[ficha_aux.seguidor.color] += 1
+
+                puntos=self.dar_puntuacion(jugadores,seguidores_total,len(camino))
+                self.array_caminos.remove(camino)
+
+        elif tipo == "con_A":
+            aldea= self.dame_aldea(pos)
+            if self.aldea_completada(tablero,aldea):
+                for elem in aldea:
+                    x = elem[0]
+                    y = elem[1]
+                    pos = (x, y)
+                    ficha_aux = tablero.dame_ficha(pos)
+
+                    if ficha_aux.seguidor == None:
+                        continue
+
+                    if (x-1, y) in aldea: #Arriba
+                        zona = ficha_aux.zonas[4]
+                        print str(zona) + " " + str(ficha_aux.seguidor.zona)
+                        if zona == ficha_aux.seguidor.zona:
+                            seguidores_total[ficha_aux.seguidor.color] += 1
+
+                    elif (x+1, y) in aldea: #Abajo
+                        zona = ficha_aux.zonas[7]
+                        if zona == ficha_aux.seguidor.zona:
+                            seguidores_total[ficha_aux.seguidor.color] += 1
+
+                    elif (x, y+1) in aldea: #Derecha
+                        zona = ficha_aux.zonas[10]
+                        if zona == ficha_aux.seguidor.zona:
+                            seguidores_total[ficha_aux.seguidor.color] += 1
+
+                    elif (x, y-1) in aldea: #Izquierda
+                        zona = ficha_aux.zonas[13]
+                        if zona == ficha_aux.seguidor.zona:
+                            seguidores_total[ficha_aux.seguidor.color] += 1
+                escudos=self.numero_escudos_aldea(tablero,aldea)
+                puntos=self.dar_puntuacion(jugadores,seguidores_total,2*len(aldea),escudos)
+                self.array_aldeas.remove(aldea)
+
         return puntos

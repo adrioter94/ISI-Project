@@ -625,21 +625,44 @@ class LogicaTest(unittest.TestCase):
         p=Partida()
         l.array_aldeas.append([(2,2), (2,3), (2,4)])
         l.array_aldeas.append([(2,2)])
+        l.array_aldeas.append([(2,4)])
 
         p.info_jugadores(2,"Adrian","rojo","Alberto","verde")
         fichaA1 = ArrayFichas().sacar_ficha(14) #tipo5
-        fichaA2 = ArrayFichas().sacar_ficha(6) #tipo3
-        fichaA3 = ArrayFichas().sacar_ficha(41) #tipo6
-        fichaA3.girar()
-        fichaA3.girar()
-        fichaA3.girar()
+        fichaA2 = ArrayFichas().sacar_ficha(5) #tipo3 sin escudo
+        fichaA3 = ArrayFichas().sacar_ficha(17) #tipo6
+
+        p.colocar_seguidor(fichaA1,p.jugadores[1],10)
+
+        p.tablero.insertar(fichaA1, 2, 2)
+        p.tablero.insertar(fichaA2, 2, 3)
+        p.tablero.insertar(fichaA3, 2, 4)
+
+        expected=7
+        puntos = l.computar_puntos_turno(p.tablero,(2,2),p.jugadores)
+        self.assertEqual(p.jugadores[1].puntuacion,expected)
+
+    def test_computar_puntos_aldea_escudo (self):
+        l = Logica()
+        p=Partida()
+        l.array_aldeas.append([(2,2), (2,3), (2,4)])
+        l.array_aldeas.append([(2,2)])
+        l.array_aldeas.append([(2,4)])
+
+        p.info_jugadores(2,"Adrian","rojo","Alberto","verde")
+        fichaA1 = ArrayFichas().sacar_ficha(14) #tipo5
+        fichaA2 = ArrayFichas().sacar_ficha(6) #tipo3 con escudo
+        fichaA3 = ArrayFichas().sacar_ficha(17) #tipo6
+
+        p.colocar_seguidor(fichaA1,p.jugadores[1],10)
 
         p.tablero.insertar(fichaA1, 2, 2)
         p.tablero.insertar(fichaA2, 2, 3)
         p.tablero.insertar(fichaA3, 2, 4)
 
         expected=9
-        self.assertEqual(expected, l.computar_puntos_turno(p.tablero,(2,2),True,p.jugadores[0]))
+        puntos = l.computar_puntos_turno(p.tablero,(2,2),p.jugadores)
+        self.assertEqual(p.jugadores[1].puntuacion,expected)
 
     def test_computar_puntos_camino(self):
         p=Partida()
@@ -651,14 +674,14 @@ class LogicaTest(unittest.TestCase):
         fichaC2 = ArrayFichas().sacar_ficha(52) #tipo17
         fichaC3 = ArrayFichas().sacar_ficha(46) #tipo16
 
-        p.colocar_seguidor(fichaC2,p.jugadores[0],0)
         p.colocar_seguidor(fichaC1,p.jugadores[1],7)
 
         p.tablero.insertar(fichaC1, 1, 2)
         p.tablero.insertar(fichaC2, 2, 2)
         p.tablero.insertar(fichaC3, 3, 2)
         expected=4
-        self.assertEqual(expected,l.computar_puntos_turno(p.tablero,(2,2),True,p.jugadores[0]))
+        puntos = l.computar_puntos_turno(p.tablero,(2,2),p.jugadores)
+        self.assertEqual(p.jugadores[1].puntuacion,expected)
 
 if __name__ == '__main__':
 	unittest.main()
