@@ -73,30 +73,41 @@ Py Py Py
         expected_alberto=4
         expected_sandra=3
 
-
+        l = Logica()
         p=Partida()
-        l=Logica()
-        p.info_jugadores(4,"Adrian","azul","Alberto","verde","Sandra","amarillo","Diego","negro")
-        ficha1= p.saco.sacar_ficha(47)
+        l.array_aldeas.append([(2,2), (2,3), (2,4)])
+        l.array_aldeas.append([(2,2)])
+        l.array_aldeas.append([(2,4)])
 
-        ficha2 = p.saco.sacar_ficha(35)
-
-        ficha2.girar()
-        ficha2.girar()
-
-        print ficha2.imprimir()
+        p.info_jugadores(2,"Adrian","rojo","Alberto","verde")
+        fichaA1 = ArrayFichas().sacar_ficha(14) #tipo5
+        fichaA2 = ArrayFichas().sacar_ficha(6) #tipo3 con escudo
+        fichaA3 = ArrayFichas().sacar_ficha(17) #tipo6
 
         jugador = p.jugadores[0]#ADRIAN
-        p.jugar_turno(jugador,[4,5],"NO",ficha2)
-        l.coloca_ficha_con_A(p.tablero,(4,5)) # Da fallo AQUI!!!!!
 
-        next_jugador = p.pasar_turno(jugador)#ALBERTO
+        p.jugar_turno(jugador,[2,2],"SI",fichaA1,10)
+        #p.jugar_turno(jugador,[2,2],"NO",fichaA2)
+        #p.jugar_turno(jugador,[2,2],"NO",fichaA3)
+        p.tablero.insertar(fichaA1, 2, 2)
 
+        next_jugador = p.pasar_turno(jugador)
+        jugador = p.jugadores[1]#ALBERTO
+        p.tablero.insertar(fichaA3, 2, 4)
+        p.jugar_turno(jugador,[2,4],"SI",fichaA3,4)
 
         next_jugador = p.pasar_turno(next_jugador)
+        jugador = p.jugadores[0]
+        p.tablero.insertar(fichaA2, 2, 3)
+        #p.jugar_turno(jugador,[2,3],"NO",fichaA2)
 
-        print l.array_caminos
-        #self.assertEqual(l.computar_puntos_turno(p.tablero,(4,5),p.jugadores),expected_diego)
+        puntos = l.computar_puntos_turno(p.tablero,(2,2),p.jugadores)
+
+        self.assertEqual(p.jugadores[0].puntuacion,puntos)
+        self.assertEqual(p.jugadores[1].puntuacion,puntos)
+
+
+
 
 
 
