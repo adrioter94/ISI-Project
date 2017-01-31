@@ -1,5 +1,6 @@
 from Partida import Partida
 from Array_Fichas import ArrayFichas
+from Logica import Logica
 import unittest
 
 
@@ -64,6 +65,41 @@ Py Py Py
 """
         #p.tablero.imprimir()
         self.assertEqual(expected,p.tablero.tablero[5][5].imprimir())
+
+
+    def test_partida_2(self):
+
+        expected_diego=5
+        expected_alberto=4
+        expected_sandra=3
+
+
+        p=Partida()
+        l=Logica()
+        p.info_jugadores(4,"Adrian","azul","Alberto","verde","Sandra","amarillo","Diego","negro")
+        ficha1= p.saco.sacar_ficha(47)
+
+        ficha2 = p.saco.sacar_ficha(35)
+
+        ficha2.girar()
+        ficha2.girar()
+
+        print ficha2.imprimir()
+
+        jugador = p.jugadores[0]#ADRIAN
+        p.jugar_turno(jugador,[4,5],"NO",ficha2)
+        l.coloca_ficha_con_A(p.tablero,(4,5)) # Da fallo AQUI!!!!!
+
+        next_jugador = p.pasar_turno(jugador)#ALBERTO
+
+
+        next_jugador = p.pasar_turno(next_jugador)
+
+        print l.array_caminos
+        #self.assertEqual(l.computar_puntos_turno(p.tablero,(4,5),p.jugadores),expected_diego)
+
+
+
 
 
 if __name__ == '__main__':
