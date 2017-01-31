@@ -381,6 +381,7 @@ class Logica:
                 self.array_caminos.remove(camino)
 
         elif tipo == "con_A":
+            
             aldea= self.dame_aldea(pos)
             if self.aldea_completada(tablero,aldea):
                 for elem in aldea:
