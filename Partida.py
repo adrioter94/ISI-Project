@@ -1,6 +1,7 @@
 from Jugador import Jugador
 from Array_Fichas import ArrayFichas
 from Tablero import Tablero
+from Seguidor import Seguidor
 import sys
 
 class Partida:
@@ -89,8 +90,9 @@ class Partida:
             seguidor = 'y'
         if ficha.zonas[indice] != 'v' and ficha.zonas[indice] != 'r' and ficha.zonas[indice] != 'a' \
         and ficha.zonas[indice] != 'n' and ficha.zonas[indice] != 'y' and ficha.zonas[indice] != '0':
-            numero_zonas=ficha.zonas[indice] #la zona donde hemos colocado la ficha
-            ficha.pintar_ficha(numero_zonas,seguidor)
+            numero_zona = ficha.zonas[indice] #la zona donde hemos colocado la ficha
+            ficha.pintar_ficha(numero_zona, seguidor)
+            ficha.seguidor = Seguidor(numero_zona, jugador, jugador.color)
             jugador.seguidores -= 1
         return ficha
 

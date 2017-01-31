@@ -644,17 +644,19 @@ class LogicaTest(unittest.TestCase):
     def test_computar_puntos_camino(self):
         p=Partida()
         l = Logica()
-        l.array_caminos.append([(2,2), (2,3), (2,4)]) #camino de las fichas
+        l.array_caminos.append([(1,2), (2,2), (3,2)]) #camino de las fichas
         p.info_jugadores(2,"Adrian","rojo","Alberto","verde")
 
-        fichaC1 = ArrayFichas().sacar_ficha(48) #tipo16
+        fichaC1 = ArrayFichas().sacar_ficha(49) #tipo15
         fichaC2 = ArrayFichas().sacar_ficha(52) #tipo17
-        fichaC3 = ArrayFichas().sacar_ficha(49) #tipo16
+        fichaC3 = ArrayFichas().sacar_ficha(46) #tipo16
 
+        p.colocar_seguidor(fichaC2,p.jugadores[0],0)
+        p.colocar_seguidor(fichaC1,p.jugadores[1],7)
 
-        p.tablero.insertar(fichaC1, 2, 2)
-        p.tablero.insertar(fichaC2, 2, 3)
-        p.tablero.insertar(fichaC3, 2, 4)
+        p.tablero.insertar(fichaC1, 1, 2)
+        p.tablero.insertar(fichaC2, 2, 2)
+        p.tablero.insertar(fichaC3, 3, 2)
         expected=4
         self.assertEqual(expected,l.computar_puntos_turno(p.tablero,(2,2),True,p.jugadores[0]))
 

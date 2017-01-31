@@ -316,17 +316,49 @@ class Logica:
         return escudos
 
 
-    def computar_puntos_turno(self,tablero,pos,seguidor,jugador):
+    def computar_puntos_turno(self,tablero,pos,seg,jugador):
+        seguidores_total = {'negro':0, 'rojo':0, 'amarillo':0, 'azul':0, 'verde':0}
         ficha=tablero.dame_ficha(pos)
         tipo=self.que_ficha_es(ficha)
         puntos=0;
-        if seguidor:
+        if seg:
             if tipo == "con_C" or tipo == "con_B":
                 camino = self.dame_camino(pos)
-
                 if self.camino_completado(tablero,camino):
-                    puntos= len(camino) + 1 # 1 del seguidor
-                    jugador.puntuacion+=puntos
+                    for elem in camino:
+                        print elem
+                        x = elem[0]
+                        y = elem[1]
+                        pos = (x, y)
+                        ficha_aux = tablero.dame_ficha(pos)
+                        
+                        if ficha_aux.seguidor == None:
+                            continue
+
+                        if (x-1, y) in camino: #Arriba
+                            zona = ficha_aux.zonas[4]
+                            print str(zona) + " " + str(ficha_aux.seguidor.zona)
+                            if zona == ficha_aux.seguidor.zona:
+                                seguidores_total[ficha_aux.seguidor.color] += 1
+
+                        elif (x+1, y) in camino: #Abajo
+                            zona = ficha_aux.zonas[7]
+                            if zona == ficha_aux.seguidor.zona:
+                                seguidores_total[ficha_aux.seguidor.color] += 1
+
+                        elif (x, y+1) in camino: #Derecha
+                            zona = ficha_aux.zonas[10]
+                            if zona == ficha_aux.seguidor.zona:
+                                seguidores_total[ficha_aux.seguidor.color] += 1
+
+                        elif (x, y-1) in camino: #Izquierda
+                            zona = ficha_aux.zonas[13]
+                            if zona == ficha_aux.seguidor.zona:
+                                seguidores_total[ficha_aux.seguidor.color] += 1
+
+                        print seguidores_total
+                    puntos= len(camino)# 1 del seguidor
+                    jugador.puntuacion += puntos
                     jugador.seguidores += 1
                     self.array_caminos.remove(camino)
             elif tipo == "con_A":

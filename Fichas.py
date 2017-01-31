@@ -8,7 +8,7 @@ class Fichas:
 	#con una misma zona de la ficha.
 	# zona_colorear -- indica la zona que vamos a pintar segun los seguidores
 	# zonas -- indica las zonas que tiene la ficha
-	def __init__(self,c,u1,u2,u3,b1,b2,b3,r1,r2,r3,l1,l2,l3, zona_colorear, zonas, escudo=False):
+	def __init__(self,c,u1,u2,u3,b1,b2,b3,r1,r2,r3,l1,l2,l3, zona_colorear, zonas, escudo=False, seguidor=None):
 		arriba = [u1 ,u2 ,u3]
 		abajo = [b1, b2, b3]
 		derecha = [r1, r2, r3]
@@ -17,12 +17,9 @@ class Fichas:
 		self.territorio = [centro, arriba, abajo, derecha, izquierda]
 		self.zona_colorear = zona_colorear
 		self.zonas = zonas
-		self.escudo=escudo
+		self.escudo = escudo
+		self.seguidor = seguidor
 		self.pintada = False
-
-
-
-
 
     #Dada una zona de la ficha y un color de seguidor, pinta esa zona con dicho color.
 	def pintar_ficha(self,zona_colorear,seguidor):
