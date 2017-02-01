@@ -67,7 +67,7 @@ Py Py Py
 
         self.assertEqual(expected,p.tablero.tablero[5][5].imprimir())
 
-
+    @unittest.skip("demonstrating skipping")
     def test_partida_2(self):
         expected = 7
         p=Partida()
@@ -97,10 +97,238 @@ Py Py Py
         self.assertEqual(p.jugadores[0].puntuacion,expected)
 
 
+    @unittest.skip("demonstrating skipping")
+    def test_partida_3(self):
+
+        p=Partida()
+        l = Logica()
+        l.array_caminos.append([(5,5)])
+        p.info_jugadores(2,"Adrian","rojo","Alberto","verde")
 
 
+        fichaA1 = p.saco.sacar_ficha(52) #tipo3 co
+        fichaA2 = p.saco.sacar_ficha(48)
+        fichaA3 = p.saco.sacar_ficha(47) #tipo7
+
+        fichaA1.girar()
 
 
+        jugador = p.jugadores[0]#ADRIAN
+        p.jugar_turno(jugador,[5,6],"SI",fichaA1,1)
+        l.coloca_ficha_con_C(p.tablero,(5, 6))
+        next_jugador = p.pasar_turno(jugador)
+
+        p.jugar_turno(next_jugador,[5,7],"NO",fichaA2)
+        l.coloca_ficha_con_B(p.tablero,(5, 7))
+
+        next_jugador = p.pasar_turno(next_jugador)
+        p.jugar_turno(next_jugador,[5,4],"NO",fichaA3)
+        l.coloca_ficha_con_B(p.tablero,(5, 4))
+
+        puntos = l.computar_puntos_turno(p.tablero,(5,4 ),p.jugadores)
+        expected=5
+        self.assertEqual(p.jugadores[0].puntuacion,expected)
+
+
+    @unittest.skip("demonstrating skipping")
+    def test_partida_4(self):
+
+        p=Partida()
+        l = Logica()
+        l.array_caminos.append([(5,5)])
+        p.info_jugadores(2,"Adrian","rojo","Alberto","verde")
+
+        fichaA1 = p.saco.sacar_ficha(52) #tipo3 co
+        fichaA2 = p.saco.sacar_ficha(32)
+        fichaA3 = p.saco.sacar_ficha(31)
+
+        fichaA1.girar()
+
+        fichaA2.girar()
+
+        fichaA3.girar()
+        fichaA3.girar()
+        fichaA3.girar()
+
+        jugador = p.jugadores[0]#ADRIAN
+        p.jugar_turno(jugador,[5,6],"SI",fichaA1,1)
+        l.coloca_ficha_con_C(p.tablero,(5, 6))
+        next_jugador = p.pasar_turno(jugador)
+
+        p.jugar_turno(next_jugador,[5,7],"NO",fichaA2)
+        l.coloca_ficha_con_C(p.tablero,(5, 7))
+
+        next_jugador = p.pasar_turno(next_jugador)
+        p.jugar_turno(next_jugador,[5,4],"NO",fichaA3)
+        l.coloca_ficha_con_C(p.tablero,(5, 4))
+
+        puntos = l.computar_puntos_turno(p.tablero,(5,4),p.jugadores)
+        expected=5
+        self.assertEqual(p.jugadores[0].puntuacion,expected)
+
+    @unittest.skip("demonstrating skipping")
+    def test_partida_5(self):
+
+        p=Partida()
+        l = Logica()
+        l.array_caminos.append([(5,5)])
+        p.info_jugadores(2,"Adrian","rojo","Alberto","verde")
+
+        fichaA1 = p.saco.sacar_ficha(52) #tipo3 co
+        fichaA2 = p.saco.sacar_ficha(24)
+        fichaA3 = p.saco.sacar_ficha(25)
+
+        fichaA1.girar()
+
+        fichaA2.girar()
+
+        fichaA3.girar()
+        fichaA3.girar()
+        fichaA3.girar()
+
+        jugador = p.jugadores[0]#ADRIAN
+        p.jugar_turno(jugador,[5,6],"SI",fichaA1,1)
+        l.coloca_ficha_con_C(p.tablero,(5, 6))
+        next_jugador = p.pasar_turno(jugador)
+
+        p.jugar_turno(next_jugador,[5,7],"NO",fichaA2)
+        l.coloca_ficha_con_C(p.tablero,(5, 7))
+        l.coloca_ficha_con_A(p.tablero,(5, 7))
+
+
+        next_jugador = p.pasar_turno(next_jugador)
+        p.jugar_turno(next_jugador,[5,4],"NO",fichaA3)
+        l.coloca_ficha_con_C(p.tablero,(5, 4))
+        l.coloca_ficha_con_A(p.tablero,(5, 4))
+
+        puntos = l.computar_puntos_turno(p.tablero,(5,4),p.jugadores)
+        expected=5
+        self.assertEqual(p.jugadores[0].puntuacion,expected)
+
+    @unittest.skip("demonstrating skipping")
+    def test_partida_6(self):
+
+        p=Partida()
+        l = Logica()
+        l.array_caminos.append([(5,5)])
+        p.info_jugadores(2,"Adrian","rojo","Alberto","verde")
+
+        fichaA1 = p.saco.sacar_ficha(68) #tipo3 co
+
+        jugador = p.jugadores[0]#ADRIAN
+        p.jugar_turno(jugador,[6,5],"SI",fichaA1,1)
+
+        puntos = l.computar_puntos_turno(p.tablero,(6,5),p.jugadores)
+        expected=1
+        self.assertEqual(p.jugadores[0].puntuacion,expected)
+
+    @unittest.skip("demonstrating skipping")
+    def test_partida_7(self):
+
+        p=Partida()
+        l = Logica()
+        l.array_caminos.append([(5,5)])
+        l.array_aldeas.append([(5,5)])
+        p.info_jugadores(2,"Adrian","rojo","Alberto","verde")
+
+        fichaA1 = p.saco.sacar_ficha(68) #tipo3 co
+        fichaA2 = p.saco.sacar_ficha(52)
+        fichaA3 = p.saco.sacar_ficha(25)
+        fichaA4 = p.saco.sacar_ficha(31)
+
+        fichaA2.girar()
+
+        fichaA3.girar()
+
+        fichaA4.girar()
+        fichaA4.girar()
+        fichaA4.girar()
+
+        jugador = p.jugadores[0]#ADRIAN
+        p.jugar_turno(jugador,[6,5],"SI",fichaA1,1)
+        next_jugador = p.pasar_turno(jugador)
+
+        l.computar_puntos_turno(p.tablero,(6,5),p.jugadores)
+
+        p.jugar_turno(next_jugador,[5,6],"SI",fichaA2,1)
+        l.coloca_ficha_con_C(p.tablero,(5, 6))
+        next_jugador = p.pasar_turno(next_jugador)
+
+        l.computar_puntos_turno(p.tablero,(5,6),p.jugadores)
+
+        p.jugar_turno(next_jugador,[5,7],"NO",fichaA3)
+        l.coloca_ficha_con_C(p.tablero,(5, 7))
+        l.coloca_ficha_con_A(p.tablero,(5, 7))
+        next_jugador = p.pasar_turno(next_jugador)
+
+        l.computar_puntos_turno(p.tablero,(5,7),p.jugadores)
+
+        p.jugar_turno(next_jugador,[5,4],"SI",fichaA4,1)
+        l.coloca_ficha_con_C(p.tablero,(5, 4))
+        next_jugador = p.pasar_turno(next_jugador)
+
+        l.computar_puntos_turno(p.tablero,(5,4),p.jugadores)
+
+        j1 = 1
+        j2 = 6
+
+        self.assertEqual(p.jugadores[0].puntuacion, j1)
+        self.assertEqual(p.jugadores[1].puntuacion, j2)
+
+
+    def test_partida_8(self):
+
+        p=Partida()
+        l = Logica()
+        l.array_caminos.append([(5,5)])
+        l.array_aldeas.append([(5,5)])
+
+        p.info_jugadores(2,"Adrian","rojo","Alberto","verde")
+
+        fichaA1 = p.saco.sacar_ficha(38) #tipo3 co
+        fichaA2 = p.saco.sacar_ficha(19)
+        fichaA3 = p.saco.sacar_ficha(12) #tipo3 co
+        fichaA4 = p.saco.sacar_ficha(8)
+
+        fichaA3.girar()
+        fichaA3.girar()
+
+        fichaA4.girar()
+        fichaA4.girar()
+        fichaA4.girar()
+
+        jugador = p.jugadores[0]#ADRIAN
+        p.jugar_turno(jugador,[5,6],"SI",fichaA1,4)
+        l.coloca_ficha_con_A(p.tablero,(5, 6))
+        l.coloca_ficha_con_C(p.tablero,(5, 6))
+        next_jugador = p.pasar_turno(jugador)
+
+        l.computar_puntos_turno(p.tablero,(5,6),p.jugadores)
+
+        p.jugar_turno(next_jugador,[5,7],"SI",fichaA2,4)
+        l.coloca_ficha_con_A(p.tablero,(5, 7))
+        next_jugador = p.pasar_turno(next_jugador)
+
+        l.computar_puntos_turno(p.tablero,(5,7),p.jugadores)
+
+
+        p.jugar_turno(next_jugador,[4,6],"NO",fichaA3)
+        l.coloca_ficha_con_A(p.tablero,(4, 6))
+        next_jugador = p.pasar_turno(next_jugador)
+
+        l.computar_puntos_turno(p.tablero,(4,6),p.jugadores)
+
+        p.jugar_turno(next_jugador,[4,7],"NO",fichaA4)
+        l.coloca_ficha_con_A(p.tablero,(4, 7))
+        next_jugador = p.pasar_turno(next_jugador)
+
+        l.computar_puntos_turno(p.tablero,(4,7),p.jugadores)
+
+        j1 = 11
+        j2 = 11
+
+        self.assertEqual(p.jugadores[0].puntuacion, j1)
+        self.assertEqual(p.jugadores[1].puntuacion, j2)
 
 
 if __name__ == '__main__':

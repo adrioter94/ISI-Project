@@ -10,8 +10,13 @@ class Logica:
 
 
     def contiene_camino(self, ficha):
-        return ArrayFichas().type(ficha) in [10, 15, 16, 17, 18]
+        return ArrayFichas().type(ficha) in [15, 16, 17, 18]
 
+    def contiene_iglesia(self, ficha):
+        return ArrayFichas().type(ficha) in [19]
+
+    def contiene_iglesia_camino(self, ficha):
+        return ArrayFichas().type(ficha) in [10]
 
     def contiene_aldea(self, ficha):
         return ArrayFichas().type(ficha) in [1, 2, 3, 4, 5, 6, 7]
@@ -19,10 +24,6 @@ class Logica:
 
     def contiene_camino_y_aldea(self, ficha):
         return ArrayFichas().type(ficha) in [8, 9, 11, 12, 14]
-
-
-    def no_camino_no_aldea(self, ficha):
-        return ArrayFichas().type(ficha) == 19
 
 
     def es_bifurcacion(self, ficha):
@@ -36,8 +37,10 @@ class Logica:
     def es_limite_camino(self, ficha):
         return ArrayFichas().type(ficha) in [8, 10, 13, 15, 16]
 
+
     def es_doble_limite_aldea(self,ficha):
         return ArrayFichas().type(ficha) in [5, 6]
+
 
     def que_ficha_es(self, ficha):
         if self.contiene_camino(ficha) and not self.es_bifurcacion(ficha):
@@ -46,14 +49,14 @@ class Logica:
             return "con_A"
         if self.contiene_camino_y_aldea(ficha):
             return "con_CA"
-        if self.no_camino_no_aldea(ficha):
-            return "sin_CA"
         if self.es_bifurcacion(ficha):
             return "con_B"
         if self.es_bifurcacion_y_aldea(ficha):
             return "con_BA"
-        if self.es_doble_limite_aldea(ficha):
-            return "C"
+        if self.contiene_iglesia(ficha):
+            return "con_I"
+        if self.contiene_iglesia_camino(ficha):
+            return "con_CI"
 
 
     def dame_pos_contiguas(self, x, y):
@@ -342,24 +345,37 @@ class Logica:
 
     def computar_puntos_turno(self,tablero,pos,jugadores):
         seguidores_total = {'negro':0, 'rojo':0, 'amarillo':0, 'azul':0, 'verde':0}
+        numero_caminos = []
         ficha=tablero.dame_ficha(pos)
         tipo=self.que_ficha_es(ficha)
         puntos = 0
-        if tipo == "con_C" or tipo == "con_B":
-            camino = self.dame_camino(pos)
+        if tipo == "con_I" or tipo == "con_CI":
+            zona = ficha.zonas[1]
+            if ficha.seguidor != None:
+                if zona == ficha.seguidor.zona:
+                    color = ficha.seguidor.color
+                    for jugador in jugadores:
+                         if jugador.color == color:
+                             jugador.puntuacion += 1
+                             jugador.seguidores += 1
+                             break
+        if tipo == "con_C" or tipo == "con_B" or tipo == "con_CA" or tipo == "con_CI":
+            for pos_camino in self.array_caminos:
+                if pos in pos_camino:
+                    numero_caminos.append(pos_camino)
+            for camino in numero_caminos:
+                if self.camino_completado(tablero,camino):
+                    break
             if self.camino_completado(tablero,camino):
                 for elem in camino:
                     x = elem[0]
                     y = elem[1]
                     pos = (x, y)
                     ficha_aux = tablero.dame_ficha(pos)
-
                     if ficha_aux.seguidor == None:
                         continue
-
                     if (x-1, y) in camino: #Arriba
                         zona = ficha_aux.zonas[4]
-                        print str(zona) + " " + str(ficha_aux.seguidor.zona)
                         if zona == ficha_aux.seguidor.zona:
                             seguidores_total[ficha_aux.seguidor.color] += 1
 
@@ -381,7 +397,7 @@ class Logica:
                 puntos=self.dar_puntuacion(jugadores,seguidores_total,len(camino))
                 self.array_caminos.remove(camino)
 
-        elif tipo == "con_A":
+        if tipo == "con_A" or tipo == "con_CA":
             aldea= self.dame_aldea(pos)
             if self.aldea_completada(tablero,aldea):
                 for elem in aldea:
@@ -389,13 +405,10 @@ class Logica:
                     y = elem[1]
                     pos = (x, y)
                     ficha_aux = tablero.dame_ficha(pos)
-
                     if ficha_aux.seguidor == None:
                         continue
-
                     if (x-1, y) in aldea: #Arriba
                         zona = ficha_aux.zonas[4]
-                        print str(zona) + " " + str(ficha_aux.seguidor.zona)
                         if zona == ficha_aux.seguidor.zona:
                             seguidores_total[ficha_aux.seguidor.color] += 1
 
@@ -416,5 +429,4 @@ class Logica:
                 escudos=self.numero_escudos_aldea(tablero,aldea)
                 puntos=self.dar_puntuacion(jugadores,seguidores_total,2*len(aldea),escudos)
                 self.array_aldeas.remove(aldea)
-        print puntos
         return puntos
