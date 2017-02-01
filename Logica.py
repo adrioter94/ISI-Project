@@ -45,6 +45,8 @@ class Logica:
     def que_ficha_es(self, ficha):
         if self.contiene_camino(ficha) and not self.es_bifurcacion(ficha):
             return "con_C"
+        if self.es_doble_limite_aldea(ficha):
+            return "con_DLA"
         if self.contiene_aldea(ficha):
             return "con_A"
         if self.contiene_camino_y_aldea(ficha):
@@ -57,6 +59,7 @@ class Logica:
             return "con_I"
         if self.contiene_iglesia_camino(ficha):
             return "con_CI"
+
 
 
 
@@ -262,6 +265,28 @@ class Logica:
             aldea.append(pos)
             self.array_aldeas.append(aldea) #agregamos la aldea completa
 
+    def coloca_ficha_con_DLA(self, tablero, pos):
+        #Si la ficha que hay que colocar es DLA:
+        #Hay que incluirla en tantas aldeas como limites tenga
+        #Por cada lado, si es continuacion de aldea agregaremos la ficha a la aldea correspondiente,
+        #si no es continuacion crearemos una aldea nueva para esa posicion
+        ficha_actual = tablero.dame_ficha(pos)
+        pos_contiguas = self.dame_pos_contiguas(pos[0], pos[1])[0]
+        lados = self.dame_pos_contiguas(pos[0], pos[1])[1]
+
+        for i in range(1,5): #1 arriba, 2 abajo, 3 derecha, 4 izquierda
+            if ficha_actual.territorio[i][1] == 'A': #comprobamos si en ese lado hay rama
+                if self.continua_aldea(tablero, pos, pos_contiguas[i-1], lados[i-1]): #si hay rama y continua un camino existente
+                    if self.es_doble_limite_aldea(tablero.dame_ficha(pos_contiguas[i-1])): #si la ficha adyacente tambien es bifurcacion
+                        aldea = self.dame_aldea_valida_DLA(pos_contiguas[i-1])
+                    else:
+                        aldea = self.dame_aldea(pos_contiguas[i-1])
+                    self.array_aldeas.remove(aldea)
+                    aldea.append(pos)
+                    self.array_aldeas.append(aldea)
+                else:
+                    self.array_aldeas.append([pos]) #si no continua creamos una nueva aldea
+
 
     def comprueba_ficha(self, tablero, pos, ficha):
         #Segun el tipo de ficha del que se trate (con camino, con aldea, con camino y aldea),
@@ -270,6 +295,10 @@ class Logica:
 
         if tipo_ficha == "con_C":
             self.coloca_ficha_con_C(tablero, pos)
+
+        elif tipo_ficha == "con_DLA":
+            print "esdela"
+            self.coloca_ficha_con_DLA(tablero, pos)
 
         elif tipo_ficha == "con_A":
             self.coloca_ficha_con_A(tablero, pos)
@@ -363,6 +392,7 @@ class Logica:
                              jugador.seguidores += 1
                              break
         if tipo == "con_C" or tipo == "con_B" or tipo == "con_CA" or tipo == "con_CI":
+            seguidores_total = {'negro':0, 'rojo':0, 'amarillo':0, 'azul':0, 'verde':0}
             for pos_camino in self.array_caminos:
                 if pos in pos_camino:
                     numero_caminos.append(pos_camino)
@@ -400,8 +430,9 @@ class Logica:
                 puntos=self.dar_puntuacion(jugadores,seguidores_total,len(camino))
                 self.array_caminos.remove(camino)
 
-        seguidores_total = {'negro':0, 'rojo':0, 'amarillo':0, 'azul':0, 'verde':0}
-        if tipo == "con_A" or tipo == "con_CA":
+
+        if tipo == "con_A" or tipo == "con_CA" or tipo == "con_DLA":
+            seguidores_total = {'negro':0, 'rojo':0, 'amarillo':0, 'azul':0, 'verde':0}
             aldea= self.dame_aldea(pos)
             if self.aldea_completada(tablero,aldea):
                 for elem in aldea:
