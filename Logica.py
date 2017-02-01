@@ -52,6 +52,8 @@ class Logica:
             return "con_B"
         if self.es_bifurcacion_y_aldea(ficha):
             return "con_BA"
+        if self.es_doble_limite_aldea(ficha):
+            return "C"
 
 
     def dame_pos_contiguas(self, x, y):
@@ -343,7 +345,6 @@ class Logica:
         ficha=tablero.dame_ficha(pos)
         tipo=self.que_ficha_es(ficha)
         puntos = 0
-
         if tipo == "con_C" or tipo == "con_B":
             camino = self.dame_camino(pos)
             if self.camino_completado(tablero,camino):
@@ -381,7 +382,6 @@ class Logica:
                 self.array_caminos.remove(camino)
 
         elif tipo == "con_A":
-            
             aldea= self.dame_aldea(pos)
             if self.aldea_completada(tablero,aldea):
                 for elem in aldea:
@@ -416,5 +416,5 @@ class Logica:
                 escudos=self.numero_escudos_aldea(tablero,aldea)
                 puntos=self.dar_puntuacion(jugadores,seguidores_total,2*len(aldea),escudos)
                 self.array_aldeas.remove(aldea)
-
+        print puntos
         return puntos

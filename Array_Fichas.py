@@ -1,5 +1,6 @@
 from Fichas import Fichas
 import random
+import copy
 
 #Clase que contine las 72 fichas del jugo.
 class ArrayFichas:
@@ -165,6 +166,9 @@ class ArrayFichas:
 
     #Devuelve el tipo de ficha que es.
 	def type(self, ficha):
+		ficha_aux = copy.deepcopy(ficha)
 		for i in range(19):
-			if self.tipos[i].territorio == ficha.territorio:
-				return i+1
+			for z in range(1,5):
+				if self.tipos[i].territorio == ficha_aux.territorio:
+					return i+1
+				ficha_aux.girar()
