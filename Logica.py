@@ -59,6 +59,7 @@ class Logica:
             return "con_CI"
 
 
+
     def dame_pos_contiguas(self, x, y):
         #Devuelve dos arrays con las posiciones de las fichas contiguas y sus direcciones
         pos_contiguas = [(x-1, y), (x+1, y), (x, y+1), (x, y-1)]
@@ -228,6 +229,8 @@ class Logica:
         #Guardamos en posiciones las fichas adyacentes que continuen la aldea
         for i in range(len(lados)):
             if self.continua_aldea(tablero, pos, pos_contiguas[i], lados[i]): #si pertenece a una aldea existente
+                print pos_contiguas[i]
+                print "continua"
                 posiciones.append(pos_contiguas[i]) #nos quedamos con esa posicion
 
         if posiciones == []: #no pertenece a una aldea existente
@@ -397,6 +400,7 @@ class Logica:
                 puntos=self.dar_puntuacion(jugadores,seguidores_total,len(camino))
                 self.array_caminos.remove(camino)
 
+        seguidores_total = {'negro':0, 'rojo':0, 'amarillo':0, 'azul':0, 'verde':0}
         if tipo == "con_A" or tipo == "con_CA":
             aldea= self.dame_aldea(pos)
             if self.aldea_completada(tablero,aldea):
